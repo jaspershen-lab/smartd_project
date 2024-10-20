@@ -1,0 +1,271 @@
+AOC1	0.5	Protein	 
+m/z=174.071190949	1.0	m/z Peak	 
+UBL7	0.5	Protein	 
+AOC2	0.5	Protein	 
+m/z=132.084291927	1.0	m/z Peak	 
+m/z=131.080806509	1.0	m/z Peak	 
+Formiminoglutamic acid	1.0	Metabolite_Endogenous	HMDB0000854
+m/z=334.257551504	1.0	m/z Peak	 
+Tryptamine	1.0	Metabolite_Endogenous	HMDB0000303
+AOC3	1.0	Protein	 
+AGXT2	1.0	Protein	 
+LysoPC(0:0/18:0)	1.0	Metabolite_Endogenous	HMDB0011128
+B2M	1.0	Protein	 
+LysoPE(0:0/18:3(6Z,9Z,12Z))	0.5	Metabolite_Endogenous	HMDB0011478
+Stearic acid	1.0	Metabolite_Endogenous	HMDB0000827
+UPB1	1.0	Protein	 
+4,8-DimethylnoNULLoyl-CoA	0.5	Metabolite_Endogenous	HMDB0011604
+SLC25A15	0.5	Protein	 
+Serotonin	1.0	Metabolite_Endogenous	HMDB0000259
+ASS1	0.5	Protein	 
+5,10-Methenyltetrahydrofolic acid	1.0	Metabolite_Endogenous	HMDB0001354
+AHCYL1	0.5	Protein	 
+CYP2F1	1.0	Protein	 
+L-homocysteine	1.0	Metabolite_others	NULL
+MR1	1.0	Protein	 
+KHK	1.0	Protein	 
+m/z=477.287496375	1.0	m/z Peak	 
+GOT2	1.0	Protein	 
+Adenosine phosphosulfate	1.0	Metabolite_Endogenous	HMDB0001003
+PYGL	1.0	Protein	 
+10-Formyltetrahydrofolate	1.0	Metabolite_Endogenous	HMDB0000972
+m/z=262.04354072	1.0	m/z Peak	 
+Aminoacetone	1.0	Metabolite_Endogenous	HMDB0002134
+m/z=277.121213866	1.0	m/z Peak	 
+4-(2-Aminophenyl)-2,4-dioxobutanoic acid	1.0	Metabolite_Endogenous	HMDB0000978
+4-Hydroxy-L-glutamic acid	1.0	Metabolite_Endogenous	HMDB0002273
+HK2	1.0	Protein	 
+m/z=284.263886715	1.0	m/z Peak	 
+L-Threonine	1.0	Metabolite_Food	HMDB0000167
+BCAT2	0.5	Protein	 
+BCAT1	0.5	Protein	 
+m/z=73.0600721942	1.0	m/z Peak	 
+11-Oxo-androsterone glucuronide	1.0	Metabolite_Endogenous	HMDB0010338
+Tauroursodeoxycholic acid	0.5	Metabolite_Endogenous	HMDB0000874
+ACOT8	1.0	Protein	 
+m/z=217.123848993	1.0	m/z Peak	 
+SULT1E1	0.5	Protein	 
+NR1I3	1.0	Protein	 
+UGT1A8	1.0	Protein	 
+PAFAH1B1	1.0	Protein	 
+m/z=148.043268781	1.0	m/z Peak	 
+CNDP2	1.0	Protein	 
+PAFAH1B2	0.5	Protein	 
+CYP17A1	1.0	Protein	 
+Betaine	1.0	Metabolite_Endogenous	HMDB0000043
+Tyramine	1.0	Metabolite_Endogenous	HMDB0000306
+m/z=203.086582073	1.0	m/z Peak	 
+Tetrahydrodeoxycorticosterone	1.0	Metabolite_Endogenous	HMDB0000879
+m/z=291.023712812	1.0	m/z Peak	 
+Androstenol	1.0	Metabolite_Endogenous	HMDB0005935
+Glucose 1-phosphate	1.0	Metabolite_Endogenous	HMDB0001586
+TERF2	0.5	Protein	 
+m/z=334.257506695	1.0	m/z Peak	 
+1-Pyrroline-5-carboxylic acid	1.0	Metabolite_Endogenous	HMDB0001301
+Kynurenic acid	1.0	Metabolite_Endogenous	HMDB0000715
+Acetamidopropanal	1.0	Metabolite_Endogenous	HMDB0012880
+4,8 DimethylnoNULLoyl carnitine	0.5	Metabolite_Endogenous	HMDB0006202
+DBT	1.0	Protein	 
+m/z=187.128074894	1.0	m/z Peak	 
+Tetrahydrocorticosterone	1.0	Metabolite_Endogenous	HMDB0000268
+VDR	1.0	Protein	 
+N1,N12-Diacetylspermine	1.0	Metabolite_Endogenous	HMDB0002172
+FPGS	1.0	Protein	 
+Methylimidazole acetaldehyde	1.0	Metabolite_Endogenous	HMDB0004181
+DPYD	1.0	Protein	 
+m/z=188.073658359	1.0	m/z Peak	 
+m/z=288.215789194	1.0	m/z Peak	 
+SLC7A3	1.0	Protein	 
+D-Xylulose 1-phosphate	0.5	Metabolite_Endogenous	HMDB0006534
+SLC7A1	1.0	Protein	 
+m/z=168.097148264	1.0	m/z Peak	 
+SLC29A2	1.0	Protein	 
+m/z=182.036538123	1.0	m/z Peak	 
+Taurochenodesoxycholic acid	0.5	Metabolite_Endogenous	HMDB0000951
+Pregnenolone	1.0	Metabolite_Endogenous	HMDB0000253
+Propionylcarnitine	1.0	Metabolite_Endogenous	HMDB0000824
+m/z=475.271616072	1.0	m/z Peak	 
+m/z=350.252505398	1.0	m/z Peak	 
+m/z=176.09726898	1.0	m/z Peak	 
+6-Dehydrotestosterone glucuronide	1.0	Metabolite_Endogenous	HMDB0010337
+7,8-Dihydropteroic acid	1.0	Metabolite_Endogenous	HMDB0001412
+N-Desmethylaminopyrine	1.0	Metabolite_Endogenous	HMDB0013839
+D-Tryptophan	1.0	Metabolite_Endogenous	HMDB0013609
+oxypurinol	0.5	Metabolite_others	NULL
+m/z=204.0899548	1.0	m/z Peak	 
+Uracil	1.0	Metabolite_Endogenous	HMDB0000300
+AllopregNULLolone	1.0	Metabolite_Endogenous	HMDB0001449
+FATE1	1.0	Protein	 
+11-Hydroxyprogesterone 11-glucuronide	1.0	Metabolite_Endogenous	HMDB0010364
+Purine	1.0	Metabolite_Endogenous	HMDB0001366
+4-(Methylnitrosamino)-1-(3-pyridyl)-1-butanone 	1.0	Metabolite_Endogenous	HMDB0011603
+Parathion	1.0	Metabolite_Endogenous	HMDB0001355
+KYAT1	1.0	Protein	 
+Ribothymidine	1.0	Metabolite_Endogenous	HMDB0000884
+S-(2-Methylpropionyl)-dihydrolipoamide-E	1.0	Metabolite_Endogenous	HMDB0006868
+N6-Acetyl-L-lysine	1.0	Metabolite_Endogenous	HMDB0000206
+m/z=334.257419788	1.0	m/z Peak	 
+HSD3B2	1.0	Protein	 
+m/z=274.221426223	1.0	m/z Peak	 
+m/z=124.059661486	1.0	m/z Peak	 
+DDC	1.0	Protein	 
+m/z=523.35759436	1.0	m/z Peak	 
+D-Proline	1.0	Metabolite_Endogenous	HMDB0003411
+SLX4	0.5	Protein	 
+ENPP2	1.0	Protein	 
+3-Indolebutyric acid	1.0	Metabolite_Endogenous	HMDB0002096
+PAFAH2	0.5	Protein	 
+Aldosterone	1.0	Metabolite_Endogenous	HMDB0000037
+ALDH4A1	1.0	Protein	 
+Estriol-17-glucuronide	0.5	Metabolite_Endogenous	HMDB0010333
+GLYATL2	0.5	Protein	 
+m/z=116.076261478	1.0	m/z Peak	 
+Ureidopropionic acid	1.0	Metabolite_Endogenous	HMDB0000026
+m/z=540.249129718	1.0	m/z Peak	 
+m/z=175.087998028	1.0	m/z Peak	 
+MAOB	1.0	Protein	 
+m/z=202.113049696	1.0	m/z Peak	 
+Calcitriol	1.0	Metabolite_Endogenous	HMDB0001903
+3-Dehydroquinate	1.0	Metabolite_Endogenous	HMDB0012710
+m/z=204.096984498	1.0	m/z Peak	 
+m/z=466.248871522	1.0	m/z Peak	 
+Glycyl-L-leucine	1.0	Metabolite_Endogenous	HMDB0000759
+Cortisone	1.0	Metabolite_Endogenous	HMDB0002802
+4,6-Dihydroxyquinoline	1.0	Metabolite_Endogenous	HMDB0004077
+Xanthine	1.0	Metabolite_Endogenous	HMDB0000292
+PAOX	1.0	Protein	 
+CROT	1.0	Protein	 
+m/z=224.086844341	1.0	m/z Peak	 
+CYP11B2	1.0	Protein	 
+7-Methyluric acid	1.0	Metabolite_Endogenous	HMDB0011107
+PDXK	1.0	Protein	 
+ADHFE1	1.0	Protein	 
+MTHFD1L	1.0	Protein	 
+Homo-L-arginine	1.0	Metabolite_Endogenous	HMDB0000670
+AKR1C1	1.0	Protein	 
+LysoPE(18:3(9Z,12Z,15Z)/0:0)	0.5	Metabolite_Endogenous	HMDB0011509
+m/z=506.258517183	1.0	m/z Peak	 
+2-acetyl-1-alkyl-sn-glycero-3-phosphocholine	0.5	Metabolite_others	NULL
+CYP1B1	1.0	Protein	 
+m/z=115.057237435	1.0	m/z Peak	 
+m/z=120.039507119	1.0	m/z Peak	 
+m/z=207.060162052	1.0	m/z Peak	 
+AKR1D1	1.0	Protein	 
+m/z=188.123053221	1.0	m/z Peak	 
+D-2-Hydroxyglutaric acid	1.0	Metabolite_Endogenous	HMDB0000606
+SLC6A18	1.0	Protein	 
+m/z=412.183777857	1.0	m/z Peak	 
+Sedoheptulose	1.0	Metabolite_Endogenous	HMDB0003219
+5a-PregNULLe-3,20-dione	0.5	Metabolite_Endogenous	HMDB0003759
+SLC6A14	0.5	Protein	 
+m/z=146.063244693	1.0	m/z Peak	 
+CRAT	1.0	Protein	 
+Androstanedione	1.0	Metabolite_Endogenous	HMDB0000899
+m/z=540.249106034	1.0	m/z Peak	 
+L-Tryptophan	1.0	Metabolite_Food	HMDB0000929
+HSD11B1	1.0	Protein	 
+Dehydroepiandrosterone sulfate	1.0	Metabolite_Endogenous	HMDB0001032
+Selenocystathionine	0.5	Metabolite_Endogenous	HMDB0006343
+m/z=161.040167561	1.0	m/z Peak	 
+SULT1A3	1.0	Protein	 
+m/z=316.247194465	1.0	m/z Peak	 
+ENO2	1.0	Protein	 
+m/z=330.226472574	1.0	m/z Peak	 
+7a,12a-Dihydroxy-cholestene-3-one	1.0	Metabolite_Endogenous	HMDB0002197
+SLCO1A2	1.0	Protein	 
+3-Methyl-2-oxovaleric acid	0.5	Metabolite_Endogenous	HMDB0000491
+L-Homoserine	1.0	Metabolite_Endogenous	HMDB0000719
+m/z=542.264795487	1.0	m/z Peak	 
+m/z=188.089549056	1.0	m/z Peak	 
+(R)-b-aminoisobutyric acid	1.0	Metabolite_Endogenous	HMDB0002299
+Deoxycorticosterone	1.0	Metabolite_Endogenous	HMDB0000016
+ADH5	1.0	Protein	 
+L-3-Hydroxykynurenine	1.0	Metabolite_Endogenous	HMDB0011631
+Adipic acid	1.0	Metabolite_Food	HMDB0000448
+m/z=117.0714969	1.0	m/z Peak	 
+Estriol-3-glucuronide	0.5	Metabolite_Endogenous	HMDB0010335
+Sorbitol-6-phosphate	1.0	Metabolite_Endogenous	HMDB0005831
+17-Hydroxypregnenolone sulfate	1.0	Metabolite_Endogenous	HMDB0000416
+L-2,4-diaminobutyric acid	1.0	Metabolite_Endogenous	HMDB0006284
+AOX1	1.0	Protein	 
+m/z=113.054772099	1.0	m/z Peak	 
+N-Acetylglutamine	1.0	Metabolite_Endogenous	HMDB0006029
+Cortolone-3-glucuronide	1.0	Metabolite_Endogenous	HMDB0010320
+m/z=316.247082074	1.0	m/z Peak	 
+3-Methylindole	1.0	Metabolite_Endogenous	HMDB0000466
+ERCC1	1.0	Protein	 
+ERCC4	0.5	Protein	 
+D-Ornithine	0.5	Metabolite_Endogenous	HMDB0003374
+m/z=314.119615495	1.0	m/z Peak	 
+m/z=258.077627759	1.0	m/z Peak	 
+BHMT2	1.0	Protein	 
+ABAT	1.0	Protein	 
+TRMT2B	1.0	Protein	 
+D-Tagatose 1-phosphate	0.5	Metabolite_Endogenous	HMDB0006328
+L-Ornithine monochlorohydrate/ornithine	1.0	Metabolite_Endogenous	HMDB0032455
+LysoPE(18:2(9Z,12Z)/0:0)	0.5	Metabolite_Endogenous	HMDB0011507
+m/z=189.049945142	1.0	m/z Peak	 
+ALDOB	1.0	Protein	 
+Dehydroandrosterone	1.0	Metabolite_Endogenous	HMDB0005962
+PAPSS1	1.0	Protein	 
+KYNU	1.0	Protein	 
+m/z=416.335731085	1.0	m/z Peak	 
+17-Hydroxyprogesterone	1.0	Metabolite_Endogenous	HMDB0000374
+Hydroxykynurenine	1.0	Metabolite_Endogenous	HMDB0000732
+CBS	0.5	Protein	 
+allopurinol	0.5	Metabolite_others	NULL
+Pyridoxal	1.0	Metabolite_Endogenous	HMDB0001545
+DAO	1.0	Protein	 
+XDH	1.0	Protein	 
+DPYS	1.0	Protein	 
+Caproic acid	1.0	Metabolite_Endogenous	HMDB0000535
+FTCD	1.0	Protein	 
+Citrulline	1.0	Metabolite_Endogenous	HMDB0000904
+m/z=210.08176706	1.0	m/z Peak	 
+m/z=112.018782353	1.0	m/z Peak	 
+m/z=316.247044439	1.0	m/z Peak	 
+3,4-Dihydroxyphenylglycol	1.0	Metabolite_Endogenous	HMDB0000318
+Etiocholanedione 	1.0	Metabolite_Endogenous	HMDB0003769
+HSD11B2	1.0	Protein	 
+m/z=118.068359396	1.0	m/z Peak	 
+ACY1	1.0	Protein	 
+SULT2A1	1.0	Protein	 
+m/z=462.217750744	1.0	m/z Peak	 
+ALDH3B2	0.5	Protein	 
+m/z=286.243728374	1.0	m/z Peak	 
+NOS3	1.0	Protein	 
+AADAT	1.0	Protein	 
+L-Valine	1.0	Metabolite_Food	HMDB0000883
+m/z=464.211488022	1.0	m/z Peak	 
+Ureidoisobutyric acid	1.0	Metabolite_Endogenous	HMDB0002031
+3,4-Dihydroxymandelaldehyde	1.0	Metabolite_Endogenous	HMDB0006242
+UBQLN1	1.0	Protein	 
+RXRA	1.0	Protein	 
+m/z=427.011724015	1.0	m/z Peak	 
+LysoPE(0:0/18:2(9Z,12Z))	0.5	Metabolite_Endogenous	HMDB0011477
+PAPSS2	0.5	Protein	 
+Sebacic acid	1.0	Metabolite_Endogenous	HMDB0000792
+1-Pyrroline-2-carboxylic acid	0.5	Metabolite_Endogenous	HMDB0006875
+STS	1.0	Protein	 
+m/z=119.065398217	1.0	m/z Peak	 
+m/z=360.200399235	1.0	m/z Peak	 
+m/z=217.121461646	1.0	m/z Peak	 
+Demethylated antipyrine	1.0	Metabolite_Endogenous	HMDB0006240
+Epitestosterone	1.0	Metabolite_Endogenous	HMDB0000628
+Androsterone glucuronide	1.0	Metabolite_Endogenous	HMDB0002829
+N-Heptanoylglycine	1.0	Metabolite_Endogenous	HMDB0013010
+20a-Dihydroprogesterone	1.0	Metabolite_Endogenous	HMDB0003069
+Pyridoxamine	1.0	Metabolite_Endogenous	HMDB0001431
+m/z=207.100315322	1.0	m/z Peak	 
+PNP	1.0	Protein	 
+Dihydrouracil	1.0	Metabolite_Endogenous	HMDB0000076
+OTC	0.5	Protein	 
+TMEM27	0.5	Protein	 
+Ketoleucine	0.5	Metabolite_Endogenous	HMDB0000695
+GLYAT	0.5	Protein	 
+m/z=480.228353456	1.0	m/z Peak	 
+m/z=190.052970795	1.0	m/z Peak	 
+m/z=499.289924019	1.0	m/z Peak	 
+AHCY	0.5	Protein	 
+m/z=318.263039015	1.0	m/z Peak	 
+Tetrahydroaldosterone-3-glucuronide	1.0	Metabolite_Endogenous	HMDB0010357

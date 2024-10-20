@@ -1,0 +1,11 @@
+Summary of the results, for the following parameters:
+w=10.0 , beta=2.0, mu=0.0005, Da=0.01, R=1 
+The number of input terminals #peaks=243 , #Metabolites=0, #genes/proteins=0
+243 peaks are mathced to 882 metabolites in HMDB and Recon
+74 peaks are mathced to 120 metabolites in the PPMI network
+The resulting network info:
+-Number of nodes=236
+-Number of edges=261
+-Number of m/z peaks in the results=73
+-Number of terminal metabolites in the results=0
+-Number of terminal genes/proteins in the results=0

@@ -1,0 +1,161 @@
+LysoPE(0:0/18:1(9Z))	ENPP2
+LysoPE(0:0/18:1(9Z))	m/z=479.303332939
+m/z=264.116006297	Acetyl-N-formyl-5-methoxykynurenamine
+m/z=221.097058552	N-Acetylmannosamine
+m/z=221.097058552	N-Acetylgalactosamine
+m/z=478.227241706	4-Hydroxyandrostenedione glucuronide
+m/z=478.227241706	2-Methoxy-estradiol-17b 3-glucuronide
+m/z=304.210642582	6beta-Hydroxytestosterone
+B2M	3-Indolebutyric acid
+B2M	A2M
+B2M	HLA-B
+4,8-DimethylnoNULLoyl-CoA	CRAT
+4,8-DimethylnoNULLoyl-CoA	CROT
+3-Mercaptolactic acid	m/z=122.007445268
+3-Mercaptolactic acid	LDHAL6B
+3-Mercaptolactic acid	LDHA
+3-Mercaptolactic acid	LDHB
+16a-Hydroxydehydroisoandrosterone	m/z=304.210567131
+16a-Hydroxydehydroisoandrosterone	HSD3B2
+B3GNT3	D-glucosyl-N-acylsphingosine
+B3GNT3	N-Acetylgalactosamine
+3a,7a-Dihydroxy-5b-cholestanate	ALDH9A1
+3a,7a-Dihydroxy-5b-cholestanate	m/z=332.241903434
+m/z=190.054867727	3-Dehydroquinate
+2-Hydroxyestradiol	m/z=288.179646049
+2-Hydroxyestradiol	CYP1B1
+6beta-Hydroxytestosterone	m/z=304.210567131
+6beta-Hydroxytestosterone	CYP3A7
+m/z=334.257551504	Tetrahydrodeoxycorticosterone
+GUSB	simvastatin-acyl-glucuronide
+GUSB	HyaluroNULL biosynthesis, precursor 1
+GUSB	chondroitin sulfate C (GalNAc6S-GlcA), degradation product 2
+17-Hydroxyprogesterone	CYP1B1
+17-Hydroxyprogesterone	HSD3B2
+[(2R,3S,4R,5R)-5-(2,4-dioxo-1,2,3,4-tetrahydropyrimidin-1-yl)-3,4-dihydroxyoxolan-2-yl]methyl {[(3R,4S,5S,6R)-3,4,5-trihydroxy-6-(hydroxymethyl)oxan-2-yl phosphonato]oxy}phosphonate	UGCG
+[(2R,3S,4R,5R)-5-(2,4-dioxo-1,2,3,4-tetrahydropyrimidin-1-yl)-3,4-dihydroxyoxolan-2-yl]methyl {[(3R,4S,5S,6R)-3,4,5-trihydroxy-6-(hydroxymethyl)oxan-2-yl phosphonato]oxy}phosphonate	ENPP2
+ENPP2	LysoPE(0:0/18:3(9Z,12Z,15Z))
+ENPP2	LysoPE(18:2(9Z,12Z)/0:0)
+ENPP2	LysoPE(18:3(6Z,9Z,12Z)/0:0)
+Glycocholic acid	SLCO1B1
+Glycocholic acid	GLYATL3
+m/z=446.199967567	Estrone glucuronide
+11-Oxo-androsterone glucuronide	m/z=480.242472339
+11-Oxo-androsterone glucuronide	UGT1A8
+Vinylacetylglycine	GLYATL3
+Vinylacetylglycine	m/z=143.065516488
+CYP3A7	Epitestosterone
+Tyramine	DDC
+Tyramine	SULT1A3
+DHODH	L-Dihydroorotic acid
+DHODH	Orotic acid
+HSD3B2	Pregnenolone
+HSD3B2	17a-Hydroxypregnenolone
+m/z=314.231437319	Progesterone
+L-Octanoylcarnitine	m/z=287.203690856
+L-Octanoylcarnitine	CROT
+UGCG	D-glucosyl-N-acylsphingosine
+VDR	NCOA2
+VDR	Calcitriol
+m/z=146.116746275	Acetylcholine 
+m/z=146.116746275	4-Trimethylammoniobutanoic acid
+HLA-B	ALDH9A1
+N-Acetyl-D-mannosamine 6-phosphate	NAGK
+N-Acetyl-D-mannosamine 6-phosphate	GNE
+Pregnenolone	m/z=316.247194465
+Pregnenolone	m/z=316.247050129
+Pregnenolone	SULT1A3
+Pregnenolone	SULT2A1
+UMPS	Orotic acid
+UMPS	A2M
+UMPS	PAXIP1
+SYNONYMS=KAP10.5,	NAA10
+SYNONYMS=KAP10.5,	GNE
+6-Dehydrotestosterone glucuronide	m/z=462.23211974
+6-Dehydrotestosterone glucuronide	UGT1A8
+6-Dehydrotestosterone glucuronide	m/z=462.227419384
+Acetylcholine 	ACHE
+m/z=158.028900543	L-Dihydroorotic acid
+m/z=158.028900543	4,5-Dihydroorotic acid
+AllopregNULLolone	m/z=318.262618276
+AllopregNULLolone	AKR1C1
+m/z=316.247050129	20a-Dihydroprogesterone
+m/z=316.247050129	5a-PregNULLe-3,20-dione
+m/z=105.049630457	D-Serine
+D-Serine	SLC3A2
+4E,15Z-Bilirubin IXa	SLCO1B1
+4E,15Z-Bilirubin IXa	m/z=584.268853743
+4E,15Z-Bilirubin IXa	UGT1A8
+4E,15Z-Bilirubin IXa	UGT1A3
+N-Acetyl-leukotriene E4	m/z=481.246174235
+N-Acetyl-leukotriene E4	NAA10
+PAXIP1	LDHA
+LysoPE(18:3(6Z,9Z,12Z)/0:0)	m/z=475.271746378
+DDC	L-Tryptophan
+2-Methoxy-estradiol-17b 3-glucuronide	m/z=478.22718027
+3-Indolebutyric acid	m/z=203.086582073
+PEX5	CRAT
+PEX5	LDHB
+NAA10	EHMT2
+SLC3A2	L-Cystine
+GLYATL3	3a,7b,12a-Trihydroxyoxocholanyl-Glycine
+SLC3A1	L-Ornithine monochlorohydrate/ornithine
+SLC3A1	L-Cystine
+N-Acetylgalactosamine	HEXA
+N-Acetylgalactosamine	HEXB
+m/z=475.271746378	LysoPE(0:0/18:3(9Z,12Z,15Z))
+17a-Hydroxypregnenolone	m/z=332.241903434
+Calcitriol	m/z=416.335731085
+4-Hydroxyandrostenedione glucuronide	UGT1A8
+4-Hydroxyandrostenedione glucuronide	m/z=478.22718027
+4-Hydroxyandrostenedione glucuronide	UGT1A3
+m/z=154.033814345	Diethylphosphate
+CBX5	DNMT3B
+CBX5	SUV39H1
+AKR1C1	Progesterone
+AKR1C1	20a-Dihydroprogesterone
+AKR1C1	Tetrahydrodeoxycorticosterone
+HEXB	chondroitin sulfate C (GalNAc6S-GlcA), degradation product 2
+NCOA2	CAD
+EHMT2	Protein N6,N6,N6-trimethyl-L-lysine
+simvastatin-acyl-glucuronide	UGT1A3
+5-Methylcytosine	m/z=125.054912094
+5-Methylcytosine	DNMT3B
+L-Tryptophan	IDO1
+L-Tryptophan	m/z=204.089880223
+Diethylphosphate	PON3
+SULT1A3	Estrone
+m/z=316.247194465	20a-Dihydroprogesterone
+m/z=316.247194465	5a-PregNULLe-3,20-dione
+Acetyl-N-formyl-5-methoxykynurenamine	IDO1
+m/z=477.287496375	LysoPE(18:2(9Z,12Z)/0:0)
+ACHE	ENO1
+Estriol-17-glucuronide	UGT1A8
+Estriol-17-glucuronide	m/z=464.211488022
+SLCO1B1	3a,7b,12a-Trihydroxyoxocholanyl-Glycine
+m/z=344.205751904	11-Dehydrocorticosterone
+Estriol-3-glucuronide	UGT1A8
+Estriol-3-glucuronide	m/z=464.211488022
+LDHAL6B	SUV39H1
+LDHAL6B	NAGK
+Carbamoyl phosphate	OTC
+Carbamoyl phosphate	CAD
+UGT1A8	Epitestosterone
+UGT1A8	Estrone glucuronide
+Estrone	m/z=270.168935047
+L-Ornithine monochlorohydrate/ornithine	OTC
+HyaluroNULL biosynthesis, precursor 1	HEXA
+UGT1A3	simvastatin dihydroxy acid form
+Protein N6,N6,N6-trimethyl-L-lysine	SUV39H1
+m/z=158.028722644	L-Dihydroorotic acid
+m/z=158.028722644	4,5-Dihydroorotic acid
+3-Dehydroquinate	ENO1
+simvastatin dihydroxy acid form	PON3
+CAD	L-Dihydroorotic acid
+SULT2A1	Epitestosterone
+ALDH9A1	4-Trimethylammoniobutanoic acid
+m/z=416.335731085	7a,12a-Dihydroxy-cholestene-3-one
+5a-PregNULLe-3,20-dione	AKR1D1
+NAGK	N-Acetylmannosamine
+AKR1D1	11-Dehydrocorticosterone
+AKR1D1	7a,12a-Dihydroxy-cholestene-3-one

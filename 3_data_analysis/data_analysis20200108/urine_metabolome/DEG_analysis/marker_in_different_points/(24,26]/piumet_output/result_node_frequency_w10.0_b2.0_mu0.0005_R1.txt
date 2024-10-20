@@ -1,0 +1,11 @@
+m/z=480.242472339	1.0	m/z Peak	 
+16-alpha,17-beta-estriol 17-beta-D-glucuronide	0.5	Metabolite_Endogenous	HMDB0010354
+m/z=464.211488022	1.0	m/z Peak	 
+Estriol-3-glucuronide	0.5	Metabolite_Endogenous	HMDB0010335
+UGT2A1	0.5	Protein	 
+11-Oxo-androsterone glucuronide	1.0	Metabolite_Endogenous	HMDB0010338
+UGT1A8	1.0	Protein	 
+Estrone	1.0	Metabolite_Endogenous	HMDB0000145
+m/z=270.168935047	1.0	m/z Peak	 
+GUSB	0.5	Protein	 
+Estriol-17-glucuronide	0.5	Metabolite_Endogenous	HMDB0010333

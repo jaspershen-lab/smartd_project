@@ -1,0 +1,14 @@
+4-Hydroxyandrostenedione glucuronide	m/z=478.227241706
+4-Hydroxyandrostenedione glucuronide	UGT2A1
+Estriol-17-glucuronide	m/z=464.211488022
+Estriol-17-glucuronide	UGT1A8
+UGT2A3	Estriol-3-glucuronide
+UGT2A3	2-Methoxy-estradiol-17b 3-glucuronide
+m/z=288.179646049	Estriol
+m/z=478.227241706	2-Methoxy-estradiol-17b 3-glucuronide
+Estriol-3-glucuronide	m/z=464.211488022
+Estriol-3-glucuronide	UGT2A1
+UGT2A1	Estriol
+UGT1A8	Estrone
+UGT1A8	Estriol
+Estrone	m/z=270.168935047

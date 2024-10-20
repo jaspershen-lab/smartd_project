@@ -1,0 +1,292 @@
+AOC1	Tryptamine
+AOC1	Methylimidazole acetaldehyde
+m/z=174.071190949	Demethylated antipyrine
+m/z=174.071190949	Formiminoglutamic acid
+AOC3	Aminoacetone
+AOC3	Methylimidazole acetaldehyde
+LysoPE(0:0/18:3(6Z,9Z,12Z))	ENPP2
+LysoPE(0:0/18:3(6Z,9Z,12Z))	m/z=475.271616072
+m/z=132.084291927	L-Ornithine monochlorohydrate/ornithine
+m/z=132.084291927	D-Ornithine
+m/z=131.080806509	3-Methylindole
+Formiminoglutamic acid	FTCD
+m/z=334.257551504	Tetrahydrodeoxycorticosterone
+Tryptamine	DDC
+Tryptamine	AOC2
+m/z=73.0600721942	Aminoacetone
+AGXT2	ALDOB
+AGXT2	(R)-b-aminoisobutyric acid
+LysoPC(0:0/18:0)	m/z=523.35759436
+LysoPC(0:0/18:0)	PAFAH2
+LysoPC(0:0/18:0)	PAFAH1B2
+B2M	3-Indolebutyric acid
+B2M	MR1
+m/z=316.247082074	Pregnenolone
+m/z=316.247082074	20a-Dihydroprogesterone
+Stearic acid	GOT2
+Stearic acid	m/z=284.263886715
+UPB1	Ureidoisobutyric acid
+UPB1	Ureidopropionic acid
+UPB1	(R)-b-aminoisobutyric acid
+10-Formyltetrahydrofolate	MTHFD1L
+10-Formyltetrahydrofolate	FPGS
+SLC25A15	L-Ornithine monochlorohydrate/ornithine
+SLC25A15	Citrulline
+Serotonin	m/z=176.09726898
+Serotonin	MAOB
+D-Tryptophan	m/z=204.096984498
+D-Tryptophan	m/z=204.0899548
+5,10-Methenyltetrahydrofolic acid	MTHFD1L
+5,10-Methenyltetrahydrofolic acid	FTCD
+DPYD	Dihydrouracil
+DPYD	Uracil
+AHCYL1	UBL7
+AHCYL1	L-homocysteine
+CYP2F1	Parathion
+CYP2F1	3-Methylindole
+UBL7	ERCC1
+L-homocysteine	CBS
+L-homocysteine	BHMT2
+L-homocysteine	AHCY
+MR1	FATE1
+OTC	L-Ornithine monochlorohydrate/ornithine
+OTC	Citrulline
+KHK	D-Xylulose 1-phosphate
+KHK	D-Tagatose 1-phosphate
+KHK	Sedoheptulose
+GOT2	4-(2-Aminophenyl)-2,4-dioxobutanoic acid
+GOT2	4-Hydroxy-L-glutamic acid
+Adenosine phosphosulfate	m/z=427.011724015
+Adenosine phosphosulfate	PAPSS1
+Adenosine phosphosulfate	PAPSS2
+PYGL	Purine
+PYGL	Glucose 1-phosphate
+m/z=262.04354072	Sorbitol-6-phosphate
+m/z=277.121213866	S-(2-Methylpropionyl)-dihydrolipoamide-E
+4-(2-Aminophenyl)-2,4-dioxobutanoic acid	KYAT1
+4-(2-Aminophenyl)-2,4-dioxobutanoic acid	AADAT
+4-(2-Aminophenyl)-2,4-dioxobutanoic acid	m/z=207.060162052
+4-Hydroxy-L-glutamic acid	m/z=161.040167561
+4-Hydroxy-L-glutamic acid	ALDH4A1
+HK2	UBQLN1
+HK2	Sorbitol-6-phosphate
+Tetrahydrocorticosterone	HSD11B2
+Tetrahydrocorticosterone	m/z=350.252505398
+BCAT2	L-Valine
+BCAT2	Ketoleucine
+1-Pyrroline-2-carboxylic acid	m/z=113.054772099
+1-Pyrroline-2-carboxylic acid	DAO
+m/z=217.121461646	N-Desmethylaminopyrine
+m/z=217.121461646	Propionylcarnitine
+11-Oxo-androsterone glucuronide	UGT1A8
+11-Oxo-androsterone glucuronide	m/z=480.228353456
+7a,12a-Dihydroxy-cholestene-3-one	m/z=416.335731085
+7a,12a-Dihydroxy-cholestene-3-one	AKR1D1
+m/z=188.089549056	N-Acetylglutamine
+m/z=499.289924019	Taurochenodesoxycholic acid
+m/z=499.289924019	Tauroursodeoxycholic acid
+ACOT8	Adipic acid
+ACOT8	Sebacic acid
+m/z=217.123848993	N-Desmethylaminopyrine
+m/z=217.123848993	Propionylcarnitine
+SULT1E1	Dehydroepiandrosterone sulfate
+SULT1E1	Dehydroandrosterone
+m/z=274.221426223	Androstenol
+PAFAH1B1	PAPSS1
+PAFAH1B1	2-acetyl-1-alkyl-sn-glycero-3-phosphocholine
+PAFAH1B1	PAFAH1B2
+m/z=148.043268781	D-2-Hydroxyglutaric acid
+CNDP2	Glycyl-L-leucine
+CNDP2	KYNU
+CYP17A1	Pregnenolone
+CYP17A1	Demethylated antipyrine
+CYP17A1	N-Desmethylaminopyrine
+Betaine	m/z=117.0714969
+Betaine	BHMT2
+Tyramine	MAOB
+Tyramine	SULT1A3
+ADH5	3,4-Dihydroxyphenylglycol
+ADH5	3,4-Dihydroxymandelaldehyde
+ADH5	Sebacic acid
+m/z=542.264795487	Cortolone-3-glucuronide
+m/z=291.023712812	Parathion
+Androstenol	NR1I3
+Glucose 1-phosphate	ENPP2
+m/z=334.257506695	Tetrahydrodeoxycorticosterone
+1-Pyrroline-5-carboxylic acid	m/z=113.054772099
+1-Pyrroline-5-carboxylic acid	ALDH4A1
+Kynurenic acid	KYAT1
+Kynurenic acid	m/z=189.049945142
+Acetamidopropanal	PAOX
+Acetamidopropanal	m/z=115.057237435
+Aldosterone	CYP11B2
+Aldosterone	m/z=360.200399235
+DBT	3-Methyl-2-oxovaleric acid
+DBT	S-(2-Methylpropionyl)-dihydrolipoamide-E
+DBT	Ketoleucine
+m/z=187.128074894	N-Heptanoylglycine
+PDXK	Pyridoxal
+PDXK	Pyridoxamine
+N1,N12-Diacetylspermine	PAOX
+N1,N12-Diacetylspermine	m/z=286.243728374
+Methylimidazole acetaldehyde	ALDH3B2
+Methylimidazole acetaldehyde	AOC2
+Methylimidazole acetaldehyde	MAOB
+Methylimidazole acetaldehyde	m/z=124.059661486
+L-Homoserine	m/z=119.065398217
+L-Homoserine	SLC7A3
+L-Homoserine	SLC7A1
+Xanthine	PNP
+Xanthine	XDH
+m/z=188.073658359	N-Acetylglutamine
+m/z=288.215789194	Epitestosterone
+m/z=288.215789194	Androstanedione
+m/z=288.215789194	Dehydroandrosterone
+m/z=288.215789194	Etiocholanedione 
+SLC7A3	L-Ornithine monochlorohydrate/ornithine
+D-Xylulose 1-phosphate	ALDOB
+SLC7A1	FATE1
+m/z=168.097148264	Pyridoxamine
+NOS3	Homo-L-arginine
+NOS3	Citrulline
+SLC29A2	UBQLN1
+SLC29A2	Uracil
+m/z=182.036538123	7-Methyluric acid
+4,8-DimethylnoNULLoyl-CoA	CRAT
+4,8-DimethylnoNULLoyl-CoA	CROT
+Pregnenolone	SULT1A3
+Pregnenolone	SULT2A1
+Propionylcarnitine	CRAT
+m/z=475.271616072	LysoPE(18:3(9Z,12Z,15Z)/0:0)
+NR1I3	RXRA
+m/z=360.200399235	Cortisone
+ASS1	TERF2
+ASS1	Citrulline
+Sebacic acid	m/z=202.113049696
+7-Methyluric acid	XDH
+Uracil	PNP
+Uracil	m/z=112.018782353
+AllopregNULLolone	m/z=318.263039015
+AllopregNULLolone	AKR1C1
+Purine	m/z=120.039507119
+Purine	PNP
+4-(Methylnitrosamino)-1-(3-pyridyl)-1-butanone 	m/z=207.100315322
+4-(Methylnitrosamino)-1-(3-pyridyl)-1-butanone 	HSD11B1
+Parathion	CYP1B1
+Ribothymidine	m/z=258.077627759
+Ribothymidine	TRMT2B
+N6-Acetyl-L-lysine	GLYATL2
+N6-Acetyl-L-lysine	GLYAT
+N6-Acetyl-L-lysine	m/z=188.123053221
+m/z=334.257419788	Tetrahydrodeoxycorticosterone
+HSD3B2	Androstanedione
+HSD3B2	17-Hydroxyprogesterone
+2-acetyl-1-alkyl-sn-glycero-3-phosphocholine	PAFAH2
+Tauroursodeoxycholic acid	SLCO1A2
+m/z=188.123053221	Homo-L-arginine
+m/z=188.123053221	Glycyl-L-leucine
+4,6-Dihydroxyquinoline	MAOB
+4,6-Dihydroxyquinoline	m/z=161.040167561
+DDC	L-Tryptophan
+4,8 DimethylnoNULLoyl carnitine	CRAT
+4,8 DimethylnoNULLoyl carnitine	CROT
+7,8-Dihydropteroic acid	FPGS
+7,8-Dihydropteroic acid	m/z=314.119615495
+BCAT1	L-Valine
+BCAT1	3-Methyl-2-oxovaleric acid
+ENPP2	LysoPE(0:0/18:2(9Z,12Z))
+ENPP2	LysoPE(18:2(9Z,12Z)/0:0)
+ENPP2	LysoPE(18:3(9Z,12Z,15Z)/0:0)
+3-Indolebutyric acid	m/z=203.086582073
+m/z=118.068359396	L-2,4-diaminobutyric acid
+Estriol-17-glucuronide	m/z=464.211488022
+Estriol-17-glucuronide	UGT1A8
+GLYATL2	N-Heptanoylglycine
+m/z=116.076261478	Caproic acid
+Ureidopropionic acid	DPYS
+m/z=540.249129718	Tetrahydroaldosterone-3-glucuronide
+m/z=175.087998028	Citrulline
+CBS	Selenocystathionine
+SLX4	TERF2
+SLX4	ERCC4
+Calcitriol	m/z=416.335731085
+Calcitriol	VDR
+m/z=466.248871522	Androsterone glucuronide
+Cortisone	HSD11B2
+Cortisone	HSD11B1
+CROT	Caproic acid
+CYP11B2	Deoxycorticosterone
+oxypurinol	AOX1
+oxypurinol	XDH
+ADHFE1	D-2-Hydroxyglutaric acid
+ADHFE1	3,4-Dihydroxyphenylglycol
+AKR1C1	20a-Dihydroprogesterone
+AKR1C1	Tetrahydrodeoxycorticosterone
+m/z=506.258517183	11-Hydroxyprogesterone 11-glucuronide
+CYP1B1	17-Hydroxyprogesterone
+m/z=115.057237435	D-Proline
+SLC6A18	L-Valine
+SLC6A18	L-Tryptophan
+TMEM27	L-Valine
+TMEM27	L-Threonine
+11-Hydroxyprogesterone 11-glucuronide	UGT1A8
+N-Acetylglutamine	ACY1
+17-Hydroxypregnenolone sulfate	m/z=412.183777857
+17-Hydroxypregnenolone sulfate	STS
+5a-PregNULLe-3,20-dione	m/z=316.247194465
+5a-PregNULLe-3,20-dione	m/z=316.247044439
+SLC6A14	L-Valine
+SLC6A14	L-Threonine
+m/z=146.063244693	Adipic acid
+m/z=146.063244693	Ureidoisobutyric acid
+m/z=540.249106034	Tetrahydroaldosterone-3-glucuronide
+ERCC4	ERCC1
+RXRA	VDR
+SULT1A3	Dehydroandrosterone
+m/z=316.247194465	20a-Dihydroprogesterone
+ENO2	PNP
+ENO2	3-Dehydroquinate
+m/z=330.226472574	Deoxycorticosterone
+m/z=330.226472574	17-Hydroxyprogesterone
+Tetrahydroaldosterone-3-glucuronide	UGT1A8
+SLCO1A2	Dehydroepiandrosterone sulfate
+SLCO1A2	Taurochenodesoxycholic acid
+(R)-b-aminoisobutyric acid	ABAT
+L-3-Hydroxykynurenine	m/z=224.086844341
+L-3-Hydroxykynurenine	KYNU
+m/z=117.0714969	L-Valine
+Estriol-3-glucuronide	m/z=464.211488022
+Estriol-3-glucuronide	UGT1A8
+Sedoheptulose	m/z=210.08176706
+Etiocholanedione 	AKR1D1
+UGT1A8	Epitestosterone
+UGT1A8	Androsterone glucuronide
+UGT1A8	6-Dehydrotestosterone glucuronide
+UGT1A8	Cortolone-3-glucuronide
+L-2,4-diaminobutyric acid	ABAT
+AOX1	Pyridoxal
+AOX1	allopurinol
+m/z=224.086844341	Hydroxykynurenine
+ERCC1	TRMT2B
+Dehydroepiandrosterone sulfate	SULT2A1
+D-Ornithine	DAO
+D-Tagatose 1-phosphate	ALDOB
+L-Ornithine monochlorohydrate/ornithine	ACY1
+LysoPE(18:2(9Z,12Z)/0:0)	m/z=477.287496375
+L-Tryptophan	m/z=204.0899548
+PAPSS1	AHCY
+PAPSS2	Selenocystathionine
+Hydroxykynurenine	AADAT
+MAOB	3,4-Dihydroxymandelaldehyde
+allopurinol	XDH
+DAO	D-Proline
+DPYS	Dihydrouracil
+SULT2A1	Dehydroandrosterone
+m/z=316.247044439	20a-Dihydroprogesterone
+Dehydroandrosterone	STS
+3-Dehydroquinate	m/z=190.052970795
+m/z=462.217750744	6-Dehydrotestosterone glucuronide
+ALDH3B2	3,4-Dihydroxymandelaldehyde
+L-Threonine	m/z=119.065398217
+LysoPE(0:0/18:2(9Z,12Z))	m/z=477.287496375
+N-Heptanoylglycine	GLYAT

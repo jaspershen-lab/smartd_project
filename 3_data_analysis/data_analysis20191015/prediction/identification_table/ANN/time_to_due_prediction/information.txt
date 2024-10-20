@@ -1,0 +1,10 @@
+"x"
+"1" "Information"
+RMSE for external validation dataset:
+5.630622
+R2 for external validation dataset:
+0.366657
+RMSE for internal validation dataset:
+3.969467
+R2 for internal validation dataset:
+0.5721685

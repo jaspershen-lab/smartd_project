@@ -1,0 +1,13 @@
+INFO [2019-09-27 10:07:37] $x
+INFO [2019-09-27 10:07:37] list(Cross_5 = vertex_attr(cross_subnetwork5, name = "name"), 
+INFO [2019-09-27 10:07:37]     Delta_3 = vertex_attr(delta_subnetwork3, name = "name"))
+INFO [2019-09-27 10:07:37] 
+INFO [2019-09-27 10:07:37] $filename
+INFO [2019-09-27 10:07:37] NULL
+INFO [2019-09-27 10:07:37] 
+INFO [2019-09-27 10:07:37] $col
+INFO [2019-09-27 10:07:37] c("#8A9045CC", "#155F83CC")
+INFO [2019-09-27 10:07:37] 
+INFO [2019-09-27 10:07:37] $lwd
+INFO [2019-09-27 10:07:37] [1] 2
+INFO [2019-09-27 10:07:37] 
