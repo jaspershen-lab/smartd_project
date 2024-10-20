@@ -1,7 +1,7 @@
 ##avoid source 
 no_function()
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/")
 rm(list = ls())
 library(tidyverse)
@@ -20,7 +20,7 @@ info <-
 sample_info <-
   readr::read_csv("/Users/shenxt/projects/smartD/patient information/sample_info_191021.csv")
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 marker1 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/GA_prediction/marker_rf_final.csv")
 marker2 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/time_to_due_prediction/remove_cs/marker_rf_final.csv")
 
@@ -105,7 +105,7 @@ ggsave(filename = "marker_super_class.png",
        bg = "transparent",
        width = 7,  height = 4)
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/biological_analysis/")
 
 marker <-
@@ -579,7 +579,7 @@ rownames(marker_data)[idx]
 library(Mfuzz)
 library(e1071)
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/")
 rm(list = ls())
 load("data_preparation_for_analysis/metabolite_table")
@@ -597,11 +597,11 @@ info <-
 sample_info <-
   readr::read_csv("/Users/shenxt/projects/smartD/patient information/sample_info_191021.csv")
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 marker1 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/GA_prediction/marker_rf_final.csv")
 marker2 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/time_to_due_prediction/remove_cs/marker_rf_final.csv")
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/biological_analysis/")
 
 marker <-
@@ -888,7 +888,7 @@ write.csv(fcm_plotting_df, "fuzzy_c_means_cluster.csv", row.names = FALSE)
 
 ## correlation network
 ## this networks should contain metabolite and clinical information
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/")
 rm(list = ls())
 load("data_preparation_for_analysis/metabolite_table")
@@ -906,12 +906,12 @@ info <-
 sample_info <-
   readr::read_csv("/Users/shenxt/projects/smartD/patient information/sample_info_191021.csv")
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 marker1 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/GA_prediction/marker_rf_final.csv")
 marker2 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/time_to_due_prediction/remove_cs/marker_rf_final.csv")
 
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/biological_analysis/")
 
 
@@ -1389,7 +1389,7 @@ plot(cor_data$bmi, cor_data$Pregnenolone)
 plot(cor_data$bmi, cor_data$Progesterone)
 
 ## pathway enrichment analysis to get the insight of which pathways are altered in pregnancy
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/biological_analysis/pathway_enrichment")
 marker$Compound.name
 marker$KEGG.ID

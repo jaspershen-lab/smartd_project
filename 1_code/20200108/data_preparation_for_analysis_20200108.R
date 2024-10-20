@@ -1,26 +1,26 @@
 #get the identification results
 #####for metabolite identification result
 ##load data
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_cleaning/RPLC/POS/")
 load("rplc_pos_6")
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_cleaning/RPLC/NEG/")
 load("rplc_neg_6")
 
 
 ##get the identification results
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/metabolite_identification/RPLC/POS/")
 identification_table_pos <- readr::read_csv("identification.table.new.csv")
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/metabolite_identification/RPLC/NEG/")
 identification_table_neg <- readr::read_csv("identification.table.new.csv")
 
 ##first set the work directory to project folder
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_preparation_for_analysis/")
 
 identification_table_pos <- 
@@ -515,7 +515,7 @@ save(metabolite_tags, file = "metabolite_tags")
 
 
 ###Cytokine data
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_preparation_for_analysis/cytokine/")
 rm(list = ls())
 cytokine_data1 <- 

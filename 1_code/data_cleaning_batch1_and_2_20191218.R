@@ -1,4 +1,4 @@
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 library(tidyverse)
 
 ####Positive mode
@@ -239,7 +239,7 @@ save(rplc_pos_6, file = "rplc_pos_6")
 
 
 ####negative mode
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20191125/20191218/RPLC/NEG/")
 sample_info <- readr::read_csv("sample_info.csv")
 peak_table <- readr::read_csv("Peak.table.csv")

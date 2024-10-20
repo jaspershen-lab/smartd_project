@@ -1,5 +1,5 @@
 ##first set the work directory to project folder
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list = ls())
 load("data_analysis20200108/data_preparation_for_analysis/metabolite_tags")
 setwd("data_analysis20200108/prediction/features/")
@@ -906,7 +906,7 @@ ggsave("measured_vs_predicted_dis.pdf", width = 7, height = 7)
 
 
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/prediction/features/")
 load("metabolite_tags")
 load("peak_tags")

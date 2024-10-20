@@ -1,7 +1,7 @@
 #to avoind source
 no_exist_function()
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list = ls())
 source("R/20200727/tools.R")
 
@@ -23,7 +23,7 @@ load("data_analysis20200108/urine_metabolome/data_preparation_for_analysis/metab
 load("data_analysis20200108/urine_metabolome/data_preparation_for_analysis/metabolites/variable_info")
 
 ##setwd
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/urine_metabolome/prediction/metabolite/GA_prediction/")
 
 library(randomForest)
@@ -1326,7 +1326,7 @@ clinical_data %>%
 
 
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/prediction/metabolites/RF/GA_prediction/") 
 marker_rf <- readr::read_csv("marker_rf_final.csv")
 test <- 

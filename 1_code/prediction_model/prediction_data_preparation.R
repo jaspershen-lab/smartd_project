@@ -3,7 +3,7 @@ library(plyr)
 library(igraph)
 library(dplyr)
 ##first set the work directory to project folder
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20191015/prediction/identification_table/")
 
 #####################################################################################################

@@ -1,7 +1,7 @@
 
 ###############################################################################
 ######for other prediction (time to due)
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/prediction/metabolites/")
 rm(list = ls())
 ##load dataa
@@ -977,7 +977,7 @@ clinical_data %>%
 
 
 ##check the markers in two different models
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/prediction/metabolites/RF/GA_prediction/")
 marker1 <- readr::read_csv("marker_rf_final.csv")
 

@@ -2,7 +2,7 @@
 no_exist_function()
 
 ##first set the work directory to project folder
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list = ls())
 source("R/20200727/tools.R")
 

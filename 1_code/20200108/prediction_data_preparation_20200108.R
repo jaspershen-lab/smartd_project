@@ -3,16 +3,16 @@ library(plyr)
 library(igraph)
 library(dplyr)
 rm(list = ls())
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_preparation_for_analysis/")
 load("peak_table")
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 load("data_analysis20200108/data_cleaning/RPLC/POS/rplc_pos_6")
 load("data_analysis20200108/data_cleaning/RPLC/NEG/rplc_neg_6")
 
 ##first set the work directory to project folder
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/prediction/features/")
 
 sample_info_pos <- 
@@ -155,16 +155,16 @@ library(plyr)
 library(igraph)
 library(dplyr)
 rm(list=ls())
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_preparation_for_analysis/")
 load("metabolite_table")
 load("metabolite_tags")
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 load("data_analysis20200108/data_cleaning/RPLC/POS/rplc_pos_6")
 load("data_analysis20200108/data_cleaning/RPLC/NEG/rplc_neg_6")
 
 ##first set the work directory to project folder
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/prediction/metabolites/")
 
 sample_info_pos <- 
@@ -306,14 +306,14 @@ library(plyr)
 library(igraph)
 library(dplyr)
 rm(list=ls())
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_preparation_for_analysis/cytokine/")
 load("cytokine_pheno")
 load("cytokine_table")
 load("cytokine_tags")
 
 ##first set the work directory to project folder
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/prediction/cytokine/")
 
 ##patient and sampel information
@@ -430,7 +430,7 @@ library(plyr)
 library(igraph)
 library(dplyr)
 rm(list = ls())
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/prediction/metabolite_cytokine/")
 
 load("../metabolites/sample_data_dis")

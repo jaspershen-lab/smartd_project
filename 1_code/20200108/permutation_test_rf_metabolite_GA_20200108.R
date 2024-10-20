@@ -1,5 +1,5 @@
 ####for RF
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/prediction/metabolites/RF/GA_prediction/")
 ###normal data
 library(randomForest)

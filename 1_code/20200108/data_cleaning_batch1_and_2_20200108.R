@@ -1,4 +1,4 @@
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 library(tidyverse)
 rm(list=ls())
 ####Positive mode
@@ -238,7 +238,7 @@ save(rplc_pos_6, file = "rplc_pos_6")
 
 ##------------------------------------------------------------------------------
 ####negative mode
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_cleaning/RPLC/NEG/")
 library(tidyverse)
 sample_info <- readr::read_csv("sample_info.csv")
@@ -491,7 +491,7 @@ save(rplc_neg_6, file = "rplc_neg_6")
 
 
 ####HILIC
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 library(tidyverse)
 rm(list = ls())
 ####Positive mode
@@ -876,7 +876,7 @@ save(hilic_pos_6, file = "hilic_pos_6")
 
 
 ####negative mode
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_cleaning/HILIC/neg/")
 rm(list=ls())
 sample_info <- readr::read_csv("sample_info.csv")

@@ -1,4 +1,4 @@
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/")
 rm(list = ls())
 load("data_preparation_for_analysis/metabolite_table")
@@ -6,11 +6,11 @@ load("data_preparation_for_analysis/metabolite_tags")
 load("data_preparation_for_analysis/peak_table")
 
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/prediction/metabolites/RF/GA_prediction/")
 marker1 <- readr::read_csv("marker_rf_final.csv")
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/prediction/metabolites/RF/time_to_due_prediction/remove_cs/")
 marker2 <- readr::read_csv("marker_rf_final.csv")
 
@@ -33,7 +33,7 @@ marker <-
 
 xlsx::write.xlsx(x = marker, file = "marker_paper.xlsx")
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/prediction/metabolites/RF/all_marker_ms2_shape/peak_shape/")
 xlsx::write.xlsx2(x = marker %>% select(name, mz, rt) %>% as.data.frame(), 
             file = "marker.xlsx", row.names = FALSE)
@@ -94,7 +94,7 @@ ggsave(plot, filename = "peak_shape.png", width = 7, height = 7)
 
 
 ###out put MS2 plot
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/prediction/metabolites/RF/all_marker_ms2_shape/MS2_plot/")
 load("result.pRPLC.nce25")
 load("result.pRPLC.nce50")

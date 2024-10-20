@@ -1,7 +1,7 @@
 ###RPLC data
 ###align batch 1 and batch 2 data
 ##positive mode
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20191125/batch1_2_alignment/RPLC/POS/")
 rm(list = ls())
 load("smartd_rplc_pos_batch1_5")
@@ -30,7 +30,7 @@ dim(data2)
 
 
 match_result <-
-  sxtTools::sxtMTmatch(data1 = as.matrix(data1), 
+  masstools::sxtMTmatch(data1 = as.matrix(data1), 
                      data2 = as.matrix(data2), 
                      mz.tol = 25, 
                      rt.tol = 120, 
@@ -64,7 +64,7 @@ write.csv(rplc_pos_batch1_batch2_matched_info,
           'rplc_pos_batch1_batch2_matched_info.csv')
 
 ##negative mode
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20191125/batch1_2_alignment/RPLC/NEG/")
 load("smartd_rplc_neg_batch1_5")
 load("smartd_rplc_neg_batch2_5")
@@ -89,7 +89,7 @@ dim(data1)
 dim(data2)
 
 match_result <-
-  sxtTools::sxtMTmatch(data1 = as.matrix(data1), 
+  masstools::sxtMTmatch(data1 = as.matrix(data1), 
                        data2 = as.matrix(data2), 
                        mz.tol = 25, rt.tol = 120, 
                        rt.error.type = "abs")
@@ -128,7 +128,7 @@ write.csv(rplc_neg_batch1_batch2_matched_info,
 
 
 ## aligned tables for batch 1 and batch 2
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20191125/batch1_2_alignment/RPLC/POS_NEG/")
 load("../POS/smartd_rplc_pos_batch1_5")
 load("../POS/smartd_rplc_pos_batch2_5")
@@ -259,7 +259,7 @@ write.csv(peak_table, "peak_table.csv", row.names = FALSE)
 
 
 ###get the table which only have annotation
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 peak_table <- readr::read_csv("data_analysis20191125/batch1_2_alignment/RPLC/POS_NEG/peak_table.csv")
 setwd("data_analysis20191125/annotation/RPLC/")
 identification.pos <- readr::read_csv("POS/identification.table.new.csv")
@@ -339,7 +339,7 @@ metID::ms2plot(object = result.pRPLC.nce50[["orbitrapDatabase0.0.1"]],
 ###HILIC data
 ###align batch 1 and batch 2 data
 ##positive mode
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("smartD_batch1_2/HILIC/POS/")
 load("smartd_hilic_pos_batch1_5")
 load("smartd_hilic_pos_batch2_5")
@@ -361,7 +361,7 @@ data2 <-
   dplyr::select(., mz:rt)
 
 match_result <-
-  sxtTools::sxtMTmatch(data1 = as.matrix(data1), 
+  masstools::sxtMTmatch(data1 = as.matrix(data1), 
                        data2 = as.matrix(data2), 
                        mz.tol = 25, rt.tol = 120, 
                        rt.error.type = "abs")
@@ -410,7 +410,7 @@ data2 <-
   dplyr::select(., mz:rt)
 
 match_result <-
-  sxtTools::sxtMTmatch(data1 = as.matrix(data1), 
+  masstools::sxtMTmatch(data1 = as.matrix(data1), 
                        data2 = as.matrix(data2), 
                        mz.tol = 25, rt.tol = 120, 
                        rt.error.type = "abs")

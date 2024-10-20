@@ -1,5 +1,5 @@
 ###20191125 use all the identified metabolites (Level 1 and Level 2),
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 library(tidyverse)
 library(plyr)
 setwd("data_analysis20191125/metabolite_table/correlation_network/")

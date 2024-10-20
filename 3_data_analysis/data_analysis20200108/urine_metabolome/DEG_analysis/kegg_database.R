@@ -1,4 +1,4 @@
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/urine_metabolome/kegg_pathway/")
 
 ###pathway analysis for module
@@ -56,7 +56,7 @@ save(hsa_pathway, file = "hsa_pathway")
 
 
 ###disease pathway
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/urine_metabolome/kegg_pathway/")
 
 ###pathway analysis for module

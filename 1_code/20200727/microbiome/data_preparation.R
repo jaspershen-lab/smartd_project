@@ -1,4 +1,4 @@
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("microbiome/")
 
 library(tidyverse)

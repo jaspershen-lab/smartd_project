@@ -7,7 +7,7 @@ library(igraph)
 library(dplyr)
 
 rm(list = ls())
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 source("R/20200727/tools.R")
 
 ##load data peaks
@@ -15,7 +15,7 @@ load("data_analysis20200108/urine_metabolome/data_preparation_for_analysis/peaks
 load("data_analysis20200108/urine_metabolome/data_preparation_for_analysis/peaks/sample_info")
 load("data_analysis20200108/urine_metabolome/data_preparation_for_analysis/peaks/variable_info")
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 ##first set the work directory to project folder
 setwd("data_analysis20200108/urine_metabolome/prediction/feature/")
 

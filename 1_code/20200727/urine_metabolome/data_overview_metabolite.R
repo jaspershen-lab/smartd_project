@@ -3,7 +3,7 @@ no_exist_function()
 #-------------------------------------------------------------------------------
 ##RPLC pos and neg
 ###-------------------------------------------------------------------------------
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list=ls())
 
 ##metabolites

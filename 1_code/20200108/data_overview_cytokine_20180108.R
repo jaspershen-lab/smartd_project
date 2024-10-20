@@ -1,17 +1,17 @@
 #-------------------------------------------------------------------------------
 ##RPLC pos
 #-------------------------------------------------------------------------------
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list=ls())
 setwd("data_analysis20200108/data_preparation_for_analysis/cytokine/")
 load("cytokine_pheno")
 load("cytokine_table")
 load("cytokine_tags")
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("patient information/")
 sample_info <- readr::read_csv("sample_info_191021.csv")
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_overview/cytokine/")
 library(tidyverse)
 

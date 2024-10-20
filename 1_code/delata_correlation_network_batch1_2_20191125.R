@@ -1,7 +1,7 @@
 #######construct delta correlation network
 #####smartd_rplc_batch dataset is used to analysis for correlation networks analysis
 #### step 1 remove the duplicated metabolites according to score
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20191125/metabolite_table/correlation_network/delta_network/")
 metabolite_table <- readr::read_csv("../cross_sectional_network/metabolite_table_cross.csv")
 library(tidyverse)

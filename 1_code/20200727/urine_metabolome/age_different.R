@@ -3,7 +3,7 @@ no_function()
 
 ###we want to know which clinical information make samples are different
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list = ls())
 library(tidyverse)
 source("R/20200727/tools.R")
@@ -29,7 +29,7 @@ setwd("data_analysis20200108/urine_metabolome/DEG_analysis/")
 # sample_info <-
 #   readr::read_csv("/Users/shenxt/projects/smartD/patient information/sample_info_191021.csv")
 
-# sxtTools::setwd_project()
+# setwd(r4projects::get_project_wd())
 # marker1 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/GA_prediction/marker_rf_final.csv")
 # marker2 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/time_to_due_prediction/remove_cs/marker_rf_final.csv")
 

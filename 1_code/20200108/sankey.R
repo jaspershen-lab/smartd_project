@@ -1,11 +1,11 @@
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list = ls())
 setwd("data_analysis20200108/prediction/metabolites/")
 
 load("sample_data_dis")
 load("sample_data_val")
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("patient information/")
 library(tidyverse)
 sample_info <- readr::read_csv("sample_info_191021.csv")

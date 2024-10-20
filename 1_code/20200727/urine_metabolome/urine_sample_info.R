@@ -1,7 +1,7 @@
 #to avoind source
 no_exist_function()
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list = ls())
 source("R/20200727/tools.R")
 library(tidyverse)
@@ -1186,7 +1186,7 @@ circos.clear()
 
 
 #### 20191030
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("patient information/")
 info <- readxl::read_xlsx("SmartD_ClinicalVariables_PartiallySummarized.xlsx")
 sample_info_191021 <- readr::read_csv("sample_info_191021.csv")
@@ -1362,7 +1362,7 @@ dis_info
 
 ####20200610
 #### 20191030
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("patient information/")
 info <- readxl::read_xlsx("SmartD_ClinicalVariables_PartiallySummarized.xlsx")
 sample_info_191021 <- readr::read_csv("sample_info_191021.csv")

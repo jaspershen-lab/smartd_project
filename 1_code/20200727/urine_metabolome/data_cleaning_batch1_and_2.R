@@ -1,7 +1,7 @@
 #to avoind source
 no_exist_function()
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 library(tidyverse)
 rm(list=ls())
 source("R/20200727/tools.R")
@@ -242,7 +242,7 @@ load("rplc_pos_6")
 
 ##------------------------------------------------------------------------------
 ####negative mode
-# sxtTools::setwd_project()
+# setwd(r4projects::get_project_wd())
 # setwd("data_analysis20200108/data_cleaning/RPLC/NEG/")
 # library(tidyverse)
 # sample_info <- readr::read_csv("sample_info.csv")
@@ -492,7 +492,7 @@ load("rplc_pos_6")
 
 
 ####HILIC
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 library(tidyverse)
 rm(list = ls())
 ####Positive mode
@@ -877,7 +877,7 @@ save(hilic_pos_6, file = "hilic_pos_6")
 
 
 ####negative mode
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_cleaning/HILIC/neg/")
 rm(list=ls())
 sample_info <- readr::read_csv("sample_info.csv")

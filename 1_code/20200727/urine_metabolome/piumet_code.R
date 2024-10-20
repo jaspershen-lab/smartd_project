@@ -1,7 +1,7 @@
 ##avoid source 
 no_function()
 
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list = ls())
 library(tidyverse)
 source("R/20200727/tools.R")

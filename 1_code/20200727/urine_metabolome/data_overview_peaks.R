@@ -4,7 +4,7 @@ no_exist_function()
 # 
 ##RPLC pos
 #-------------------------------------------------------------------------------
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list=ls())
 
 ##peaks
@@ -218,7 +218,7 @@ ggsave(plot, filename = "pca_pos_plot.pdf",
 
 ##RPLC neg
 ###-------------------------------------------------------------------------------
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list=ls())
 
 ##peaks
@@ -435,7 +435,7 @@ ggsave(plot, filename = "pca_neg_plot.pdf",
 ##-----------------------------------------------------------------------------
 ##RPLC pos and neg
 ###----------------------------------------------------------------------------
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list=ls())
 
 ##peaks

@@ -1,15 +1,19 @@
 #to avoind source
 no_exist_function()
 
-sxtTools::setwd_project()
+library(r4projects)
+setwd(get_project_wd())
 rm(list = ls())
-source("R/20200727/tools.R")
+source('1_code/100_tools.R')
+
 library(tidyverse)
 
 # load data
-load("data_analysis20200108/urine_metabolome/sample_information/sample_information")
+load(
+  "3_data_analysis/data_analysis20200108/urine_metabolome/sample_information/sample_information"
+)
 
-setwd("data_analysis20200108/study_information/")
+setwd("3_data_analysis/data_analysis20200108/study_information/")
 
 ##### the clinic information
 sample_information$Patient_ID %>%
@@ -24,14 +28,8 @@ library(ggExtra)
 
 temp_data <-
   sample_information %>%
-  mutate(GA2 = case_when(
-    is.na(GA) ~ 45,
-    !is.na(GA) ~ GA
-  )) %>%
-  mutate(class = case_when(
-    is.na(GA) ~ "PP",
-    !is.na(GA) ~ "Normal"
-  )) %>%
+  mutate(GA2 = case_when(is.na(GA) ~ 45, !is.na(GA) ~ GA)) %>%
+  mutate(class = case_when(is.na(GA) ~ "PP", !is.na(GA) ~ "Normal")) %>%
   mutate(Begin.Date = as.Date(EDD) - 280) %>%
   mutate(term.date = as.Date(DD) - Begin.Date) %>%
   mutate(diff_day = as.Date(EDD) - as.Date(DD)) %>%
@@ -46,15 +44,12 @@ preterm21 <-
   dplyr::pull(Patient_ID) %>%
   unique()
 
-
 preterm7 <-
   temp_data %>%
   # mutate(diff_day = as.Date(EDD) - as.Date(DD)) %>%
   dplyr::filter(diff_day >= 7 & diff_day < 21) %>%
   dplyr::pull(Patient_ID) %>%
   unique()
-
-
 
 text_colour <- unique(temp_data$Patient_ID)
 text_colour <- case_when(
@@ -64,47 +59,43 @@ text_colour <- case_when(
 )
 
 text_face <- unique(temp_data$Patient_ID)
-text_face <- case_when(
-  text_face %in% preterm21 ~ "plain",
-  text_face %in% preterm7 ~ "plain",
-  TRUE ~ "plain"
-)
+text_face <- case_when(text_face %in% preterm21 ~ "plain",
+                       text_face %in% preterm7 ~ "plain",
+                       TRUE ~ "plain")
 
 
-  plot1 <-
-    # temp_data %>%
-    ggplot(
-      data = temp_data,
-      aes(x = GA2, 
-          y = factor(Patient_ID, level = unique(Patient_ID)))
-    ) +
-    geom_point(
-      aes(
-        x = GA2,
-        y = factor(Patient_ID, level = unique(Patient_ID)),
-        colour = class
-      ),
-      data = temp_data,
-      show.legend = FALSE,
-      size = 2
-    ) +
-    scale_colour_manual(values = c(
-      "PP" = "#155F83FF",
-      "Normal" = "#FFA319FF"
-    )) +
-    labs(x = "Gestational age (GA, weeks)", y = "Subject ID") +
-    theme_bw() +
-    theme(
-      panel.grid.major.y = element_line(colour = "#8A9045FF", linetype = 1),
-      plot.margin = margin(t = 0, r = 0, b = 0, l = 0),
-      axis.title = element_text(size = 13),
-      axis.text.y = element_text(
-        size = 12,
-        colour = text_colour,
-        face = text_face
-      ),
-      axis.text.x = element_text(size = 12)
-    )
+plot1 <-
+  # temp_data %>%
+  ggplot(data = temp_data, aes(x = GA2, y = factor(Patient_ID, level = unique(Patient_ID)))) +
+  geom_point(
+    aes(
+      x = GA2,
+      y = factor(Patient_ID, level = unique(Patient_ID)),
+      colour = class
+    ),
+    data = temp_data,
+    show.legend = FALSE,
+    size = 2
+  ) +
+  scale_colour_manual(values = c("PP" = "#155F83FF", "Normal" = "#FFA319FF")) +
+  labs(x = "Gestational age (GA, weeks)", y = "Subject ID") +
+  theme_bw() +
+  theme(
+    panel.grid.major.y = element_line(colour = "#8A9045FF", linetype = 1),
+    plot.margin = margin(
+      t = 0,
+      r = 0,
+      b = 0,
+      l = 0
+    ),
+    axis.title = element_text(size = 13),
+    axis.text.y = element_text(
+      size = 12,
+      colour = text_colour,
+      face = text_face
+    ),
+    axis.text.x = element_text(size = 12)
+  )
 
 term_date <-
   temp_data %>%
@@ -112,45 +103,44 @@ term_date <-
   mutate(term.date = as.numeric(term.date / 7)) %>%
   distinct()
 
-
 plot1 <-
   plot1 +
   ggplot2::annotate(
-    geom = "point", shape = 17,
-    colour = "black", size = 2,
+    geom = "point",
+    shape = 17,
+    colour = "black",
+    size = 2,
     x = term_date$term.date,
     y = term_date$Patient_ID
   )
 
 plot1
 
-
 plot2 <-
   ggplot(temp_data, aes(x = GA2)) +
-  geom_histogram(binwidth = 0.5,
-                 colour = "#8DD3C7",
-                 fill = "#8DD3C7") +
+  geom_histogram(
+    binwidth = 0.5,
+    colour = "#8DD3C7",
+    fill = "#8DD3C7"
+  ) +
   labs(x = "GA (weeks)", y = "Sample number") +
   theme_classic() +
-  scale_x_continuous(
-    # limits = c(10, 46),
+  scale_x_continuous(# limits = c(10, 46),
     name = NULL,
     labels = NULL,
-    breaks = NULL
-  ) +
+    breaks = NULL) +
   scale_y_continuous(expand = expand_scale(mult = c(0, .05))) +
   theme(
     # panel.border = element_blank(),
     # axis.line = element_line(colour = "black"),
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
-    plot.margin = margin(0,0,0,0),
+    plot.margin = margin(0, 0, 0, 0),
     axis.title = element_text(size = 13),
     axis.text = element_text(size = 12)
   )
 
 plot2
-
 
 plot3 <-
   ggplot(temp_data, aes(x = factor(Patient_ID, levels = unique(Patient_ID)))) +
@@ -167,14 +157,14 @@ plot3 <-
     axis.line = element_line(colour = "black"),
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
-    plot.margin = margin(0,0,0,0),
+    plot.margin = margin(0, 0, 0, 0),
     axis.title = element_text(size = 13),
     axis.text = element_text(size = 12)
   )
 
 plot3
 
-space_plot <- 
+space_plot <-
   ggplot(temp_data, aes(x = factor(Patient_ID, levels = unique(Patient_ID)))) +
   geom_bar(width = 0.8, fill = "#8A9045FF") +
   labs(x = "", y = "") +
@@ -189,14 +179,13 @@ space_plot <-
     axis.line = element_line(colour = "black"),
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
-    plot.margin = margin(0,0,0,0),
+    plot.margin = margin(0, 0, 0, 0),
     axis.title = element_text(size = 13),
     axis.text = element_blank(),
     axis.ticks = element_blank()
   )
-  
-space_plot
 
+space_plot
 
 library(patchwork)
 
@@ -223,7 +212,8 @@ plot
 
 
 #### a circos plot to show the information
-info <- readxl::read_xlsx("../../patient information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
+info <-
+  readxl::read_xlsx("../../patient information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
 
 info$ID <-
   info$ID %>%
@@ -248,9 +238,9 @@ range((as.numeric(info$Age)))
 IQR((as.numeric(info$Age)))
 
 birth_wr <- info$`Birth wt`
-birth_wr[33] <- 3015+3170
-birth_wr[34] <- 2315+2190
-birth_wr[36] <- 1430+1630
+birth_wr[33] <- 3015 + 3170
+birth_wr[34] <- 2315 + 2190
+birth_wr[36] <- 1430 + 1630
 birth_wr <- as.numeric(birth_wr)
 
 a <- mean(birth_wr, na.rm = TRUE)
@@ -258,21 +248,21 @@ s <- sd(birth_wr, na.rm = TRUE)
 n <- sum(!is.na(birth_wr))
 xbar <- 6185
 plot(density(birth_wr, na.rm = TRUE))
-2*(1 - pnorm(xbar,mean = a,sd = s/sqrt(n)))
+2 * (1 - pnorm(xbar, mean = a, sd = s / sqrt(n)))
 
 range((as.numeric(birth_wr)), na.rm = TRUE)
 IQR(as.numeric(birth_wr), na.rm = TRUE)
 mean(as.numeric(birth_wr), na.rm = TRUE)
 
 bmi <-
-  trans_wt(info$Wt) / ((trans_ht(info$Ht)) / 100)^2
+  trans_wt(info$Wt) / ((trans_ht(info$Ht)) / 100) ^ 2
 
 a <- mean(bmi, na.rm = TRUE)
 s <- sd(bmi, na.rm = TRUE)
 n <- sum(!is.na(bmi))
 xbar <- 57.23
 plot(density(bmi, na.rm = TRUE))
-2*(1 - pnorm(xbar,mean = a,sd = s/sqrt(n)))
+2 * (1 - pnorm(xbar, mean = a, sd = s / sqrt(n)))
 
 range((as.numeric(bmi)), na.rm = TRUE)
 IQR(as.numeric(bmi), na.rm = TRUE)
@@ -290,7 +280,7 @@ s <- sd(parity, na.rm = TRUE)
 n <- sum(!is.na(parity))
 xbar <- max(parity, na.rm = TRUE)
 plot(density(parity, na.rm = TRUE))
-2*(1 - pnorm(xbar,mean = a,sd = s/sqrt(n)))
+2 * (1 - pnorm(xbar, mean = a, sd = s / sqrt(n)))
 
 range((as.numeric(parity)), na.rm = TRUE)
 IQR(as.numeric(parity), na.rm = TRUE)
@@ -300,7 +290,9 @@ mean(parity)
 #------------------------------------------------------------------------------
 ## metabolomics data
 met_data <-
-  readr::read_csv("/Users/shenxt/projects/smartD/data_analysis20191125/annotation/RPLC/metabolite_table.csv")
+  readr::read_csv(
+    "/Users/shenxt/projects/smartD/data_analysis20191125/annotation/RPLC/metabolite_table.csv"
+  )
 
 met_data <-
   met_data %>%
@@ -376,7 +368,7 @@ bmi <-
   info$BMI
 
 bmi <-
-  trans_wt(info$Wt) / ((trans_ht(info$Ht)) / 100)^2
+  trans_wt(info$Wt) / ((trans_ht(info$Ht)) / 100) ^ 2
 
 
 
@@ -455,31 +447,41 @@ birth_wt <- unname(birth_wt) %>%
 
 
 data.frame(class = "age",
-           value = age, stringsAsFactors = FALSE) %>% 
+           value = age,
+           stringsAsFactors = FALSE) %>%
   ggplot(aes(x = class, y = value)) +
   geom_boxplot() +
-  geom_jitter(colour = alpha("orange", 0.5), size = 6, shape = 16) +
+  geom_jitter(colour = alpha("orange", 0.5),
+              size = 6,
+              shape = 16) +
   labs(x = "", y = "Age (years)") +
   theme_bw() +
-  theme(axis.title = element_text(size = 15),
-        axis.text.x = element_text(size = 13),
-        axis.text.y = element_text(size = 10))
+  theme(
+    axis.title = element_text(size = 15),
+    axis.text.x = element_text(size = 13),
+    axis.text.y = element_text(size = 10)
+  )
 ##dark
 data.frame(class = "age",
-           value = age, stringsAsFactors = FALSE) %>% 
+           value = age,
+           stringsAsFactors = FALSE) %>%
   ggplot(aes(x = class, y = value)) +
   geom_boxplot(fill = "transparent", color = "white") +
-  geom_jitter(colour = alpha("orange", 0.5), size = 6, shape = 16) +
+  geom_jitter(colour = alpha("orange", 0.5),
+              size = 6,
+              shape = 16) +
   labs(x = "Age", y = "Years") +
   ggdark::dark_theme_bw() +
-  theme(axis.title = element_text(size = 15),
-        axis.text.x = element_text(size = 13),
-        axis.text.y = element_text(size = 10),
-        panel.background = element_rect(fill = "transparent", color = NA),
-        plot.background = element_rect(fill = "transparent", color = NA),
-        legend.background = element_rect(fill = "transparent", color = NA),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_line(color = "grey"))  
+  theme(
+    axis.title = element_text(size = 15),
+    axis.text.x = element_text(size = 13),
+    axis.text.y = element_text(size = 10),
+    panel.background = element_rect(fill = "transparent", color = NA),
+    plot.background = element_rect(fill = "transparent", color = NA),
+    legend.background = element_rect(fill = "transparent", color = NA),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_line(color = "grey")
+  )
 
 # ggsave(filename = "age_dark.png", width = 2, height = 7, bg = "transparent")
 
@@ -487,98 +489,128 @@ data.frame(class = "age",
 
 
 data.frame(class = "bmi",
-           value = bmi, stringsAsFactors = FALSE) %>% 
+           value = bmi,
+           stringsAsFactors = FALSE) %>%
   ggplot(aes(x = class, y = value)) +
   geom_boxplot() +
-  geom_jitter(colour = alpha("orange", 0.5), size = 6, shape = 16) +
+  geom_jitter(colour = alpha("orange", 0.5),
+              size = 6,
+              shape = 16) +
   labs(x = "BMI", y = "BMI") +
   theme_bw() +
-  theme(axis.title = element_text(size = 15),
-        axis.text.x = element_text(size = 13),
-        axis.text.y = element_text(size = 10))
+  theme(
+    axis.title = element_text(size = 15),
+    axis.text.x = element_text(size = 13),
+    axis.text.y = element_text(size = 10)
+  )
 ##dark
 data.frame(class = "bmi",
-           value = bmi, stringsAsFactors = FALSE) %>% 
+           value = bmi,
+           stringsAsFactors = FALSE) %>%
   ggplot(aes(x = class, y = value)) +
   geom_boxplot(fill = "transparent", color = "white") +
-  geom_jitter(colour = alpha("orange", 0.5), size = 6, shape = 16) +
+  geom_jitter(colour = alpha("orange", 0.5),
+              size = 6,
+              shape = 16) +
   labs(x = "BMI", y = "BMI") +
   ggdark::dark_theme_bw() +
-  theme(axis.title = element_text(size = 15),
-        axis.text.x = element_text(size = 13),
-        axis.text.y = element_text(size = 10),
-        panel.background = element_rect(fill = "transparent", color = NA),
-        plot.background = element_rect(fill = "transparent", color = NA),
-        legend.background = element_rect(fill = "transparent", color = NA),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_line(color = "grey"))  
+  theme(
+    axis.title = element_text(size = 15),
+    axis.text.x = element_text(size = 13),
+    axis.text.y = element_text(size = 10),
+    panel.background = element_rect(fill = "transparent", color = NA),
+    plot.background = element_rect(fill = "transparent", color = NA),
+    legend.background = element_rect(fill = "transparent", color = NA),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_line(color = "grey")
+  )
 
 # ggsave(filename = "bmi_dark.png", width = 2, height = 7, bg = "transparent")
 
 data.frame(class = "birth_wt",
-           value = birth_wt, stringsAsFactors = FALSE) %>% 
-  dplyr::filter(!is.na(value)) %>% 
+           value = birth_wt,
+           stringsAsFactors = FALSE) %>%
+  dplyr::filter(!is.na(value)) %>%
   ggplot(aes(x = class, y = value)) +
   geom_boxplot(outlier.shape = NA) +
-  geom_jitter(colour = alpha("orange", 0.5), size = 6, shape = 16) +
+  geom_jitter(colour = alpha("orange", 0.5),
+              size = 6,
+              shape = 16) +
   labs(x = "", y = "Birth weight (g)") +
   theme_bw() +
-  theme(axis.title = element_text(size = 15),
-        axis.text.x = element_text(size = 13),
-        axis.text.y = element_text(size = 10))
+  theme(
+    axis.title = element_text(size = 15),
+    axis.text.x = element_text(size = 13),
+    axis.text.y = element_text(size = 10)
+  )
 
 
 ##dark
 data.frame(class = "birth_wt",
-           value = birth_wt, stringsAsFactors = FALSE) %>% 
-  dplyr::filter(!is.na(value)) %>% 
+           value = birth_wt,
+           stringsAsFactors = FALSE) %>%
+  dplyr::filter(!is.na(value)) %>%
   ggplot(aes(x = class, y = value)) +
   geom_boxplot(fill = "transparent", color = "white") +
-  geom_jitter(colour = alpha("orange", 0.5), size = 6, shape = 16) +
+  geom_jitter(colour = alpha("orange", 0.5),
+              size = 6,
+              shape = 16) +
   labs(x = "Birth weight", y = "g") +
   ggdark::dark_theme_bw() +
-  theme(axis.title = element_text(size = 15),
-        axis.text.x = element_text(size = 13),
-        axis.text.y = element_text(size = 10),
-        panel.background = element_rect(fill = "transparent", color = NA),
-        plot.background = element_rect(fill = "transparent", color = NA),
-        legend.background = element_rect(fill = "transparent", color = NA),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_line(color = "grey"))  
+  theme(
+    axis.title = element_text(size = 15),
+    axis.text.x = element_text(size = 13),
+    axis.text.y = element_text(size = 10),
+    panel.background = element_rect(fill = "transparent", color = NA),
+    plot.background = element_rect(fill = "transparent", color = NA),
+    legend.background = element_rect(fill = "transparent", color = NA),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_line(color = "grey")
+  )
 
 # ggsave(filename = "birth_wt_dark.png", width = 2, height = 7, bg = "transparent")
 
 
 data.frame(class = "parity",
-           value = parity, stringsAsFactors = FALSE) %>% 
-  dplyr::filter(!is.na(value)) %>% 
+           value = parity,
+           stringsAsFactors = FALSE) %>%
+  dplyr::filter(!is.na(value)) %>%
   ggplot(aes(x = class, y = value)) +
   geom_boxplot(outlier.shape = NA) +
-  geom_jitter(colour = alpha("orange", 0.5), size = 6, shape = 16) +
+  geom_jitter(colour = alpha("orange", 0.5),
+              size = 6,
+              shape = 16) +
   labs(x = "", y = "Birth weight (g)") +
   theme_bw() +
-  theme(axis.title = element_text(size = 15),
-        axis.text.x = element_text(size = 13),
-        axis.text.y = element_text(size = 10))
+  theme(
+    axis.title = element_text(size = 15),
+    axis.text.x = element_text(size = 13),
+    axis.text.y = element_text(size = 10)
+  )
 
 
 ##dark
 data.frame(class = "parity",
-           value = parity, stringsAsFactors = FALSE) %>% 
-  dplyr::filter(!is.na(value)) %>% 
+           value = parity,
+           stringsAsFactors = FALSE) %>%
+  dplyr::filter(!is.na(value)) %>%
   ggplot(aes(x = class, y = value)) +
   geom_boxplot(fill = "transparent", color = "white") +
-  geom_jitter(colour = alpha("orange", 0.5), size = 6, shape = 16) +
+  geom_jitter(colour = alpha("orange", 0.5),
+              size = 6,
+              shape = 16) +
   labs(x = "Parity", y = "No.") +
   ggdark::dark_theme_bw() +
-  theme(axis.title = element_text(size = 15),
-        axis.text.x = element_text(size = 13),
-        axis.text.y = element_text(size = 10),
-        panel.background = element_rect(fill = "transparent", color = NA),
-        plot.background = element_rect(fill = "transparent", color = NA),
-        legend.background = element_rect(fill = "transparent", color = NA),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_line(color = "grey"))  
+  theme(
+    axis.title = element_text(size = 15),
+    axis.text.x = element_text(size = 13),
+    axis.text.y = element_text(size = 10),
+    panel.background = element_rect(fill = "transparent", color = NA),
+    plot.background = element_rect(fill = "transparent", color = NA),
+    legend.background = element_rect(fill = "transparent", color = NA),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_line(color = "grey")
+  )
 
 # ggsave(filename = "parity_dark.png", width = 2, height = 7, bg = "transparent")
 
@@ -630,12 +662,14 @@ circos.track(
       col = text_colour
     )
     circos.text(
-      x = x - 0.5, y = y + uy(2, "mm"),
+      x = x - 0.5,
+      y = y + uy(2, "mm"),
       niceFacing = TRUE,
       labels = df$ID,
       facing = "clockwise",
       adj = c(0, 0.5),
-      col = text_colour, cex = 0.8
+      col = text_colour,
+      cex = 0.8
     )
   }
 )
@@ -693,11 +727,9 @@ circos.track(
       col = "#8A9045FF"
       # fill = "#8A9045FF"
     )
-    circos.lines(
-      x = 1:36 - 0.5,
-      y = due_data,
-      col = "#8A9045FF"
-    )
+    circos.lines(x = 1:36 - 0.5,
+                 y = due_data,
+                 col = "#8A9045FF")
   }
 )
 
@@ -871,10 +903,7 @@ circos.track(
 ## ivf
 temp_col <- ivf
 temp_col <-
-  case_when(
-    temp_col == "YES" ~ "skyblue",
-    temp_col == "NO" ~ "grey"
-  )
+  case_when(temp_col == "YES" ~ "skyblue", temp_col == "NO" ~ "grey")
 
 circos.track(
   factors = df$factors,
@@ -905,10 +934,7 @@ circos.track(
 ## induction
 temp_col <- induction
 temp_col <-
-  case_when(
-    temp_col == "YES" ~ "red",
-    temp_col == "NO" ~ "grey"
-  )
+  case_when(temp_col == "YES" ~ "red", temp_col == "NO" ~ "grey")
 
 circos.track(
   factors = df$factors,
@@ -970,7 +996,7 @@ circos.clear()
 
 
 #### 20191030
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("patient information/")
 info <- readxl::read_xlsx("SmartD_ClinicalVariables_PartiallySummarized.xlsx")
 sample_information <- readr::read_csv("sample_information.csv")
@@ -986,8 +1012,12 @@ info <-
 
 ## ID:participant ID
 ## Maternal DOB:participant ID
-load("/Users/shenxt/projects/smartD/data_analysis20200108/prediction/metabolites/sample_data_dis")
-load("/Users/shenxt/projects/smartD/data_analysis20200108/prediction/metabolites/sample_data_val")
+load(
+  "/Users/shenxt/projects/smartD/data_analysis20200108/prediction/metabolites/sample_data_dis"
+)
+load(
+  "/Users/shenxt/projects/smartD/data_analysis20200108/prediction/metabolites/sample_data_val"
+)
 
 
 dis_id <-
@@ -1010,7 +1040,7 @@ val_info <-
 library(tidyverse)
 
 dis_info <-
-  dis_info %>% 
+  dis_info %>%
   dplyr:::mutate(Age = as.numeric(Age))
 
 dis_info %>%
@@ -1019,7 +1049,7 @@ dis_info %>%
   summarise(mean = mean(Age), sd = sd(Age))
 
 val_info <-
-  val_info %>% 
+  val_info %>%
   dplyr:::mutate(Age = as.numeric(Age))
 
 val_info %>%
@@ -1031,44 +1061,30 @@ val_info %>%
 ## BMI
 dis_info %>%
   dplyr::select(Ht, Wt, BMI) %>%
-  mutate(
-    ht = trans_ht(Ht),
-    wt = trans_wt(Wt),
-    bmi = wt / (ht / 100)^2
-  ) %>%
-  summarise(
-    mean.bmi = mean(bmi),
-    sd.bmi = sd(bmi)
-  )
+  mutate(ht = trans_ht(Ht),
+         wt = trans_wt(Wt),
+         bmi = wt / (ht / 100) ^ 2) %>%
+  summarise(mean.bmi = mean(bmi), sd.bmi = sd(bmi))
 
 
-dis_info <- 
-  dis_info %>% 
-  dplyr::mutate(
-    ht = trans_ht(Ht),
-    wt = trans_wt(Wt),
-    bmi = wt / (ht / 100)^2
-  )
+dis_info <-
+  dis_info %>%
+  dplyr::mutate(ht = trans_ht(Ht),
+                wt = trans_wt(Wt),
+                bmi = wt / (ht / 100) ^ 2)
 
 val_info %>%
   dplyr::select(Ht, Wt, BMI) %>%
-  mutate(
-    ht = trans_ht(Ht),
-    wt = trans_wt(Wt),
-    bmi = wt / (ht / 100)^2
-  ) %>%
-  summarise(
-    mean.bmi = mean(bmi),
-    sd.bmi = sd(bmi)
-  )
+  mutate(ht = trans_ht(Ht),
+         wt = trans_wt(Wt),
+         bmi = wt / (ht / 100) ^ 2) %>%
+  summarise(mean.bmi = mean(bmi), sd.bmi = sd(bmi))
 
-val_info <- 
-  val_info %>% 
-  dplyr::mutate(
-    ht = trans_ht(Ht),
-    wt = trans_wt(Wt),
-    bmi = wt / (ht / 100)^2
-  )
+val_info <-
+  val_info %>%
+  dplyr::mutate(ht = trans_ht(Ht),
+                wt = trans_wt(Wt),
+                bmi = wt / (ht / 100) ^ 2)
 
 
 ## GA
@@ -1146,7 +1162,7 @@ dis_info
 
 ####20200610
 #### 20191030
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("patient information/")
 info <- readxl::read_xlsx("SmartD_ClinicalVariables_PartiallySummarized.xlsx")
 sample_information <- readr::read_csv("sample_information.csv")
@@ -1162,8 +1178,12 @@ info <-
 
 ## ID:participant ID
 ## Maternal DOB:participant ID
-load("/Users/shenxt/projects/smartD/data_analysis20200108/prediction/metabolites/sample_data_dis")
-load("/Users/shenxt/projects/smartD/data_analysis20200108/prediction/metabolites/sample_data_val")
+load(
+  "/Users/shenxt/projects/smartD/data_analysis20200108/prediction/metabolites/sample_data_dis"
+)
+load(
+  "/Users/shenxt/projects/smartD/data_analysis20200108/prediction/metabolites/sample_data_val"
+)
 
 
 dis_id <-
@@ -1191,24 +1211,22 @@ patient_info <- rbind(dis_info, val_info)
 library(tidyverse)
 
 patient_info <-
-  patient_info %>% 
+  patient_info %>%
   dplyr:::mutate(Age = as.numeric(Age))
 
 ## BMI
 
-patient_info <- 
-  patient_info %>% 
-  dplyr::mutate(
-    ht = trans_ht(Ht),
-    wt = trans_wt(Wt),
-    bmi = wt / (ht / 100)^2
-  )
+patient_info <-
+  patient_info %>%
+  dplyr::mutate(ht = trans_ht(Ht),
+                wt = trans_wt(Wt),
+                bmi = wt / (ht / 100) ^ 2)
 
 ## GA
 
 ##ethnicity
 patient_info <-
-  patient_info %>% 
+  patient_info %>%
   dplyr::mutate(
     ethinic =  case_when(
       ethinic == "1" ~ "White",
@@ -1225,7 +1243,7 @@ patient_info <-
 
 
 patient_info <-
-  patient_info %>% 
+  patient_info %>%
   dplyr::mutate(
     parity = stringr::str_extract(Parity, "G[0-9]{1}") %>%
       stringr::str_replace("G", "") %>%
@@ -1236,5 +1254,3 @@ patient_info <-
 
 
 xlsx::write.xlsx(patient_info, "patient_info.xlsx")
-
-

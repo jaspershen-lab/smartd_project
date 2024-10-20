@@ -1,4 +1,4 @@
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/prediction/metabolites/RF/GA_prediction")
 
 marker_rf <- readr::read_csv("marker_rf.csv")

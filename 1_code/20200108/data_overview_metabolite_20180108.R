@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
 ##RPLC pos
 #-------------------------------------------------------------------------------
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list=ls())
 setwd("data_analysis20200108/data_overview/")
 load("../data_cleaning/RPLC/POS/rplc_pos_6")
@@ -379,7 +379,7 @@ ggsave(pca_neg_plot, filename = "pca_neg_plot.pdf",
 
 
 ###RPLC POS and NEG
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_overview/features/")
 load("../../data_cleaning/RPLC/POS/rplc_pos_6")
 load("../../data_cleaning/RPLC/NEG/rplc_neg_6")
@@ -649,7 +649,7 @@ ggsave(pca_pos_neg_plot, filename = "pca_pos_neg_plot.pdf",
 #-------------------------------------------------------------------------------
 ##RPLC pos
 #-------------------------------------------------------------------------------
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list=ls())
 setwd("data_analysis20200108/data_overview/metabolites/")
 load("../../data_cleaning/RPLC/POS/rplc_pos_6")
@@ -908,7 +908,7 @@ ggplot(x[x$GA !=0,], aes(PC1, PC2, colour = GA)) +
 
 
 #####RPLC negative
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_overview/metabolites/")
 rm(list=ls())
 load("../../data_cleaning/RPLC/NEG/rplc_neg_6")
@@ -1164,7 +1164,7 @@ ggplot(x[x$GA !=0,], aes(PC1, PC2, colour = GA)) +
 
 
 ###RPLC POS and NEG
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_overview/")
 load("../data_cleaning/RPLC/POS/rplc_pos_6")
 load("../data_cleaning/RPLC/NEG/rplc_neg_6")
@@ -1518,7 +1518,7 @@ ggplot(x[x$GA !=0,], aes(PC1, PC2, colour = GA)) +
 #-------------------------------------------------------------------------------
 ##HILIC pos
 #-------------------------------------------------------------------------------
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list=ls())
 setwd("data_analysis20200108/data_overview/")
 load("../data_cleaning/HILIC/POS/hilic_pos_6")
@@ -1763,7 +1763,7 @@ ggplot(x[x$GA !=0,], aes(PC1, PC2, colour = GA)) +
 
 
 #####HILIC negative
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_overview/")
 rm(list = ls())
 load("../data_cleaning/HILIC/NEG/hilic_neg_6")
@@ -2012,7 +2012,7 @@ ggplot(x[x$GA !=0,], aes(PC1, PC2, colour = GA)) +
 
 
 ###HILIC POS and NEG
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_overview/")
 rm(list = ls())
 load("../data_cleaning/HILIC/POS/hilic_pos_6")
@@ -2334,7 +2334,7 @@ ggplot(x[x$GA !=0,], aes(PC1, PC2, colour = GA)) +
 #-------------------------------------------------------------------------------
 ##HILIC pos
 #-------------------------------------------------------------------------------
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 rm(list=ls())
 setwd("data_analysis20200108/data_overview/metabolites/")
 load("../../data_cleaning/HILIC/POS/hilic_pos_6")
@@ -2593,7 +2593,7 @@ ggplot(x[x$GA !=0,], aes(PC1, PC2, colour = GA)) +
 
 
 #####HILIC negative
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_overview/metabolites/")
 rm(list=ls())
 load("../../data_cleaning/HILIC/NEG/hilic_neg_6")
@@ -2849,7 +2849,7 @@ ggplot(x[x$GA !=0,], aes(PC1, PC2, colour = GA)) +
 
 
 ###HILIC POS and NEG
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/data_overview/")
 load("../data_cleaning/HILIC/POS/hilic_pos_6")
 load("../data_cleaning/HILIC/NEG/hilic_neg_6")

@@ -50,7 +50,7 @@ rsconnect/
 2_data/
 4_manuscript/
 5_summary/
-
+3_data_analysis/1_urine_metabolomics_data/peaks/urine_metabolomics_data.rda
 3_data_analysis/data_analysis20190828/correlation_network_analysis/identification_table/NEG/smartd_rplc_neg_batch1_5.gz
 3_data_analysis/data_analysis20190828/correlation_network_analysis/identification_table/POS/smartd_rplc_pos_batch1_5.gz
 3_data_analysis/data_analysis20190828/smartd_rplc_neg_batch1_5.gz
@@ -255,8 +255,7 @@ rsconnect/
 3_data_analysis/data_analysis20200108/urine_metabolome/data_cleaning/RPLC/POS/rplc_pos_4
 3_data_analysis/data_analysis20200108/urine_metabolome/data_cleaning/RPLC/POS/rplc_pos_5
 3_data_analysis/data_analysis20200108/urine_metabolome/data_cleaning/RPLC/POS/rplc_pos_6
-3_data_analysis/data_analysis20200108/urine_metabolome/data_preparation_for_analysis/peak_table.gz
-3_data_analysis/data_analysis20200108/urine_metabolome/data_preparation_for_analysis/peaks/expression_data.gz
+3_data_analysis/data_analysis20200108/urine_metabolome/data_preparation_for_analysis/peaks/expression_data
 3_data_analysis/data_analysis20200108/urine_metabolome/DEG_analysis/hmdbMS1Database0.0.1
 3_data_analysis/data_analysis20200108/urine_metabolome/DEG_analysis/k_means/cor2.gz
 3_data_analysis/data_analysis20200108/urine_metabolome/ethnicity/heatmap.png

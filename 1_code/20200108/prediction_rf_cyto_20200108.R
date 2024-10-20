@@ -1,6 +1,6 @@
 ###use metabolites and cytokines
 ##first set the work directory to project folder
-sxtTools::setwd_project()
+setwd(r4projects::get_project_wd())
 setwd("data_analysis20200108/prediction/cytokine/")
 rm(list = ls())
 ##load dataa
