@@ -21,7 +21,7 @@ metabolite_table <-
 #   select(contains("SFU"))
 ###get mean value for each person
 sample_info_191021 <- 
-  readr::read_csv("/Users/shenxt/projects/smartD/patient information/sample_info_191021.csv")
+  readr::read_csv("/Users/shenxt/projects/smartD/patient_information/sample_info_191021.csv")
 # sample_info <- 
 #   sample_info_191021 %>% 
 #   filter(stringr::str_detect(Sample_ID, "SFU"))
@@ -58,7 +58,7 @@ sample_info <-
 ##add clinical information
 ##due date
 # info <- 
-#   readxl::read_xlsx("E:/project/smartD/patient information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
+#   readxl::read_xlsx("E:/project/smartD/patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
 # info <- 
 #   info %>% 
 #   mutate(ID = stringr::str_replace(ID, "sf", "")) %>% 
@@ -188,7 +188,7 @@ sample_info <-
 # 
 # ##patient information
 # sfu1_148 <- 
-#   readr::read_csv("E:/project/smartD/patient information/SFU1-148_GA.csv")
+#   readr::read_csv("E:/project/smartD/patient_information/SFU1-148_GA.csv")
 # 
 # patient_info <- 
 #   readr::read_csv("E:/project/smartD/data_analysis20190828/patient_info/patient_info.csv")
@@ -240,7 +240,7 @@ cross_table <- cross_metabolite_table
 # ##add the subejct ID to each sample
 # ###patient and sampel information
 # sample_info_191021 <- 
-#   readr::read_csv("E:/project/smartD/patient information/sample_info_191021.csv")
+#   readr::read_csv("E:/project/smartD/patient_information/sample_info_191021.csv")
 # 
 # ##the postpurm samples may have no patient inforamtion
 # metabolite_table_cross <- 

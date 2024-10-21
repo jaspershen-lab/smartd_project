@@ -34,7 +34,7 @@ marker_rf <-
 
 
 info <-
-  readxl::read_xlsx("E:/project/smartD/patient information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
+  readxl::read_xlsx("E:/project/smartD/patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
 info <-
   info %>%
   mutate(ID = stringr::str_replace(ID, "sf", "")) %>%

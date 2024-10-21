@@ -34,7 +34,7 @@ sample_data <-
 
 ###patient and sampel information
 sample_info_191021 <- 
-  readr::read_csv("E:/project/smartD/patient information/sample_info_191021.csv")
+  readr::read_csv("E:/project/smartD/patient_information/sample_info_191021.csv")
 
 ####log 10 and scale
 sample_data <- 

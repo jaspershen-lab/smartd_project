@@ -570,7 +570,7 @@ cytokine_data$Name <-
 
 ##get the ID of all the informations
 urine_id <- 
-  readr::read_csv("E:/project/smartD/patient information/SmartD_all346urine.csv")
+  readr::read_csv("E:/project/smartD/patient_information/SmartD_all346urine.csv")
 
 cyto_id <- 
   match(cytokine_data$Name, 

@@ -556,7 +556,7 @@ colnames(peak_table) <-
 
 ####change some sample IDs
 urine_id <- 
-  readr::read_csv("E:/project/smartD/patient information/SmartD_all346urine.csv")
+  readr::read_csv("E:/project/smartD/patient_information/SmartD_all346urine.csv")
 
 urine_id$sample_id_HILIC %>% stringr::str_sort(numeric = TRUE) %>% 
   grep("SFU_B", ., value = TRUE)
@@ -939,7 +939,7 @@ colnames(peak_table) <-
 
 ####change some sample IDs
 urine_id <- 
-  readr::read_csv("E:/project/smartD/patient information/SmartD_all346urine.csv")
+  readr::read_csv("E:/project/smartD/patient_information/SmartD_all346urine.csv")
 
 urine_id$sample_id_HILIC %>% stringr::str_sort(numeric = TRUE) %>% 
   grep("SFU_B", ., value = TRUE)

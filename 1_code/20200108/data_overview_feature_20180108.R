@@ -744,7 +744,7 @@ ggsave(pca_pos_neg_plot, filename = "pca_pos_neg_plot.png",
 
 
 ####for each participant
-sample_info2 <- readr::read_csv("../../../patient information/sample_info_191021.csv")
+sample_info2 <- readr::read_csv("../../../patient_information/sample_info_191021.csv")
 dim(x)
 
 

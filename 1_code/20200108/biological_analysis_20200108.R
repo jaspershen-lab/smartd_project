@@ -10,7 +10,7 @@ load("data_preparation_for_analysis/metabolite_tags")
 load("data_preparation_for_analysis/peak_table")
 
 info <-
-  readxl::read_xlsx("/Users/shenxt/projects/smartD/patient information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
+  readxl::read_xlsx("/Users/shenxt/projects/smartD/patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
 
 info <-
   info %>%
@@ -18,7 +18,7 @@ info <-
   mutate(ID = paste("SF", ID, sep = ""))
 
 sample_info <-
-  readr::read_csv("/Users/shenxt/projects/smartD/patient information/sample_info_191021.csv")
+  readr::read_csv("/Users/shenxt/projects/smartD/patient_information/sample_info_191021.csv")
 
 setwd(r4projects::get_project_wd())
 marker1 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/GA_prediction/marker_rf_final.csv")
@@ -587,7 +587,7 @@ load("data_preparation_for_analysis/metabolite_tags")
 load("data_preparation_for_analysis/peak_table")
 
 info <-
-  readxl::read_xlsx("/Users/shenxt/projects/smartD/patient information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
+  readxl::read_xlsx("/Users/shenxt/projects/smartD/patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
 
 info <-
   info %>%
@@ -595,7 +595,7 @@ info <-
   mutate(ID = paste("SF", ID, sep = ""))
 
 sample_info <-
-  readr::read_csv("/Users/shenxt/projects/smartD/patient information/sample_info_191021.csv")
+  readr::read_csv("/Users/shenxt/projects/smartD/patient_information/sample_info_191021.csv")
 
 setwd(r4projects::get_project_wd())
 marker1 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/GA_prediction/marker_rf_final.csv")
@@ -896,7 +896,7 @@ load("data_preparation_for_analysis/metabolite_tags")
 load("data_preparation_for_analysis/peak_table")
 
 info <-
-  readxl::read_xlsx("/Users/shenxt/projects/smartD/patient information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
+  readxl::read_xlsx("/Users/shenxt/projects/smartD/patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
 
 info <-
   info %>%
@@ -904,7 +904,7 @@ info <-
   mutate(ID = paste("SF", ID, sep = ""))
 
 sample_info <-
-  readr::read_csv("/Users/shenxt/projects/smartD/patient information/sample_info_191021.csv")
+  readr::read_csv("/Users/shenxt/projects/smartD/patient_information/sample_info_191021.csv")
 
 setwd(r4projects::get_project_wd())
 marker1 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/GA_prediction/marker_rf_final.csv")

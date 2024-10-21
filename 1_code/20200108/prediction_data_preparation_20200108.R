@@ -50,7 +50,7 @@ sum(sort(sample_info$sample.name) == sort(colnames(subject_data)))
 
 ##patient and sampel information
 sample_info_191021 <- 
-  readr::read_csv("E:/project/smartD/patient information/sample_info_191021.csv")
+  readr::read_csv("E:/project/smartD/patient_information/sample_info_191021.csv")
 
 match(colnames(subject_data), sample_info_191021$Sample_ID)
 ##P samples have no GA information
@@ -199,7 +199,7 @@ sum(sort(sample_info$sample.name) == sort(colnames(subject_data)))
 
 ##patient and sampel information
 sample_info_191021 <- 
-  readr::read_csv("E:/project/smartD/patient information/sample_info_191021.csv")
+  readr::read_csv("E:/project/smartD/patient_information/sample_info_191021.csv")
 
 match(colnames(subject_data), sample_info_191021$Sample_ID)
 ##P samples have no GA information
@@ -318,7 +318,7 @@ setwd("data_analysis20200108/prediction/cytokine/")
 
 ##patient and sampel information
 sample_info_191021 <- 
-  readr::read_csv("E:/project/smartD/patient information/sample_info_191021.csv")
+  readr::read_csv("E:/project/smartD/patient_information/sample_info_191021.csv")
 
 match(colnames(cytokine_table), sample_info_191021$Sample_ID)
 ##P samples have no GA information

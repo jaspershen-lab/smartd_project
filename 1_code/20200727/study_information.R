@@ -213,7 +213,7 @@ plot
 
 #### a circos plot to show the information
 info <-
-  readxl::read_xlsx("../../patient information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
+  readxl::read_xlsx("../../patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
 
 info$ID <-
   info$ID %>%

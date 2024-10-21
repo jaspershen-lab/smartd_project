@@ -890,12 +890,12 @@ ggsave(
 
 ###check the clinical information to affect the preidct 
 sample_info <- 
-  readr::read_csv("/Users/shenxt/projects/smartD/patient information/sample_info_191021.csv")
+  readr::read_csv("/Users/shenxt/projects/smartD/patient_information/sample_info_191021.csv")
 
 ##add clinical information
 ##due date
 info <-
-  readxl::read_xlsx("/Users/shenxt/projects/smartD/patient information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
+  readxl::read_xlsx("/Users/shenxt/projects/smartD/patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
 info <-
   info %>%
   mutate(ID = stringr::str_replace(ID, "sf", "")) %>%

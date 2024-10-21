@@ -1,4 +1,4 @@
-setwd("E:/project/smartD/patient information/")
+setwd("E:/project/smartD/patient_information/")
 library(tidyverse)
 library(ggplot2)
 
@@ -232,7 +232,7 @@ patient_info %>%
 write.csv(patient_info, "patient_info.csv", row.names = FALSE)
 
 ###patient information of batch 1
-setwd("E:/project/smartD/patient information")
+setwd("E:/project/smartD/patient_information")
 sfu1_148_ga <- 
   readr::read_csv("SFU1-148_GA.csv")
 
@@ -241,7 +241,7 @@ head(sfu1_148_ga)
 
 
 #####check the information of patients
-setwd("E:/project/smartD/patient information")
+setwd("E:/project/smartD/patient_information")
 info <- readr::read_csv("SmartD_all346urine.csv")
 load("E:/project/smartD/smartD_batch1/HILIC/POS/data_analysis/smartd_hilic_pos_batch1_5")
 

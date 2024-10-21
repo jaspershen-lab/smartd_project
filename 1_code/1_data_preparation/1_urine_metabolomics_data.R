@@ -2,21 +2,11 @@ library(r4projects)
 setwd(get_project_wd())
 rm(list = ls())
 source('1_code/100_tools.R')
+library(tidymass)
+##load data
+load("3_data_analysis/1_data_preparation/0_demographic_data/demographic_data.rda")
 
-###load data
-# load(
-#   "3_data_analysis/data_analysis20200108/urine_metabolome/sample_information/sample_information"
-# )
-#
-# sample_info <-
-#   sample_information %>%
-#   dplyr::rename(
-#     sample_id = Sample_ID,
-#     subject_id = Patient_ID,
-#     collection_date = Date.Acquired,
-#     gestational_age = GA,
-#     visit_time_point = Visit
-#   )
+load("3_data_analysis/1_data_preparation/0_demographic_data/sample_information.rda")
 
 ####metabolomics data
 load(
@@ -29,7 +19,6 @@ load(
   "3_data_analysis/data_analysis20200108/urine_metabolome/data_preparation_for_analysis/peaks/variable_info"
 )
 
-library(tidymass)
 dim(sample_info)
 dim(variable_info)
 dim(expression_data)
@@ -40,6 +29,28 @@ setwd("3_data_analysis/1_urine_metabolomics_data")
 variable_info <-
   variable_info %>%
   dplyr::rename(variable_id = name)
+
+sample_info <-
+  sample_info[, c("sample_id", "injection.order", "class", "batch", "group")] %>%
+  left_join(sample_information, by = "sample_id") %>%
+  dplyr::select(
+    c(
+      sample_id,
+      subject_id,
+      injection.order,
+      class,
+      batch,
+      group,
+      Visit,
+      Date.Acquired,
+      GA,
+      enrollment_date,
+      mother_dob:mother_delivery_weeks,
+      dplyr::everything()
+    )
+  )
+
+sample_info$sample_id == colnames(expression_data)
 
 urine_metabolomics_data <-
   create_mass_dataset(
@@ -63,5 +74,7 @@ urine_metabolomics_data <-
   urine_metabolomics_data %>%
   activate_mass_dataset(what = "variable_info") %>%
   dplyr::filter(!is.na(Compound.name))
+
+dim(urine_metabolomics_data)
 
 save(urine_metabolomics_data, file = "metabolites/urine_metabolomics_data.rda")

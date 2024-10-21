@@ -17,7 +17,7 @@ delta_temp <-
 ###calculate correlation matrix
 ###delta network
 sfu1_148 <- 
-  readr::read_csv("E:/project/smartD/patient information/SFU1-148_GA.csv")
+  readr::read_csv("E:/project/smartD/patient_information/SFU1-148_GA.csv")
 
 patient_info <- 
   readr::read_csv("E:/project/smartD/data_analysis20190828/patient_info/patient_info.csv")

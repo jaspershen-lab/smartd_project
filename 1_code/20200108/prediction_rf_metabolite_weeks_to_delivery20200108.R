@@ -742,12 +742,12 @@ ggsave(filename = "measured_vs_predicted_dis_dark.png",
 
 ###check the clinical information to affect the preidct 
 sample_info <- 
-  readr::read_csv("E:/project/smartD/patient information/sample_info_191021.csv")
+  readr::read_csv("E:/project/smartD/patient_information/sample_info_191021.csv")
 
 ##add clinical information
 ##due date
 info <-
-  readxl::read_xlsx("E:/project/smartD/patient information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
+  readxl::read_xlsx("E:/project/smartD/patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
 info <-
   info %>%
   mutate(ID = stringr::str_replace(ID, "sf", "")) %>%

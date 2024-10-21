@@ -730,3 +730,46 @@ plot_silhouette <- function(sil, color = "red") {
   
   plot
 }
+
+
+base_theme <-
+  theme_bw() +
+  theme(
+    axis.title = element_text(size = 15),
+    axis.text.x = element_text(size = 12),
+    axis.text.y = element_text(size = 12),
+    panel.grid.minor = element_blank()
+  )
+
+
+col <-
+  RColorBrewer::brewer.pal(n = 7, name = "Set1")
+
+ethnicity_color <-
+  c(
+    Asian = col[1],
+    Black = col[2],
+    White = col[3],
+    "Pacific Islander" = col[4],
+    Other = col[5]
+  )
+
+col <-
+  RColorBrewer::brewer.pal(n = 11, name = "Spectral")
+
+child_sex_color <-
+  c(
+    Male_Male = col[11],
+    Male = col[9],
+    Male_Female = col[6],
+    Female = col[3],
+    Female_Female = col[1],
+    "Unknown" = "grey"
+  )
+
+induction_color <-
+  c(
+    "YES" = RColorBrewer::brewer.pal(n = 11, name = "RdBu")[2],
+    "NO" = RColorBrewer::brewer.pal(n = 11, name = "RdBu")[10],
+    "Unknown" = "grey"
+  )

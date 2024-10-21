@@ -115,7 +115,7 @@ sample_data <-
 
 ###patient and sampel information
 sample_info_191021 <- 
-  readr::read_csv("E:/project/smartD/patient information/sample_info_191021.csv")
+  readr::read_csv("E:/project/smartD/patient_information/sample_info_191021.csv")
 
 match(colnames(sample_data), sample_info_191021$Sample_ID)
 ##P samples have no GA information
