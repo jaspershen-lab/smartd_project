@@ -51,6 +51,11 @@ rsconnect/
 4_manuscript/
 5_summary/
 
+3_data_analysis/data_analysis20190828/
+3_data_analysis/data_analysis20191015/
+3_data_analysis/data_analysis20191125/
+3_data_analysis/data_analysis20200108/
+
 ###large files3_data_analysis/1_urine_metabolomics_data/peaks/urine_metabolomics_data.rda
 3_data_analysis/data_analysis20190828/correlation_network_analysis/identification_table/NEG/smartd_rplc_neg_batch1_5.gz
 3_data_analysis/data_analysis20190828/correlation_network_analysis/identification_table/POS/smartd_rplc_pos_batch1_5.gz
@@ -197,3 +202,4 @@ rsconnect/
 3_data_analysis/data_analysis20200108/urine_metabolome/prediction/feature/sample_data_dis.gz
 3_data_analysis/data_analysis20200108/urine_metabolome/prediction/feature/sample_data_val_x.gz
 3_data_analysis/data_analysis20200108/urine_metabolome/prediction/feature/sample_data_val.gz
+

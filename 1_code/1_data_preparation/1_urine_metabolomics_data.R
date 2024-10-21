@@ -23,8 +23,8 @@ dim(sample_info)
 dim(variable_info)
 dim(expression_data)
 
-dir.create("3_data_analysis/1_urine_metabolomics_data", recursive = TRUE)
-setwd("3_data_analysis/1_urine_metabolomics_data")
+dir.create("3_data_analysis/1_data_preparation/1_urine_metabolomics_data", recursive = TRUE)
+setwd("3_data_analysis/1_data_preparation/1_urine_metabolomics_data")
 
 variable_info <-
   variable_info %>%

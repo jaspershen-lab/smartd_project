@@ -1,7 +1,0 @@
-mz-peak	score	PIUMet-ID	Metabolite-Name	HMDB-ID	origin	super-class	Cellular-location	monisotopic-moleculate-weight	Chemical-formula
-m/z=288.179646049	1.0	met8859	Estriol	HMDB0000153	Drug|Drug metabolite|Endogenous|Food	Lipids and lipid-like molecules	Cytoplasm|Extracellular|Membrane (predicted from logP)|Endoplasmic reticulum	288.17254463	C18H24O3
-m/z=478.227241706	0.5	met32991	4-Hydroxyandrostenedione glucuronide	HMDB0010315	Drug or steroid metabolite|Endogenous|Food	Organic compounds	Cytoplasm|Extracellular|Membrane	478.22028269	C25H34O9
-m/z=478.227241706	0.5	met18759	2-Methoxy-estradiol-17b 3-glucuronide	HMDB0006765	Drug metabolite|Endogenous|Food	Lipids and lipid-like molecules	Cytoplasm|Extracellular|Membrane	478.22028269	C25H34O9
-m/z=464.211488022	1.0	met51871	Estriol-3-glucuronide	HMDB0010335	Drug or steroid metabolite|Endogenous|Food	Organic compounds	Cytoplasm|Extracellular|Membrane	464.20463262	C24H32O9
-m/z=464.211488022	1.0	met67578	Estriol-17-glucuronide	HMDB0010333	Drug or steroid metabolite|Endogenous|Food	Organic compounds	Cytoplasm|Extracellular|Membrane	464.20463262	C24H32O9
-m/z=270.168935047	1.0	met11053	Estrone	HMDB0000145	Drug metabolite|Endogenous|Food	Lipids and lipid-like molecules	Cytoplasm|Extracellular|Membrane (predicted from logP)|Endoplasmic reticulum	270.16197995	C18H22O2
