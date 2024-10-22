@@ -2,7 +2,7 @@
 ##RPLC pos
 #-------------------------------------------------------------------------------
 setwd(r4projects::get_project_wd())
-setwd("data_analysis20200108/data_overview/")
+setwd("3_data_analysis/data_analysis20200108/data_overview/")
 load("../data_cleaning/RPLC/POS/rplc_pos_6")
 library(metflow2)
 library(tidyverse)

@@ -1154,12 +1154,6 @@ dis_info$Sex %>%
 dis_info
 
 
-
-
-
-
-
-
 ####20200610
 #### 20191030
 setwd(r4projects::get_project_wd())

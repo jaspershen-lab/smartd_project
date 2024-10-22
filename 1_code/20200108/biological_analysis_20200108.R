@@ -1,8 +1,8 @@
-##avoid source 
+##avoid source
 no_function()
 
 setwd(r4projects::get_project_wd())
-setwd("data_analysis20200108/")
+setwd("3_data_analysis/data_analysis20200108/")
 rm(list = ls())
 library(tidyverse)
 load("data_preparation_for_analysis/metabolite_table")
@@ -10,7 +10,9 @@ load("data_preparation_for_analysis/metabolite_tags")
 load("data_preparation_for_analysis/peak_table")
 
 info <-
-  readxl::read_xlsx("/Users/shenxt/projects/smartD/patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
+  readxl::read_xlsx(
+    "../../2_data/patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx"
+  )
 
 info <-
   info %>%
@@ -18,13 +20,19 @@ info <-
   mutate(ID = paste("SF", ID, sep = ""))
 
 sample_info <-
-  readr::read_csv("/Users/shenxt/projects/smartD/patient_information/sample_info_191021.csv")
+  readr::read_csv("../../2_data/patient_information/sample_info_191021.csv")
 
 setwd(r4projects::get_project_wd())
-marker1 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/GA_prediction/marker_rf_final.csv")
-marker2 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/time_to_due_prediction/remove_cs/marker_rf_final.csv")
+marker1 <- readr::read_csv(
+  "3_data_analysis/data_analysis20200108/prediction/metabolites/RF/GA_prediction/marker_rf_final.csv"
+)
+marker2 <- readr::read_csv(
+  "3_data_analysis/data_analysis20200108/prediction/metabolites/RF/time_to_due_prediction/remove_cs/marker_rf_final.csv"
+)
 
-setwd("data_analysis20200108/biological_analysis/")
+setwd(get_project_wd())
+
+setwd("3_data_analysis/data_analysis20200108/biological_analysis/")
 
 marker1$name
 
@@ -32,50 +40,45 @@ marker2$name
 
 intersect(marker1$name, marker2$name)
 
-setdiff(marker1$name, marker2$name) %>% 
-  data.frame(name = .,stringsAsFactors = FALSE) %>% 
-  left_join(metabolite_tags, by = "name") %>% 
+setdiff(marker1$name, marker2$name) %>%
+  data.frame(name = ., stringsAsFactors = FALSE) %>%
+  left_join(metabolite_tags, by = "name") %>%
   pull(Compound.name)
 
 
-setdiff(marker2$name, marker1$name) %>% 
-  data.frame(name = .,stringsAsFactors = FALSE) %>% 
-  left_join(metabolite_tags, by = "name") %>% 
+setdiff(marker2$name, marker1$name) %>%
+  data.frame(name = ., stringsAsFactors = FALSE) %>%
+  left_join(metabolite_tags, by = "name") %>%
   pull(Compound.name)
-  
-  
+
+
 library(VennDiagram)
 
 venn <- VennDiagram::venn.diagram(
-  x = list(
-    "Mraker 1" = marker1$name,
-    "Mraker 2" = marker2$name
-  ),
-  filename = NULL, col = c("#C71000FF", "#84D7E1FF"),
-  main.cex = 1.5, lwd = 2
+  x = list("Mraker 1" = marker1$name, "Mraker 2" = marker2$name),
+  filename = NULL,
+  col = c("#C71000FF", "#84D7E1FF"),
+  main.cex = 1.5,
+  lwd = 2
 )
 
 
 grid.draw(venn)
 
-
 setdiff(marker1$Compound.name, marker2$Compound.name)
 setdiff(marker2$Compound.name, marker1$Compound.name)
 
-
 library(waffle)
 
-test <- 
-  dplyr::full_join(marker1[,c("name", "super_class")], 
-                   marker2[,c("name", "super_class")], 
-                   by = c("name", "super_class")) %>% 
+test <-
+  dplyr::full_join(marker1[, c("name", "super_class")], marker2[, c("name", "super_class")], by = c("name", "super_class")) %>%
   pull(super_class)
+
 test[is.na(test)] <- "Unknown"
 
 test <- table(test)
 test1 <- as.numeric(test)
 names(test1) <- names(test)
-
 
 values <- c(
   # "Alkaloids and derivatives" = "#ADE2D0FF",
@@ -91,22 +94,26 @@ values <- c(
   "Unknown" = "#3F4041B2"
 )
 
-plot <- 
-waffle(test,
-  colors = values, rows = 6,
-)
+plot <-
+  waffle(test, colors = values, rows = 6, )
 
 plot
 
-ggsave(filename = "marker_super_class.pdf", 
-       bg = "transparent",
-       width = 7,  height = 4)
-ggsave(filename = "marker_super_class.png", 
-       bg = "transparent",
-       width = 7,  height = 4)
+ggsave(
+  filename = "marker_super_class.pdf",
+  bg = "transparent",
+  width = 7,
+  height = 4
+)
+ggsave(
+  filename = "marker_super_class.png",
+  bg = "transparent",
+  width = 7,
+  height = 4
+)
 
 setwd(r4projects::get_project_wd())
-setwd("data_analysis20200108/biological_analysis/")
+setwd("3_data_analysis/data_analysis20200108/biological_analysis/")
 
 marker <-
   rbind(marker1, marker2)
@@ -154,9 +161,7 @@ marker_data <-
   t() %>%
   as.data.frame()
 
-ga <- sample_info$GA[
-  match(colnames(marker_data), sample_info$Sample_ID)
-]
+ga <- sample_info$GA[match(colnames(marker_data), sample_info$Sample_ID)]
 
 ga[is.na(ga)] <- 50
 
@@ -166,7 +171,7 @@ range(ga)
 ga <- cut_width(x = ga[ga != 0], width = 2, center = 3)
 
 ga <-
-  as.character(ga) %>% 
+  as.character(ga) %>%
   stringr::str_replace("\\[", "(")
 
 ga[ga == "(10,12]"] <- "(10,16]"
@@ -192,17 +197,10 @@ marker_data <-
 
 range(marker_data)
 
-
 marker_data[which(marker_data < -1.43, arr.ind = TRUE)] <- -1.43
 
-
 colnames(marker_data) <-
-  metabolite_tags$Compound.name[
-    match(
-      colnames(marker_data),
-      metabolite_tags$name
-    )
-  ]
+  metabolite_tags$Compound.name[match(colnames(marker_data), metabolite_tags$name)]
 
 # "ward.D", "ward.D2",
 # "single", "complete", "average" (= UPGMA), "mcquitty" (= WPGMA), "median" (= WPGMC) or "centroid" (= UPGMC).
@@ -213,65 +211,68 @@ colnames(marker_data) <-
 annotation_col <-
   marker %>%
   select(Compound.name, super_class) %>%
-  mutate(super_class = case_when(
-    is.na(super_class) ~ "Unknown",
-    TRUE ~ super_class
-  )) %>%
+  mutate(super_class = case_when(is.na(super_class) ~ "Unknown", TRUE ~ super_class)) %>%
   column_to_rownames(var = "Compound.name")
 
 anno_colors <-
-  list(super_class = c(
-    # "Clinical information" = "#FF6F00FF",
-    # "Alkaloids and derivatives" = "#ADE2D0FF",
-    # "Benzenoids" = "#C71000FF",
-    "Lipids and lipid-like molecules" = "#FF6F00B2",
-    "Nucleosides, nucleotides, and analogues" = "#C71000B2",
-    # "Organic acids and derivatives" = "#8A4198FF",
-    # "Organic nitrogen compounds" = "#5A9599FF",
-    "Organic oxygen compounds" = "#008EA0B2",
-    "Organoheterocyclic compounds" = "#8A4198B2",
-    # "Organosulfur compounds" = "#3F4041FF",
-    "Phenylpropanoids and polyketides" = "#5A9599B2",
-    "Unknown" = "#3F4041B2"
-  ))
+  list(
+    super_class = c(
+      # "Clinical information" = "#FF6F00FF",
+      # "Alkaloids and derivatives" = "#ADE2D0FF",
+      # "Benzenoids" = "#C71000FF",
+      "Lipids and lipid-like molecules" = "#FF6F00B2",
+      "Nucleosides, nucleotides, and analogues" = "#C71000B2",
+      # "Organic acids and derivatives" = "#8A4198FF",
+      # "Organic nitrogen compounds" = "#5A9599FF",
+      "Organic oxygen compounds" = "#008EA0B2",
+      "Organoheterocyclic compounds" = "#8A4198B2",
+      # "Organosulfur compounds" = "#3F4041FF",
+      "Phenylpropanoids and polyketides" = "#5A9599B2",
+      "Unknown" = "#3F4041B2"
+    )
+  )
 
-
-plot <- 
-pheatmap(marker_data,
-  color = colorRampPalette(c("#84D7E1FF", "white", "#C71000FF"))(100),
-  border_color = "grey",
-  clustering_method = "average",
-  clustering_distance_rows = "euclidean",
-  clustering_distance_cols = "euclidean",
-  angle_col = 45,
-  annotation_col = annotation_col,
-  annotation_colors = anno_colors,
-  col.axis = "red"
-  # display_numbers = TRUE
-  # legend_breaks = c(-1,0,1)
-)
+plot <-
+  pheatmap(
+    marker_data,
+    color = colorRampPalette(c("#84D7E1FF", "white", "#C71000FF"))(100),
+    border_color = "grey",
+    clustering_method = "average",
+    clustering_distance_rows = "euclidean",
+    clustering_distance_cols = "euclidean",
+    angle_col = 45,
+    annotation_col = annotation_col,
+    annotation_colors = anno_colors,
+    col.axis = "red"
+    # display_numbers = TRUE
+    # legend_breaks = c(-1,0,1)
+  )
 
 library(ggplotify)
 plot <- as.ggplot(plot)
 
-ggsave(plot, filename = "heatmap_marker.pdf", width = 10, height = 7)
+ggsave(plot,
+       filename = "heatmap_marker.pdf",
+       width = 10,
+       height = 7)
 
 
 ##dark
-plot <- 
-pheatmap(marker_data,
-         color = colorRampPalette(c("#84D7E1FF", "white", "#C71000FF"))(100),
-         border_color = "grey",
-         clustering_method = "mcquitty",
-         clustering_distance_rows = "euclidean",
-         clustering_distance_cols = "euclidean",
-         angle_col = 45,
-         annotation_col = annotation_col,
-         annotation_colors = anno_colors,
-         col.axis = "red"
-         # display_numbers = TRUE
-         # legend_breaks = c(-1,0,1)
-)
+plot <-
+  pheatmap(
+    marker_data,
+    color = colorRampPalette(c("#84D7E1FF", "white", "#C71000FF"))(100),
+    border_color = "grey",
+    clustering_method = "mcquitty",
+    clustering_distance_rows = "euclidean",
+    clustering_distance_cols = "euclidean",
+    angle_col = 45,
+    annotation_col = annotation_col,
+    annotation_colors = anno_colors,
+    col.axis = "red"
+    # display_numbers = TRUE
+    # legend_breaks = c(-1,0,1)
+  )
 
 rownames <- sort(rownames(marker_data))
 rownames <- c("PP", rownames[-c(14)])
@@ -312,15 +313,12 @@ plot <-
   )
 
 
-text_colour <- c(
-  "red",
-  colorRampPalette(colors = c(
-    alpha("#155F83FF", 1),
-    alpha("#155F83FF", 0.4),
-    alpha("#FFA319FF", 0.4),
-    alpha("#FFA319FF", 1)
-  ))(13)
-)
+text_colour <- c("red", colorRampPalette(colors = c(
+  alpha("#155F83FF", 1),
+  alpha("#155F83FF", 0.4),
+  alpha("#FFA319FF", 0.4),
+  alpha("#FFA319FF", 1)
+))(13))
 
 
 
@@ -339,10 +337,8 @@ distance <-
 
 
 line_cols <-
-  colorRampPalette(
-    colors =
-      c("royalblue", "red")
-  )(13)
+  colorRampPalette(colors =
+                     c("royalblue", "red"))(13)
 
 p.value <- -log(p.mat[-1, 1], 10)
 
@@ -352,7 +348,11 @@ pp_data <-
     y = rep(3, 13),
     xend = c(1:13) + 0.5,
     yend = c(1:13) - 0.5,
-    curvature = seq(from = -0.14, to = 0.14, length.out = 13),
+    curvature = seq(
+      from = -0.14,
+      to = 0.14,
+      length.out = 13
+    ),
     colour = line_cols,
     p.value = p.value,
     distance = distance,
@@ -376,26 +376,30 @@ for (i in 1:nrow(pp_data)) {
         size = 3
       ) +
       annotate(
-        geom = "point", x = i + 0.5, y = i - 0.5,
+        geom = "point",
+        x = i + 0.5,
+        y = i - 0.5,
         colour = pp_data$text_colour[i],
         size = 3
       )
   )
 }
 
-
-
 plot <-
   plot +
-  annotate(geom = "point", x = 13, y = 3, colour = "grey", size = 5)
-
+  annotate(
+    geom = "point",
+    x = 13,
+    y = 3,
+    colour = "grey",
+    size = 5
+  )
 
 corr_plot <- plot
 corr_plot
 
-
 # ##dark
-# corr_plot <- 
+# corr_plot <-
 #   corr_plot +
 #   ggdark::dark_mode() +
 #   theme(
@@ -409,9 +413,14 @@ corr_plot
 #     axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1)
 #   ) +
 #   labs(x = "", y = "")
-  
-ggsave(corr_plot, filename = "corr_plot.pdf", height = 7, width = 7, 
-       bg = "transparent")
+
+ggsave(
+  corr_plot,
+  filename = "corr_plot.pdf",
+  height = 7,
+  width = 7,
+  bg = "transparent"
+)
 
 ## legend for corrplot
 ggplot(pp_data) +
@@ -422,10 +431,9 @@ ggplot(pp_data) +
     yend = yend,
     curvature = curvature,
     colour = distance,
-  ), size = 3) +
+  ),
+  size = 3) +
   scale_colour_gradientn(colours = pp_data$colour)
-
-
 
 
 ## markers in different stages
@@ -464,11 +472,7 @@ marker_data <-
   t() %>%
   as.data.frame()
 
-
-
-ga <- sample_info$GA[
-  match(colnames(marker_data), sample_info$Sample_ID)
-]
+ga <- sample_info$GA[match(colnames(marker_data), sample_info$Sample_ID)]
 
 ga[is.na(ga)] <- 50
 
@@ -477,7 +481,7 @@ range(ga)
 ga <- cut_width(x = ga[ga != 0], width = 2, center = 3)
 
 ga <-
-  as.character(ga) %>% 
+  as.character(ga) %>%
   stringr::str_replace("\\[", "(")
 
 ga[ga == "(10,12]"] <- "(10,16]"
@@ -504,15 +508,12 @@ marker_data2 <-
   })
 
 #####
-text_colour <- c(
-  colorRampPalette(colors = c(
-    alpha("#155F83FF", 1),
-    alpha("#155F83FF", 0.4),
-    alpha("#FFA319FF", 0.4),
-    alpha("#FFA319FF", 1)
-  ))(13),
-  "red"
-)
+text_colour <- c(colorRampPalette(colors = c(
+  alpha("#155F83FF", 1),
+  alpha("#155F83FF", 0.4),
+  alpha("#FFA319FF", 0.4),
+  alpha("#FFA319FF", 1)
+))(13), "red")
 
 box_colour <-
   text_colour
@@ -525,7 +526,11 @@ idx <- 1
 test <-
   mapply(
     FUN = function(x, y) {
-      list(data.frame(GA = y, value = x[, idx], stringsAsFactors = FALSE))
+      list(data.frame(
+        GA = y,
+        value = x[, idx],
+        stringsAsFactors = FALSE
+      ))
     },
     x = marker_data2,
     y = names(marker_data2)
@@ -534,25 +539,21 @@ test <-
 
 test <- do.call(rbind, test)
 
-
 # ga_level <-
 #   c("[11,13]", ga_level[-c(15, 16)], "PP")
 test$GA <- factor(test$GA, levels = ga_level)
 
-
-
 ggplot(data = test, aes(x = GA, y = value)) +
   geom_boxplot(aes(colour = GA),
-    outlier.shape = NA, show.legend = FALSE
-  ) +
+               outlier.shape = NA,
+               show.legend = FALSE) +
   # geom_jitter(aes(colour = GA)) +
   scale_colour_manual(values = box_colour) +
   scale_y_continuous(limits = c(-1, 1)) +
   theme_bw() +
-  labs(
-    x = "", y = "Scaled intensity",
-    title = rownames(marker_data)[idx]
-  ) +
+  labs(x = "",
+       y = "Scaled intensity",
+       title = rownames(marker_data)[idx]) +
   theme(
     axis.title = element_text(size = 15),
     axis.text.x = element_text(
@@ -569,25 +570,22 @@ ggplot(data = test, aes(x = GA, y = value)) +
 rownames(marker_data)[idx]
 
 
-
-
-
-
-
 #-------------------------------------------------------------------------------
 ### fuzzy C-means for metabolites
 library(Mfuzz)
 library(e1071)
 
 setwd(r4projects::get_project_wd())
-setwd("data_analysis20200108/")
+setwd("3_data_analysis/data_analysis20200108/")
 rm(list = ls())
 load("data_preparation_for_analysis/metabolite_table")
 load("data_preparation_for_analysis/metabolite_tags")
 load("data_preparation_for_analysis/peak_table")
 
 info <-
-  readxl::read_xlsx("/Users/shenxt/projects/smartD/patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
+  readxl::read_xlsx(
+    "../../2_data/patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx"
+  )
 
 info <-
   info %>%
@@ -595,14 +593,18 @@ info <-
   mutate(ID = paste("SF", ID, sep = ""))
 
 sample_info <-
-  readr::read_csv("/Users/shenxt/projects/smartD/patient_information/sample_info_191021.csv")
+  readr::read_csv("../../2_data/patient_information/sample_info_191021.csv")
 
 setwd(r4projects::get_project_wd())
-marker1 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/GA_prediction/marker_rf_final.csv")
-marker2 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/time_to_due_prediction/remove_cs/marker_rf_final.csv")
+marker1 <- readr::read_csv(
+  "3_data_analysis/data_analysis20200108/prediction/metabolites/RF/GA_prediction/marker_rf_final.csv"
+)
+marker2 <- readr::read_csv(
+  "3_data_analysis/data_analysis20200108/prediction/metabolites/RF/time_to_due_prediction/remove_cs/marker_rf_final.csv"
+)
 
 setwd(r4projects::get_project_wd())
-setwd("data_analysis20200108/biological_analysis/")
+setwd("3_data_analysis/data_analysis20200108/biological_analysis/")
 
 marker <-
   rbind(marker1, marker2)
@@ -616,7 +618,6 @@ marker_data <-
   dplyr::filter(name %in% marker$name) %>%
   column_to_rownames("name") %>%
   dplyr::select(-c(mz, rt))
-
 
 ## rename P
 str_sort(grep("P", colnames(marker_data), value = T), numeric = TRUE)
@@ -646,9 +647,7 @@ marker_data <-
   t() %>%
   as.data.frame()
 
-ga <- sample_info$GA[
-  match(colnames(marker_data), sample_info$Sample_ID)
-]
+ga <- sample_info$GA[match(colnames(marker_data), sample_info$Sample_ID)]
 
 ga[is.na(ga)] <- 50
 
@@ -657,7 +656,7 @@ range(ga)
 ga <- cut_width(x = ga[ga != 0], width = 2, center = 3)
 
 ga <-
-  as.character(ga) %>% 
+  as.character(ga) %>%
   stringr::str_replace("\\[", "(")
 
 ga[ga == "(10,12]"] <- "(10,16]"
@@ -684,12 +683,7 @@ marker_data <-
 range(marker_data)
 
 colnames(marker_data) <-
-  metabolite_tags$Compound.name[
-    match(
-      colnames(marker_data),
-      metabolite_tags$name
-    )
-  ]
+  metabolite_tags$Compound.name[match(colnames(marker_data), metabolite_tags$name)]
 
 marker_data <-
   t(marker_data)
@@ -697,19 +691,20 @@ marker_data <-
 mestimate <- function(df) {
   N <- dim(df)[[1]]
   D <- dim(df)[[2]]
-  m.sj <- 1 + (1418 / N + 22.05) * D^(-2) + (12.33 / N + 0.243) * D^(-0.0406 * log(N) - 0.1134)
+  m.sj <- 1 + (1418 / N + 22.05) * D ^ (-2) + (12.33 / N + 0.243) * D ^
+    (-0.0406 * log(N) - 0.1134)
   return(m.sj)
 }
 
 m <- mestimate(marker_data)
 m
 
-
 library(e1071)
 
 # helper function for the within sum of squared error
 sumsqr <- function(x, clusters) {
-  sumsqr <- function(x) sum(scale(x, scale = FALSE)^2)
+  sumsqr <- function(x)
+    sum(scale(x, scale = FALSE) ^ 2)
   wss <- sapply(split(as.data.frame(x), clusters), sumsqr)
   return(wss)
 }
@@ -725,34 +720,29 @@ iterate_fcm_WSS <- function(df, m) {
 }
 
 wss_2to20 <- iterate_fcm_WSS(marker_data, m)
-plot(1:20, wss_2to20[1:20],
-  type = "b",
-  xlab = "Number of Clusters",
-  ylab = "wss"
-)
+plot(1:20,
+     wss_2to20[1:20],
+     type = "b",
+     xlab = "Number of Clusters",
+     ylab = "wss")
 
-
-data.frame(number = 1:20, error = wss_2to20[1:20], stringsAsFactors = FALSE) %>% 
+data.frame(number = 1:20,
+           error = wss_2to20[1:20],
+           stringsAsFactors = FALSE) %>%
   ggplot(aes(number, error)) +
   geom_point(shape = 16, colour = "black") +
   geom_line(colour = "black") +
-  labs(x = "Number of clusters", y = "WSS") 
+  labs(x = "Number of clusters", y = "WSS")
 
-
-text_colour <- c(
-  colorRampPalette(colors = c(
-    alpha("#155F83FF", 1),
-    alpha("#155F83FF", 0.4),
-    alpha("#FFA319FF", 0.4),
-    alpha("#FFA319FF", 1)
-  ))(13),
-  "red"
-)
+text_colour <- c(colorRampPalette(colors = c(
+  alpha("#155F83FF", 1),
+  alpha("#155F83FF", 0.4),
+  alpha("#FFA319FF", 0.4),
+  alpha("#FFA319FF", 1)
+))(13), "red")
 
 k <- 2
-fcm_results <- cmeans(marker_data,
-  centers = k, m = m
-)
+fcm_results <- cmeans(marker_data, centers = k, m = m)
 # get the centroids into a long dataframe:
 fcm_centroids <- fcm_results$centers
 fcm_centroids_df <- data.frame(fcm_centroids, check.names = FALSE, check.rows = FALSE)
@@ -760,11 +750,9 @@ fcm_centroids_df$cluster <- row.names(fcm_centroids_df)
 
 centroids_long <-
   fcm_centroids_df %>%
-  tidyr::pivot_longer(
-    cols = -cluster,
-    names_to = "GA",
-    values_to = "value"
-  )
+  tidyr::pivot_longer(cols = -cluster,
+                      names_to = "GA",
+                      values_to = "value")
 
 ga_level <- unique(centroids_long$GA)
 
@@ -773,10 +761,13 @@ ga_level <- unique(centroids_long$GA)
 
 centroids_long$GA <- factor(centroids_long$GA, levels = ga_level)
 
-ggplot(
-  centroids_long,
-  aes(x = GA, y = value, group = cluster, colour = as.factor(cluster))
-) +
+ggplot(centroids_long,
+       aes(
+         x = GA,
+         y = value,
+         group = cluster,
+         colour = as.factor(cluster)
+       )) +
   geom_line(size = 1.5) +
   geom_point(size = 3) +
   ggsci::scale_color_aaas() +
@@ -793,12 +784,12 @@ ggplot(
       size = 13,
       angle = 45,
       vjust = 1,
-      hjust = 1, colour = text_colour
+      hjust = 1,
+      colour = text_colour
     ),
     axis.text.y = element_text(size = 13),
     plot.title = element_text(size = 15, hjust = 0.5)
   )
-
 
 # start with the input data
 fcm_plotting_df <- data.frame(marker_data, check.names = FALSE, check.rows = FALSE)
@@ -823,7 +814,8 @@ cluster_plot_df <-
   dplyr::select(everything(), membership, metabolite) %>%
   tidyr::pivot_longer(
     cols = -c(metabolite, cluster, membership),
-    names_to = "GA", values_to = "value"
+    names_to = "GA",
+    values_to = "value"
   )
 
 # order the dataframe by score
@@ -837,21 +829,27 @@ cluster_plot_df$GA <- factor(cluster_plot_df$GA, levels = ga_level)
 core <- dplyr::filter(centroids_long, cluster == k_to_plot)
 
 plot <-
-  cluster_plot_df %>% 
-  dplyr::filter(membership > 0.8) %>% 
-ggplot(aes(x = GA, y = value)) +
+  cluster_plot_df %>%
+  dplyr::filter(membership > 0.8) %>%
+  ggplot(aes(x = GA, y = value)) +
   geom_hline(yintercept = 0, color = "black") +
   geom_line(aes(color = membership, group = metabolite), size = 1) +
-  geom_point(aes(fill = membership, group = metabolite), size = 2,
-             shape = 21, color = "black") +
+  geom_point(
+    aes(fill = membership, group = metabolite),
+    size = 2,
+    shape = 21,
+    color = "black"
+  ) +
   scale_fill_gradientn(colours = c("blue1", "red2")) +
   scale_color_gradientn(colours = c("blue1", "red2")) +
   # this adds the core
-  geom_line(data = core, aes(GA, value, group = cluster), color = "black", inherit.aes = FALSE) +
-  labs(
-    x = "", y = "Scaled intensity",
-    title = ""
+  geom_line(
+    data = core,
+    aes(GA, value, group = cluster),
+    color = "black",
+    inherit.aes = FALSE
   ) +
+  labs(x = "", y = "Scaled intensity", title = "") +
   theme_bw() +
   theme(
     axis.title = element_text(size = 15),
@@ -869,8 +867,12 @@ ggplot(aes(x = GA, y = value)) +
 
 plot
 
-ggsave(filename = "cluster2.pdf", height = 7, width = 7, bg = "transparent")
-
+ggsave(
+  filename = "cluster2.pdf",
+  height = 7,
+  width = 7,
+  bg = "transparent"
+)
 
 cluster1_metabolite <-
   fcm_plotting_df$metabolite[which(fcm_plotting_df$cluster == 1)]
@@ -880,10 +882,6 @@ cluster2_metabolite <-
 
 
 write.csv(fcm_plotting_df, "fuzzy_c_means_cluster.csv", row.names = FALSE)
-
-
-
-
 
 
 ## correlation network
@@ -896,7 +894,9 @@ load("data_preparation_for_analysis/metabolite_tags")
 load("data_preparation_for_analysis/peak_table")
 
 info <-
-  readxl::read_xlsx("/Users/shenxt/projects/smartD/patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
+  readxl::read_xlsx(
+    "../../2_data/patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx"
+  )
 
 info <-
   info %>%
@@ -904,23 +904,25 @@ info <-
   mutate(ID = paste("SF", ID, sep = ""))
 
 sample_info <-
-  readr::read_csv("/Users/shenxt/projects/smartD/patient_information/sample_info_191021.csv")
+  readr::read_csv("../../2_data/patient_information/sample_info_191021.csv")
 
 setwd(r4projects::get_project_wd())
-marker1 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/GA_prediction/marker_rf_final.csv")
-marker2 <- readr::read_csv("data_analysis20200108/prediction/metabolites/RF/time_to_due_prediction/remove_cs/marker_rf_final.csv")
-
+marker1 <- readr::read_csv(
+  "3_data_analysis/data_analysis20200108/prediction/metabolites/RF/GA_prediction/marker_rf_final.csv"
+)
+marker2 <- readr::read_csv(
+  "3_data_analysis/data_analysis20200108/prediction/metabolites/RF/time_to_due_prediction/remove_cs/marker_rf_final.csv"
+)
 
 setwd(r4projects::get_project_wd())
-setwd("data_analysis20200108/biological_analysis/")
-
+setwd("3_data_analysis/data_analysis20200108/biological_analysis/")
 
 marker <-
   rbind(marker1, marker2)
 
 marker <-
   marker %>%
-  distinct(name, .keep_all = TRUE)
+  dplyr::distinct(name, .keep_all = TRUE)
 
 marker_data <-
   metabolite_table %>%
@@ -963,20 +965,21 @@ subject_id <-
 
 
 cor_met_data <-
-  data.frame(
-    subject_id = subject_id,
-    t(marker_data),
-    stringsAsFactors = FALSE
-  )
+  data.frame(subject_id = subject_id,
+             t(marker_data),
+             stringsAsFactors = FALSE)
 
 
 cor_met_data <-
   cor_met_data %>%
-  plyr::dlply(.variables = "subject_id", .fun = function(x) {
-    x <- x[, -1]
-    x <- apply(x, 2, mean)
-    x
-  }) %>%
+  plyr::dlply(
+    .variables = "subject_id",
+    .fun = function(x) {
+      x <- x[, -1]
+      x <- apply(x, 2, mean)
+      x
+    }
+  ) %>%
   do.call(rbind, .)
 
 
@@ -995,7 +998,7 @@ info <-
 
 due_date <-
   (as.Date(info$DD) - (as.Date(info$EDD) - 280)) / 7 %>%
-    as.numeric()
+  as.numeric()
 
 ## age
 age <-
@@ -1024,7 +1027,7 @@ ethinic <-
 # ##BMI
 ht <- trans_ht(info$Ht) / 100
 wt <- trans_wt(info$Wt)
-bmi <- wt / (ht^2)
+bmi <- wt / (ht ^ 2)
 #
 # #------------------------------------------------------------------------------
 # ##parity
@@ -1084,17 +1087,12 @@ birth_wt <-
 birth_wt <- unname(birth_wt) %>%
   as.numeric()
 #
-clinical_data <- rbind(
-  # due_date,
-  age,
-  # ethinic,
-  bmi,
-  parity,
-  # sex,
+clinical_data <- rbind(# due_date,
+  age, # ethinic,
+  bmi, parity, # sex,
   # ivf,
   # induction,
-  birth_wt
-)
+  birth_wt)
 #
 colnames(clinical_data) <-
   info$ID
@@ -1138,16 +1136,16 @@ cross_cor <-
 rownames(cross_cor) <-
   colnames(cross_cor)
 
-test <- 
-cross_cor %>%
+test <-
+  cross_cor %>%
   rownames_to_column(., var = "name1") %>%
   gather(., key = "name2", value = "Correlation", -name1) %>%
   distinct() %>%
   filter(., Correlation != 1 & Correlation != 2) %>%
-  arrange(., desc(abs(Correlation))) 
+  arrange(., desc(abs(Correlation)))
 
-test <- 
-test %>% 
+test <-
+  test %>%
   dplyr::filter(stringr::str_detect(name1, "bmi"))
 
 test_p <-
@@ -1158,10 +1156,11 @@ test_p <-
       pull(cor_data, var = peak1)
     int2 <-
       pull(cor_data, var = peak2)
-    p <- cor.test(int1, int2,
+    p <- cor.test(int1,
+                  int2,
                   alternative = "two.sided",
-                  method = "spearman", use = "na.or.complete"
-    )$p.value
+                  method = "spearman",
+                  use = "na.or.complete")$p.value
     p
   })
 
@@ -1188,10 +1187,11 @@ cross_cor_p <-
       pull(cor_data, var = peak1)
     int2 <-
       pull(cor_data, var = peak2)
-    p <- cor.test(int1, int2,
-      alternative = "two.sided",
-      method = "spearman", use = "na.or.complete"
-    )$p.value
+    p <- cor.test(int1,
+                  int2,
+                  alternative = "two.sided",
+                  method = "spearman",
+                  use = "na.or.complete")$p.value
     p
   })
 
@@ -1249,10 +1249,8 @@ node_attr <-
 node_attr$node_class <- rep(NA, nrow(node_attr))
 
 node_attr$node_class <-
-  case_when(
-    is.na(node_attr$Total.score) ~ "Clinical information",
-    TRUE ~ "Metabolite"
-  )
+  case_when(is.na(node_attr$Total.score) ~ "Clinical information",
+            TRUE ~ "Metabolite")
 
 
 node_attr$node_class[node_attr$node_class == "Metabolite"] <-
@@ -1281,16 +1279,12 @@ node_attr <-
   node_attr %>%
   arrange(sort)
 
-node_attr$node_class <- factor(node_attr$node_class,
-  levels = unique(node_attr$node_class)
-)
+node_attr$node_class <- factor(node_attr$node_class, levels = unique(node_attr$node_class))
 
 cross_graph <-
-  tidygraph::tbl_graph(
-    nodes = node_attr,
-    edges = cross_cor2,
-    directed = FALSE
-  )
+  tidygraph::tbl_graph(nodes = node_attr,
+                       edges = cross_cor2,
+                       directed = FALSE)
 
 ## angle for label
 metabolite <- igraph::V(cross_graph)$name
@@ -1307,43 +1301,42 @@ plot <-
     edge_colour = Correlation,
     edge_width = -log(P.adjust, 10)
   )) +
-  scale_edge_colour_gradient2(
-    low = "royalblue",
-    mid = "white",
-    high = "red"
-  ) +
+  scale_edge_colour_gradient2(low = "royalblue",
+                              mid = "white",
+                              high = "red") +
   scale_edge_width_continuous(range = c(0.8, 3.5)) +
   geom_node_point(aes(size = Total.score, colour = node_class)) +
-  scale_colour_manual(values = c(
-    "Clinical information" = "#C71000FF",
-    # "Alkaloids and derivatives" = "#ADE2D0FF",
-    # "Benzenoids" = "#C71000FF",
-    "Lipids and lipid-like molecules" = "#FF6F00B2",
-    "Nucleosides, nucleotides, and analogues" = "#C71000B2",
-    # "Organic acids and derivatives" = "#8A4198FF",
-    # "Organic nitrogen compounds" = "#5A9599FF",
-    "Organic oxygen compounds" = "#008EA0B2",
-    "Organoheterocyclic compounds" = "#8A4198B2",
-    # "Organosulfur compounds" = "#3F4041FF",
-    # "Phenylpropanoids and polyketides" = "#5A9599B2",
-    "Unknown" = "#3F4041B2"
-  )) +
+  scale_colour_manual(
+    values = c(
+      "Clinical information" = "#C71000FF",
+      # "Alkaloids and derivatives" = "#ADE2D0FF",
+      # "Benzenoids" = "#C71000FF",
+      "Lipids and lipid-like molecules" = "#FF6F00B2",
+      "Nucleosides, nucleotides, and analogues" = "#C71000B2",
+      # "Organic acids and derivatives" = "#8A4198FF",
+      # "Organic nitrogen compounds" = "#5A9599FF",
+      "Organic oxygen compounds" = "#008EA0B2",
+      "Organoheterocyclic compounds" = "#8A4198B2",
+      # "Organosulfur compounds" = "#3F4041FF",
+      # "Phenylpropanoids and polyketides" = "#5A9599B2",
+      "Unknown" = "#3F4041B2"
+    )
+  ) +
   # ggsci::scale_color_futurama(alpha = 1) +
   guides(colour = guide_legend(override.aes = list(size = 5))) +
-  scale_size_continuous(
-    range = c(3, 10),
-    guide = guide_legend(override.aes = list(colour = "black"))
-  ) +
-  geom_node_text(aes(
-    x = x * 1.1,
-    y = y * 1.1,
-    label = name,
-    colour = node_class
-  ),
-  angle = angle,
-  hjust = hjust,
-  # colour = "black",
-  size = 3.5
+  scale_size_continuous(range = c(3, 10),
+                        guide = guide_legend(override.aes = list(colour = "black"))) +
+  geom_node_text(
+    aes(
+      x = x * 1.1,
+      y = y * 1.1,
+      label = name,
+      colour = node_class
+    ),
+    angle = angle,
+    hjust = hjust,
+    # colour = "black",
+    size = 3.5
   ) +
   # ggdark::dark_theme_void() +
   theme_void() +
@@ -1352,7 +1345,7 @@ plot <-
 plot
 
 
-##dark 
+##dark
 plot <-
   plot +
   ggdark::dark_mode() +
@@ -1363,10 +1356,15 @@ plot <-
     # panel.grid.major = element_blank(),
     # panel.grid.minor = element_line(color = "grey")
   )
-  
 
-ggsave(plot, filename = "correlation.png", 
-       width = 10, height = 7, bg = "transparent")
+
+ggsave(
+  plot,
+  filename = "correlation.png",
+  width = 10,
+  height = 7,
+  bg = "transparent"
+)
 
 cor_data %>%
   filter(bmi < 3) %>%
@@ -1398,20 +1396,15 @@ marker$HMDB.ID
 load("hsa.kegg.pathway.rda")
 
 path_result <-
-  enrichPathway(
-    id = marker$KEGG.ID[!is.na(marker$KEGG.ID)],
-    database = hsa.kegg.pathway,
-    method = "hypergeometric"
-  )
+  enrichPathway(id = marker$KEGG.ID[!is.na(marker$KEGG.ID)],
+                database = hsa.kegg.pathway,
+                method = "hypergeometric")
 
 
 
 
 path_result %>%
-  mutate(class = case_when(
-    p.value < 0.05 ~ "Significant",
-    TRUE ~ "No"
-  )) %>%
+  mutate(class = case_when(p.value < 0.05 ~ "Significant", TRUE ~ "No")) %>%
   mutate(class = factor(class, levels = c("Significant", "No"))) %>%
   ggplot(aes(x = Overlap, y = -log(p.value, 10))) +
   geom_hline(yintercept = 1.3, linetype = 2) +
@@ -1436,10 +1429,7 @@ path_result %>%
 
 
 path_result %>%
-  mutate(class = case_when(
-    p.value < 0.05 ~ "Significant",
-    TRUE ~ "No"
-  )) %>%
+  mutate(class = case_when(p.value < 0.05 ~ "Significant", TRUE ~ "No")) %>%
   mutate(class = factor(class, levels = c("Significant", "No"))) %>%
   arrange(desc(p.value)) %>%
   mutate(Pathway.name = factor(Pathway.name, levels = Pathway.name)) %>%

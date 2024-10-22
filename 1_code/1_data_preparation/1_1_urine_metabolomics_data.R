@@ -1,0 +1,657 @@
+setwd(r4projects::get_project_wd())
+library(tidyverse)
+rm(list = ls())
+source('1_code/100_tools.R')
+
+#get the identification results
+#####for metabolite identification result
+##load data
+load(
+  "2_data//data_analysis20200108/urine_metabolome/data_cleaning/RPLC/POS/rplc_pos_6"
+)
+load(
+  "2_data/data_analysis20200108/urine_metabolome/data_cleaning/RPLC/NEG/rplc_neg_6"
+)
+
+##get the identification results
+identification_table_pos <- readr::read_csv(
+  "2_data/data_analysis20200108/urine_metabolome/metabolite_annotation/RPLC/POS/identification.table.new.csv"
+)
+
+identification_table_neg <-
+  readr::read_csv(
+    "2_data/data_analysis20200108/urine_metabolome/metabolite_annotation/RPLC/NEG/identification.table.new.csv"
+  )
+
+load("2_data/data_analysis20200108/urine_metabolome/sample_information/sample_information")
+
+##first set the work directory to project folder
+setwd("3_data_analysis/1_data_preparation/1_urine_metabolomics_data/")
+
+identification_table_pos <-
+  identification_table_pos %>%
+  dplyr::select(name:rt, MS2.spectrum.name:Database)
+
+identification_table_neg <-
+  identification_table_neg %>%
+  dplyr::select(name:rt, MS2.spectrum.name:Database)
+
+metabolite_table <-
+  rbind(identification_table_pos, identification_table_neg)
+
+ms1_pos <- rplc_pos_6@ms1.data[[1]][, c(1, 2, 3)]
+ms1_neg <- rplc_neg_6@ms1.data[[1]][, c(1, 2, 3)]
+
+ms1 <- rbind(ms1_pos, ms1_neg)
+
+ms1 <-
+  ms1 %>%
+  left_join(metabolite_table, by = "name")
+
+ms1 <-
+  ms1 %>%
+  mutate(polarity = case_when(
+    stringr::str_detect(name, "POS") ~ "POS",
+    stringr::str_detect(name, "NEG") ~ "NEG",
+    TRUE ~ "NA"
+  ))
+
+ms1 <-
+  ms1 %>%
+  mutate(Level2 =
+           case_when(
+             Level == 1 ~ "Yes",
+             Level == 2 ~ "Yes",
+             Level == 3 ~ "No",
+             is.na(Level) ~ "Yes",
+             TRUE ~ "NA"
+           ))
+
+ms1$Level[is.na(ms1$Level)] <- 4
+
+ms1$Level[ms1$Level == 1] <- 2
+
+require(webr)
+require(moonBook)
+
+plot <-
+  PieDonut(
+    ms1,
+    aes(pies = polarity, donuts = Level),
+    # explode = 1,
+    # explodePie = FALSE,
+    selected = c(1, 3, 4, 6),
+    explodeDonut = TRUE,
+    r0 = 0.4
+    # color = "grey"
+  )
+
+plot
+
+ggsave(plot,
+       filename = "annotation_level_distributation.pdf",
+       width = 7,
+       height = 7)
+
+###we only use the level 1 and level 2 identifications
+#1-3 means identification confidence level,
+#4 means MS2 spectra match si not good enough, and 5 means this compound
+#may be not in human body
+metabolite_table <-
+  metabolite_table %>%
+  filter(Level == 1 | Level == 2)
+
+dim(metabolite_table)
+
+####remove the duplicated metabolites according to score
+metabolite_table <-
+  metabolite_table %>%
+  group_by(., Compound.name) %>%
+  filter(., SS == max(SS)) %>%
+  ungroup()
+
+dim(metabolite_table)
+
+metabolite_tags <-
+  metabolite_table %>%
+  dplyr::select(name:Database)
+
+# ####give new information for metabolites
+# kegg.id <-
+#   pbapply::pblapply(metabolite_tags$Compound.name, function(x){
+#     metflow2::transID(query = x, from = "Chemical name", to = "KEGG", top = 1)
+#   }) %>%
+#   do.call(rbind, .)
+#
+# hmdb.id <-
+#   pbapply::pblapply(metabolite_tags$Compound.name, function(x){
+#     metflow2::transID(query = x, from = "Chemical name",
+#                                to = "Human Metabolome Database", top = 1)
+#   }) %>%
+#   do.call(rbind, .)
+#
+# ID_trans <-
+#   data.frame(
+#     KEGG = kegg.id$KEGG,
+#     HMDB = hmdb.id$`Human Metabolome Database`,
+#     stringsAsFactors = FALSE
+#   )
+#
+# hmdb_kegg <-
+#   metabolite_tags %>%
+#   dplyr::select(KEGG.ID, HMDB.ID) %>%
+#   data.frame(ID_trans, stringsAsFactors = FALSE)
+#
+# hmdb_kegg <-
+#   apply(hmdb_kegg, 1, function(x){
+#     hmdb <- x[c(2,4)]
+#     hmdb <- hmdb[!is.na(hmdb)]
+#     kegg <- x[c(1,3)]
+#     kegg <- kegg[!is.na(kegg)]
+#
+#     hmdb <- ifelse(length(hmdb) == 0, NA, hmdb[1])
+#     kegg <- ifelse(length(kegg) == 0, NA, kegg[1])
+#
+#     c(hmdb, kegg)
+#
+#   }) %>%
+#   t() %>%
+#   as_tibble()
+#
+#
+# colnames(hmdb_kegg) <-
+#   c("HMDB.ID", "KEGG.ID")
+#
+# hmdb_kegg$HMDB.ID <-
+#   hmdb_kegg$HMDB.ID %>%
+#   sapply(function(x) {
+#     if(is.na(x)) {
+#       return(NA)
+#     }
+#     if(nchar(x) == 9){
+#       pre <- stringr::str_extract(x, "[A-Za-z]{1,}")
+#       end <- stringr::str_extract(x, "[0-9]{1,}")
+#       end <- paste("00", end, sep = "")
+#       x <- paste(pre, end, sep = "")
+#     }
+#     x
+#   }
+#   ) %>%
+#   unname()
+#
+# cbind(metabolite_tags$HMDB.ID, hmdb_kegg[,1])
+#
+# metabolite_tags[,c("HMDB.ID", 'KEGG.ID')] <-
+#   hmdb_kegg
+#
+#
+# ###should use classyfire to calculate the class of all the metabolites
+# inchikey1 <-
+#   metabolite_tags$HMDB.ID %>%
+#   pbapply::pblapply(function(x){
+#     metflow2::transID(query = x, from = "Human Metabolome Database", to = "InChIKey", top = 1)
+#   }) %>%
+#   do.call(rbind, .)
+#
+# inchikey2 <-
+#   metabolite_tags$KEGG.ID %>%
+#   pbapply::pblapply(function(x){
+#     metflow2::transID(query = x, from = "KEGG", to = "InChIKey", top = 1)
+#   }) %>%
+#   do.call(rbind, .)
+#
+# inchikey3 <-
+#   metabolite_tags$name %>%
+#   pbapply::pblapply(function(x){
+#     metflow2::transID(query = x, from = "Chemical name", to = "InChIKey", top = 1)
+#   }) %>%
+#   do.call(rbind, .)
+#
+# inchikey <- cbind(inchikey1 = inchikey1$InChIKey,
+#                   inchikey2 = inchikey2$InChIKey,
+#                   inchikey3 = inchikey3$InChIKey) %>%
+#   as_tibble() %>%
+#   apply(1, function(x){
+#     x <- x[!is.na(x)]
+#     ifelse(length(x) == 0, NA, x[1])
+#   })
+#
+# metabolite_class <- vector(mode = "list", length = length(inchikey))
+#
+#
+# metabolite_class <-
+#   pbapply::pblapply(inchikey, function(x){
+#     Sys.sleep(time = 5)
+#     result <- metflow2::get_metclass(inchikey = x, sleep = 5)
+#   })
+#
+#
+# idx <-
+#   lapply(metabolite_class, class) %>% unlist() %>%
+#   `==`("logical") %>%
+#   which()
+#
+# inchikey[idx]
+#
+#
+# super_class <- lapply(metabolite_class, function(x){
+#   if(is.na(x)) return(NA)
+#   x@classification_info %>%
+#     dplyr::filter(name == "Superclass") %>%
+#     pull(value)
+# }) %>%
+#   unlist()
+#
+#
+# class <- lapply(metabolite_class, function(x){
+#   if(is.na(x)) return(NA)
+#   x@classification_info %>%
+#     dplyr::filter(name == "Class") %>%
+#     pull(value)
+# }) %>%
+#   unlist()
+#
+# sub_class <- lapply(metabolite_class, function(x){
+#   if(is.na(x)) return(NA)
+#   x@classification_info %>%
+#     dplyr::filter(name == "Subclass") %>%
+#     pull(value)
+# }) %>%
+#   unlist()
+#
+# sub_class[which(sub_class == "Not available")] <- NA
+#
+#
+# metabolite_tags <- data.frame(metabolite_tags,
+#                               super_class,
+#                               class,
+#                               sub_class,
+#                               stringsAsFactors = FALSE)
+#
+# ###get the metabolite table
+# peak_table_pos <- rplc_pos_6@ms1.data[[1]]
+# peak_table_neg <- rplc_neg_6@ms1.data[[1]]
+#
+# ##remove Blank and QC_DL
+# peak_table_pos <-
+#   peak_table_pos %>%
+#   dplyr::select(-dplyr::starts_with('BLK')) %>%
+#   dplyr::select(-dplyr::starts_with('blk'))
+#
+#
+# peak_table_neg <-
+#   peak_table_neg %>%
+#   dplyr::select(-dplyr::starts_with('BLK')) %>%
+#   dplyr::select(-dplyr::starts_with('blk'))
+#
+#
+# setdiff(colnames(peak_table_pos), colnames(peak_table_neg))
+#
+# setdiff(colnames(peak_table_neg), colnames(peak_table_pos))
+#
+# intersect_name <-
+#   intersect(colnames(peak_table_pos), colnames(peak_table_neg))
+#
+# peak_table_pos <-
+#   peak_table_pos %>%
+#   dplyr::select(one_of(intersect_name))
+#
+# peak_table_neg <-
+#   peak_table_neg %>%
+#   dplyr::select(one_of(intersect_name))
+#
+#
+# colnames(peak_table_pos) == colnames(peak_table_neg)
+#
+# peak_table <-
+#   rbind(peak_table_pos, peak_table_neg)
+#
+#
+# readr::write_csv(peak_table, "peak_table.csv")
+# save(peak_table, file = "peak_table")
+# load("peak_table")
+#
+# metabolite_table <-
+#   peak_table %>%
+#   filter(name %in% metabolite_tags$name) %>%
+#   arrange(name)
+#
+# metabolite_tags <-
+#   metabolite_tags %>%
+#   filter(name %in% metabolite_table$name) %>%
+#   arrange(name)
+#
+# metabolite_table$name == metabolite_tags$name
+#
+#
+# metabolite_tags$Compound.name[grep("CE[0-9]{1,2}", x = metabolite_tags$Compound.name)] <-
+# metabolite_tags$Compound.name %>%
+#   grep("CE[0-9]{1,2}", x = .) %>%
+#   `[`(metabolite_tags$Compound.name, .) %>%
+#   stringr::str_split(";") %>%
+#   lapply(function(x) x[[1]]) %>%
+#   unlist()
+#
+#
+# metabolite_tags %>%
+#   filter(stringr::str_detect(Compound.name, "MMV"))
+#
+# metabolite_tags <-
+#   metabolite_tags %>%
+#   filter(!stringr::str_detect(Compound.name, "MMV"))
+#
+#
+# metabolite_tags %>%
+#   # filter(Database == "monaDatabase0.0.1") %>%
+#   pull(Compound.name) %>%
+#   View()
+#
+#
+# metabolite_tags$Compound.name[792] <-
+#   "Lubiprostone"
+#
+#
+# ##654 697 791 802 808 should be removed
+#
+# metabolite_tags <- metabolite_tags[-c(654, 697, 791, 802, 808),]
+#
+#
+# ##remove duplciated metabolites
+# metabolite_tags <-
+# metabolite_tags %>%
+#   group_by(Compound.name) %>%
+#   filter(SS == max(SS)) %>%
+#   ungroup()
+#
+#
+# metabolite_table <-
+#   metabolite_table %>%
+#   dplyr::filter(name %in% metabolite_tags$name)
+#
+# metabolite_table$name == metabolite_tags$name
+#
+#
+#
+#
+# ###remove some isotopes
+# ##creteria
+# ##rt <5 s and cor > 0.8 and mz error meet the isotope distribution
+# cor_value <-
+#   metabolite_table %>%
+#   dplyr::select(-c(name, mz, rt)) %>%
+#   dplyr::select(-contains("QC")) %>%
+#   as.data.frame() %>%
+#   t() %>%
+#   cor(method = "spearman")
+#
+# colnames(cor_value) <-
+#   rownames(cor_value) <-
+#   metabolite_table$name
+#
+# cor_value[lower.tri(cor_value)] <- 2
+#
+# cor_value <-
+#   cor_value %>%
+#   as.data.frame() %>%
+#   rownames_to_column(., var = "name1") %>%
+#   tidyr::pivot_longer(cols = -name1,
+#                       names_to = "name2", values_to = "Correlation") %>%
+#   distinct() %>%
+#   filter(., Correlation != 1 & Correlation != 2) %>%
+#   arrange(., desc(abs(Correlation)))
+#
+#
+# cor_value <-
+#   cor_value %>%
+#   filter(Correlation > 0.8)
+#
+# rp_pos <- metID::rp.pos
+# rp_neg <- metID::rp.neg
+#
+# cor_value_pos <-
+#   cor_value %>%
+#   filter(stringr::str_detect(name1, "_POS") & stringr::str_detect(name2, "_POS"))
+#
+# cor_value_neg <-
+#   cor_value %>%
+#   filter(stringr::str_detect(name1, "_NEG") & stringr::str_detect(name2, "_NEG"))
+#
+#
+# result <- NULL
+#
+# for(i in 1:nrow(cor_value_pos)){
+#   x <- cor_value_pos[i,]
+#   cat(i, " ")
+#   x <- as.character(x)
+#
+#   mz <- metabolite_tags %>%
+#     filter(name %in% x[1:2]) %>%
+#     pull(mz)
+#
+#   rt <- metabolite_tags %>%
+#     filter(name %in% x[1:2]) %>%
+#     pull(rt)
+#
+#   mz_diff <- abs(mz[1] - mz[2])
+#   rt_diff <- abs(rt[1] - rt[2])
+#   cor <- as.numeric(x[3])
+#
+#   if(cor > 0.9 & rt_diff < 2 & mz_diff < 5){
+#     result <- c(result, list(c(x, mz_diff, rt_diff)))
+#   }
+# }
+#
+#
+# result <-
+#   do.call(rbind, result)
+#
+# colnames(result) <-
+#   c("name1", "name2", "cor", "mz_diff", "rt_diff")
+#
+# result <- tibble::as_tibble(result)
+#
+# idx =  5
+#
+#
+# metabolite_tags %>%
+#   filter(name %in% c(as.character(result[idx,1]), as.character(result[idx,2]))) %>%
+#   dplyr::select(c(name:rt)) %>%
+#   as.data.frame()
+#
+#
+#
+# int1 <- metabolite_table %>%
+#   filter(name == as.character(result[idx,1])) %>%
+#   dplyr::select(-c(name:rt)) %>%
+#   as.numeric()
+#
+#
+# int2 <- metabolite_table %>%
+#   filter(name == as.character(result[idx,2])) %>%
+#   dplyr::select(-c(name:rt)) %>%
+#   as.numeric()
+#
+# plot(int1, int2)
+# abline(0, 1)
+#
+#
+# metabolite_table <-
+#   metabolite_table %>%
+#   filter(!name %in% result$name2)
+#
+#
+# metabolite_tags <-
+#   metabolite_tags %>%
+#   filter(!name %in% result$name2)
+#
+# metabolite_table$name == metabolite_tags$name
+#
+# readr::write_csv(metabolite_table, "metabolite_table.csv")
+# save(metabolite_table, file = "metabolite_table")
+
+load("metabolite_table")
+
+# readr::write_csv(metabolite_tags, "metabolite_tags.csv")
+# save(metabolite_tags, file = "metabolite_tags")
+##sample sampels may have NAs
+load("metabolite_tags")
+
+expression_data <- metabolite_table
+
+expression_data <-
+  expression_data %>%
+  dplyr::select(-c("name", "mz", "rt")) %>%
+  as.data.frame()
+
+variable_info <-
+  metabolite_tags %>%
+  as.data.frame()
+
+####sample info
+sample_info <- sample_information
+colnames(sample_info)
+colnames(sample_info)[1] <- "subject_id"
+colnames(sample_info)[2] <- "sample_id"
+
+sample_info_pos <- rplc_pos_6@sample.info
+sample_info_neg <- rplc_neg_6@sample.info
+
+colnames(sample_info_pos)
+colnames(sample_info_neg)
+
+sample_info <-
+  sample_info %>%
+  dplyr::filter(sample_id %in% colnames(expression_data))
+
+sample_info_pos <-
+  sample_info_pos %>%
+  dplyr::filter(sample.name %in% colnames(expression_data))
+
+sample_info2 <-
+  sample_info_pos %>%
+  dplyr::left_join(sample_info, by = c("sample.name" = "sample_id")) %>%
+  dplyr::rename(sample_id = sample.name)
+
+sample_info <-
+  sample_info2
+
+sample_info <-
+  sample_info %>%
+  dplyr::select(sample_id, subject_id, GA = GA.y, everything()) %>%
+  dplyr::select(-GA.x)
+
+expression_data <-
+  expression_data %>%
+  dplyr::select(sample_info$sample_id)
+
+dim(expression_data)
+dim(sample_info)
+
+rownames(expression_data) <- variable_info$name
+
+colnames(expression_data) == sample_info$sample_id
+
+# ##sample inforamtion
+# sample_info$GA
+#
+# temp_data <-
+#   sample_info %>%
+#   dplyr::dplyr::select(c("subject_id", "sample_id", "GA", "Visit",
+#                   "day_0", "Date.Acquired", "DD", "EDD")) %>%
+#   mutate(begin_date = as.Date(day_0,"%m/%d/%Y"),
+#          acquired_date = as.Date(Date.Acquired,"%m/%d/%y"),
+#          due_date = as.Date(DD, "%Y-%m-%d"),
+#          expected_due_date = as.Date(EDD, "%Y-%m-%d")
+#   )
+#
+# g_stage <-
+# as.numeric((temp_data$acquired_date - temp_data$begin_date)/7)
+#
+# weeks_to_delivery <-
+#   as.numeric(temp_data$due_date - temp_data$acquired_date, units = "weeks")
+#
+# data.frame(name = temp_data$sample_id,
+#                 g_stage,
+#                 weeks_to_delivery) %>%
+#   dplyr::filter(stringr::str_detect(name, "P"))
+
+
+##sample information
+sample_info$Age <- as.numeric(sample_info$Age)
+
+birth_wt <- sample_info$`Birth wt`
+birth_wt[birth_wt == "1430; 1630" & !is.na(birth_wt)] <- 1430 + 1630
+birth_wt[birth_wt == "2315; 2190" & !is.na(birth_wt)] <- 2315 + 2190
+birth_wt[birth_wt == "3015 / 3170" & !is.na(birth_wt)] <- 3015 + 3170
+
+sample_info$birth_wt <- birth_wt
+
+bmi <-
+  trans_wt(sample_info$Wt) / ((trans_ht(sample_info$Ht)) / 100) ^ 2
+
+sample_info$bmi <- bmi
+
+parity <- sample_info$Parity
+
+parity <-
+  parity %>%
+  stringr::str_extract("G[0-9]{1}") %>%
+  stringr::str_replace("G", "") %>%
+  as.numeric()
+
+sample_info$parity <- parity
+
+ethnicity <-
+  sample_info$`Ethinic Group`
+
+ethnicity <-
+  case_when(
+    # is.na(ethnicity) ~ NA,
+    ethnicity == "1" ~ "White",
+    ethnicity == "2" ~ "Black",
+    ethnicity == "3" ~ "Latina",
+    ethnicity == "4" ~ "Pacific Islander",
+    ethnicity == "5" ~ "Asian",
+    ethnicity == "4 (Asian)" ~ "Asian",
+    ethnicity == "Afr Am" ~ "Black",
+    TRUE ~ ethnicity
+  )
+
+sample_info$ethnicity <- ethnicity
+
+##save metabolite information
+save(expression_data, file = "metabolites/expression_data")
+save(variable_info, file = "metabolites/variable_info")
+save(sample_info, file = "metabolites/sample_info")
+
+###peak table
+ms1_pos <- rplc_pos_6@ms1.data[[1]]
+ms1_neg <- rplc_neg_6@ms1.data[[1]]
+
+intersect_name <- intersect(colnames(ms1_pos), colnames(ms1_neg))
+
+ms1 <- rbind(ms1_pos[, intersect_name], ms1_neg[, intersect_name])
+
+sum(colnames(expression_data) %in% colnames(ms1))
+
+# ms1 <-
+#   ms1 %>%
+#   dplyr::dplyr::select(colnames(expression_data))
+
+variable_info_peak <- ms1[, c("name", "mz", "rt")]
+expression_data_peak <- ms1[, colnames(expression_data)]
+
+variable_info_peak2 <-
+  variable_info_peak %>%
+  dplyr::left_join(variable_info, by = c("name")) %>%
+  dplyr::select(-c("mz.y", "rt.y")) %>%
+  dplyr::rename(mz = mz.x, rt = rt.x)
+
+expression_data <- expression_data_peak
+variable_info <- variable_info_peak2
+
+rownames(expression_data) <- variable_info$name
+
+save(expression_data, file = "peaks/expression_data")
+save(variable_info, file = "peaks/variable_info")
+save(sample_info, file = "peaks/sample_info")

@@ -164,6 +164,17 @@ sample_information <-
   dplyr::select(subject_id, sample_id, Visit, dplyr::everything()) %>%
   dplyr::arrange(subject_id, Visit)
 
+sample_information$GA
+sample_information %>% 
+  dplyr::filter(is.na(GA)) %>%
+  dplyr::select(sample_id)
+
+sample_information$post_partum <-
+  sample_information$GA
+
+sample_information$post_partum[is.na(sample_information$post_partum)] <- "YES"
+sample_information$post_partum[sample_information$post_partum != "YES"] <- "NO"
+
 save(sample_information, file = "sample_information.rda")
 
 ###demographic data
@@ -406,7 +417,6 @@ demographic_data <-
   )
 
 save(demographic_data, file = "demographic_data.rda")
-
 
 colnames(sample_information)
 colnames(demographic_data)

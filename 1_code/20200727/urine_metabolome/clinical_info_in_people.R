@@ -7,22 +7,22 @@ no_function()
 ###----------------------------------------------------------------------------
 setwd(r4projects::get_project_wd())
 rm(list=ls())
-source("R/20200727/tools.R")
+source("1_code/100_tools.R")
 
 ##peaks
 load(
-  "data_analysis20200108/urine_metabolome/data_preparation_for_analysis/peaks/expression_data"
+  "3_data_analysis/data_analysis20200108/urine_metabolome/data_preparation_for_analysis/peaks/expression_data"
 )
 
 load(
-  "data_analysis20200108/urine_metabolome/data_preparation_for_analysis/peaks/sample_info"
+  "3_data_analysis/data_analysis20200108/urine_metabolome/data_preparation_for_analysis/peaks/sample_info"
 )
 
 load(
-  "data_analysis20200108/urine_metabolome/data_preparation_for_analysis/peaks/variable_info"
+  "3_data_analysis/data_analysis20200108/urine_metabolome/data_preparation_for_analysis/peaks/variable_info"
 )
 
-setwd("data_analysis20200108/urine_metabolome/ethnicity/")
+setwd("3_data_analysis/data_analysis20200108/urine_metabolome/ethnicity/")
 
 library(metflow2)
 library(tidyverse)
@@ -400,8 +400,10 @@ ggsave(plot, filename = "pca_ethnicity_ga_plot.pdf",
 #   perplexity = 30,
 #   verbose = TRUE
 # )
+# 
+# save(tsne_object, file = "tsne_object")
 
-save(tsne_object, file = "tsne_object")
+load("tsne_object")
 
 Y <- tsne_object$Y
 

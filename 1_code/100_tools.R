@@ -773,3 +773,9 @@ induction_color <-
     "NO" = RColorBrewer::brewer.pal(n = 11, name = "RdBu")[10],
     "Unknown" = "grey"
   )
+
+
+batch_color <-
+  c("1" = col[5],
+    "2" = col[9],
+    "QC" = col[10])
