@@ -1,0 +1,14 @@
+4-Hydroxyandrostenedione glucuronide (pp) m/z=478.227241706	0.5	0.984491312796
+4-Hydroxyandrostenedione glucuronide (pp) UGT2A1	0.5	0.357326667011
+Estriol-17-glucuronide (pp) m/z=464.211488022	1.0	0.998084655077
+Estriol-17-glucuronide (pp) UGT1A8	1.0	0.425230145158
+UGT2A3 (pp) Estriol-3-glucuronide	0.5	0.436999460628
+UGT2A3 (pp) 2-Methoxy-estradiol-17b 3-glucuronide	0.5	0.436924519666
+m/z=288.179646049 (pp) Estriol	1.0	0.99808106462
+m/z=478.227241706 (pp) 2-Methoxy-estradiol-17b 3-glucuronide	0.5	0.99080446348
+Estriol-3-glucuronide (pp) m/z=464.211488022	1.0	0.967889660604
+Estriol-3-glucuronide (pp) UGT2A1	0.5	0.35758385984
+UGT2A1 (pp) Estriol	0.5	0.404273790137
+UGT1A8 (pp) Estrone	1.0	0.921879094038
+UGT1A8 (pp) Estriol	0.5	0.42278904374
+Estrone (pp) m/z=270.168935047	1.0	0.982227822348

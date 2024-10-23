@@ -175,7 +175,37 @@ sample_information$post_partum <-
 sample_information$post_partum[is.na(sample_information$post_partum)] <- "YES"
 sample_information$post_partum[sample_information$post_partum != "YES"] <- "NO"
 
-save(sample_information, file = "sample_information.rda")
+
+ga_range <-
+  as.character(cut_width(
+    x = sample_information$GA,
+    width = 2,
+    center = 3
+  )) %>%
+  stringr::str_replace("\\[", '(')
+
+stringr::str_sort(unique(ga_range))
+
+table(ga_range)
+
+ga_range[is.na(ga_range)] <- "PP"
+
+sample_information$ga_range <-
+  ga_range
+
+
+sample_information$ga_range %>% unique() %>% sort()
+
+sample_information$ga_range %>% table()
+
+sample_information$ga_range[sample_information$ga_range == "(10,12]"] <- "(10,16]"
+sample_information$ga_range[sample_information$ga_range == "(12,14]"] <- "(10,16]"
+sample_information$ga_range[sample_information$ga_range == "(14,16]"] <- "(10,16]"
+
+sample_information$ga_range[sample_information$ga_range == "(38,40]"] <- "(38,42]"
+sample_information$ga_range[sample_information$ga_range == "(40,42]"] <- "(38,42]"
+
+# save(sample_information, file = "sample_information.rda")
 
 ###demographic data
 demographic_data <-
@@ -434,3 +464,4 @@ sample_information <-
                    by = "subject_id")
 
 save(sample_information, file = "sample_information.rda")
+

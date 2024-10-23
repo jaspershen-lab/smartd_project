@@ -1,0 +1,12 @@
+16-alpha,17-beta-estriol 17-beta-D-glucuronide	UGT1A8
+16-alpha,17-beta-estriol 17-beta-D-glucuronide	m/z=464.211488022
+11-Oxo-androsterone glucuronide	m/z=480.242472339
+11-Oxo-androsterone glucuronide	UGT2A1
+11-Oxo-androsterone glucuronide	GUSB
+Estriol-3-glucuronide	m/z=464.211488022
+Estriol-3-glucuronide	UGT2A1
+m/z=464.211488022	Estriol-17-glucuronide
+UGT1A8	Estrone
+UGT1A8	Estriol-17-glucuronide
+Estrone	m/z=270.168935047
+GUSB	Estriol-17-glucuronide

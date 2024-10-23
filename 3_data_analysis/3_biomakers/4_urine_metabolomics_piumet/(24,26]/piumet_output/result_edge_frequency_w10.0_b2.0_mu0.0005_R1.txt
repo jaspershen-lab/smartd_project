@@ -1,0 +1,12 @@
+16-alpha,17-beta-estriol 17-beta-D-glucuronide (pp) UGT1A8	0.5	0.419369838977
+16-alpha,17-beta-estriol 17-beta-D-glucuronide (pp) m/z=464.211488022	0.5	0.976051297432
+11-Oxo-androsterone glucuronide (pp) m/z=480.242472339	1.0	0.967652334694
+11-Oxo-androsterone glucuronide (pp) UGT2A1	0.5	0.365265102096
+11-Oxo-androsterone glucuronide (pp) GUSB	0.5	0.43890951021
+Estriol-3-glucuronide (pp) m/z=464.211488022	0.5	0.967010386606
+Estriol-3-glucuronide (pp) UGT2A1	0.5	0.385690782767
+m/z=464.211488022 (pp) Estriol-17-glucuronide	0.5	0.97736362909
+UGT1A8 (pp) Estrone	1.0	0.909328801342
+UGT1A8 (pp) Estriol-17-glucuronide	0.5	0.42749496568
+Estrone (pp) m/z=270.168935047	1.0	0.95174961357
+GUSB (pp) Estriol-17-glucuronide	0.5	0.435501476702

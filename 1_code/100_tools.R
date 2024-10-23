@@ -372,10 +372,10 @@ readPIUMet <-
     if (!is.null(marker_name)) {
       marker <-
         variable_info %>%
-        dplyr::filter(name %in% marker_name) %>%
+        dplyr::filter(variable_id %in% marker_name) %>%
         dplyr::mutate(polarity = case_when(
-          stringr::str_detect(name, "POS") ~ "positive",
-          stringr::str_detect(name, "NEG") ~ "negative"
+          stringr::str_detect(variable_id, "POS") ~ "positive",
+          stringr::str_detect(variable_id, "NEG") ~ "negative"
         )) %>%
         dplyr::mutate(
           mz2 = case_when(
@@ -388,8 +388,8 @@ readPIUMet <-
       marker <-
         variable_info[idx, ] %>%
         dplyr::mutate(polarity = case_when(
-          stringr::str_detect(name, "POS") ~ "positive",
-          stringr::str_detect(name, "NEG") ~ "negative"
+          stringr::str_detect(variable_id, "POS") ~ "positive",
+          stringr::str_detect(variable_id, "NEG") ~ "negative"
         )) %>%
         dplyr::mutate(
           mz2 = case_when(
@@ -398,8 +398,6 @@ readPIUMet <-
           )
         )
     }
-    
-    
     
     annotation_result <-
       annotation_result %>%
@@ -434,7 +432,7 @@ readPIUMet <-
       dplyr::rename(node = V1,
                     node_class = V3,
                     HMDB_ID = V4) %>%
-      dplyr::left_join(annotation_result[, c("name", "Metabolite.Name", "super.class")], by = c("node" = "Metabolite.Name"))
+      dplyr::left_join(annotation_result[, c("variable_id", "Metabolite.Name", "super.class")], by = c("node" = "Metabolite.Name"))
     
     node <-
       node_data$node %>%
@@ -487,7 +485,7 @@ readPIUMet <-
     
     node_data <-
       node_data %>%
-      dplyr::select(-name) %>%
+      dplyr::select(-variable_id) %>%
       dplyr::distinct()
     
     node_data$node_class[grep("Metabolite", node_data$node_class)] <-
@@ -596,6 +594,8 @@ readPIUMet <-
     save(graph, file = file.path(output_path, "graph"))
     save(annotation_result, file = file.path(output_path, "annotation_result"))
     
+    library(ggraph)
+    
     ggsave(
       plot,
       filename = file.path(output_path, "graph_plog.pdf"),
@@ -605,6 +605,10 @@ readPIUMet <-
     
     plot
   }
+
+
+library(extrafont)
+extrafont::loadfonts()
 
 
 plot_silhouette <- function(sil, color = "red") {
@@ -776,6 +780,4 @@ induction_color <-
 
 
 batch_color <-
-  c("1" = col[5],
-    "2" = col[9],
-    "QC" = col[10])
+  c("1" = col[5], "2" = col[9], "QC" = col[10])

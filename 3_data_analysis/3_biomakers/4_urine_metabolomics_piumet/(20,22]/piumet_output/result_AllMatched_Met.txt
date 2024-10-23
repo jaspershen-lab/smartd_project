@@ -1,0 +1,14 @@
+mz-peak	PIUMet-ID	Metabolite-Name	HMDB-ID	origin	super-class	Cellular-location	monisotopic-moleculate-weight	Chemical-formula
+m/z=270.168935047	met11053	Estrone	HMDB0000145	Drug metabolite|Endogenous|Food	Lipids and lipid-like molecules	Cytoplasm|Extracellular|Membrane (predicted from logP)|Endoplasmic reticulum	270.16197995	C18H22O2
+m/z=270.168935047	met54429	15-Octadecene-9,11,13-triynoic acid	HMDB0032673	Endogenous|Food	Organic compounds	Extracellular|Membrane	270.16197995	C18H22O2
+m/z=271.172457804	met32925	Arginyl-Proline	HMDB0028717	Endogenous	Organic compounds	NULL	271.16443956	C11H21N5O3
+m/z=271.172457804	met8455	Prolyl-Arginine	HMDB0029011	Endogenous	Organic compounds	NULL	271.16443956	C11H21N5O3
+m/z=428.190123471	met22727	1-Isomangostin hydrate	HMDB0029984	Endogenous|Food	Organic compounds	Membrane	428.18350325	C24H28O7
+m/z=428.190123471	met33927	3-(1-(3-Methylbutanoyl))-angeloyl vaginidiol	HMDB0040691	Food	Phenylpropanoids and polyketides	Membrane	428.18350325	C24H28O7
+m/z=428.190123471	met37882	Garcinone D	HMDB0033332	Food	Organic compounds	Membrane	428.18350325	C24H28O7
+m/z=428.190123471	met61665	Heteroflavanone B	HMDB0040836	Food	Organic compounds	Membrane	428.18350325	C24H28O7
+m/z=428.190123471	met446	Pyridinoline	HMDB0000851	Endogenous	Organic compounds	NULL	428.19071389	C18H28N4O8
+m/z=428.190123471	met48489	3-Isomangostin hydrate	HMDB0041522	Food	Organic compounds	Membrane	428.18350325	C24H28O7
+m/z=428.190123471	met21192	Edulisin V	HMDB0041198	Food	Phenylpropanoids and polyketides	Membrane	428.18350325	C24H28O7
+m/z=428.190123471	met70435	Artoflavanone	HMDB0030850	Endogenous|Food	Organic compounds	Membrane	428.18350325	C24H28O7
+m/z=496.227325508	met56978	Glaucarubin	HMDB0035626	Endogenous|Food	Organic compounds	Cytoplasm|Extracellular|Membrane	496.23084737	C25H36O10
