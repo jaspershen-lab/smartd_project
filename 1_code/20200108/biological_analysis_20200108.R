@@ -2,12 +2,13 @@
 no_function()
 
 setwd(r4projects::get_project_wd())
-setwd("3_data_analysis/data_analysis20200108/")
+setwd("2_data/data_analysis20200108/")
 rm(list = ls())
 library(tidyverse)
-load("data_preparation_for_analysis/metabolite_table")
-load("data_preparation_for_analysis/metabolite_tags")
-load("data_preparation_for_analysis/peak_table")
+
+load("urine_metabolome/data_preparation_for_analysis/metabolite_table")
+load("urine_metabolome/data_preparation_for_analysis/metabolite_tags")
+load("urine_metabolome/data_preparation_for_analysis/peak_table")
 
 info <-
   readxl::read_xlsx(
@@ -22,17 +23,12 @@ info <-
 sample_info <-
   readr::read_csv("../../2_data/patient_information/sample_info_191021.csv")
 
-setwd(r4projects::get_project_wd())
-marker1 <- readr::read_csv(
-  "3_data_analysis/data_analysis20200108/prediction/metabolites/RF/GA_prediction/marker_rf_final.csv"
-)
+marker1 <- readr::read_csv("prediction/metabolites/RF/GA_prediction/marker_rf_final.csv")
 marker2 <- readr::read_csv(
-  "3_data_analysis/data_analysis20200108/prediction/metabolites/RF/time_to_due_prediction/remove_cs/marker_rf_final.csv"
+  "prediction/metabolites/RF/time_to_due_prediction/remove_cs/marker_rf_final.csv"
 )
 
-setwd(get_project_wd())
-
-setwd("3_data_analysis/data_analysis20200108/biological_analysis/")
+setwd("biological_analysis/")
 
 marker1$name
 
@@ -45,12 +41,10 @@ setdiff(marker1$name, marker2$name) %>%
   left_join(metabolite_tags, by = "name") %>%
   pull(Compound.name)
 
-
 setdiff(marker2$name, marker1$name) %>%
   data.frame(name = ., stringsAsFactors = FALSE) %>%
   left_join(metabolite_tags, by = "name") %>%
   pull(Compound.name)
-
 
 library(VennDiagram)
 
@@ -61,7 +55,6 @@ venn <- VennDiagram::venn.diagram(
   main.cex = 1.5,
   lwd = 2
 )
-
 
 grid.draw(venn)
 
@@ -105,15 +98,6 @@ ggsave(
   width = 7,
   height = 4
 )
-ggsave(
-  filename = "marker_super_class.png",
-  bg = "transparent",
-  width = 7,
-  height = 4
-)
-
-setwd(r4projects::get_project_wd())
-setwd("3_data_analysis/data_analysis20200108/biological_analysis/")
 
 marker <-
   rbind(marker1, marker2)
@@ -127,7 +111,6 @@ marker_data <-
   dplyr::filter(name %in% marker$name) %>%
   column_to_rownames("name") %>%
   dplyr::select(-c(mz, rt))
-
 
 ## rename P
 str_sort(grep("P", colnames(marker_data), value = T), numeric = TRUE)
@@ -255,8 +238,6 @@ ggsave(plot,
        filename = "heatmap_marker.pdf",
        width = 10,
        height = 7)
-
-
 ##dark
 plot <-
   pheatmap(
@@ -312,15 +293,12 @@ plot <-
     pch.col = "red"
   )
 
-
 text_colour <- c("red", colorRampPalette(colors = c(
   alpha("#155F83FF", 1),
   alpha("#155F83FF", 0.4),
   alpha("#FFA319FF", 0.4),
   alpha("#FFA319FF", 1)
 ))(13))
-
-
 
 plot <-
   plot +
@@ -331,10 +309,8 @@ plot <-
     panel.border = element_blank()
   )
 
-
 distance <-
   as.matrix(dist(marker_data))[, 1][-1]
-
 
 line_cols <-
   colorRampPalette(colors =
@@ -359,7 +335,6 @@ pp_data <-
     text_colour = text_colour[-1],
     stringsAsFactors = FALSE
   )
-
 
 for (i in 1:nrow(pp_data)) {
   c(
@@ -435,7 +410,6 @@ ggplot(pp_data) +
   size = 3) +
   scale_colour_gradientn(colours = pp_data$colour)
 
-
 ## markers in different stages
 marker_data <-
   metabolite_table %>%
@@ -493,9 +467,7 @@ ga[ga == "(40,42]"] <- "(38,42]"
 
 ga[ga == "(48,50]"] <- "PP"
 
-
 table(ga)
-
 
 rownames(marker_data) <-
   metabolite_tags$Compound.name[match(rownames(marker_data), metabolite_tags$name)]
@@ -536,7 +508,6 @@ test <-
     y = names(marker_data2)
   )
 
-
 test <- do.call(rbind, test)
 
 # ga_level <-
@@ -568,7 +539,6 @@ ggplot(data = test, aes(x = GA, y = value)) +
   )
 
 rownames(marker_data)[idx]
-
 
 #-------------------------------------------------------------------------------
 ### fuzzy C-means for metabolites
@@ -1425,8 +1395,6 @@ path_result %>%
     axis.text.x = element_text(size = 13),
     axis.text.y = element_text(size = 13)
   )
-
-
 
 path_result %>%
   mutate(class = case_when(p.value < 0.05 ~ "Significant", TRUE ~ "No")) %>%

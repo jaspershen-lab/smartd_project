@@ -149,10 +149,9 @@ plot_discrete_data
 ggsave(
   plot_discrete_data,
   filename = "plot_discrete_data.pdf",
-  width = 11.5,
+  width = 8,
   height = 5
 )
-
 
 ###circos plot
 par(mar = c(2, 2, 2, 2))
@@ -207,7 +206,6 @@ circos.initialize(factors = df$factors,
                   xlim = c(0.5, 1.5))
 
 ###Mother demographic data
-
 ### mother_age
 range(mother_age)
 
@@ -219,6 +217,7 @@ circos.track(
   bg.border = "black",
   # bg.col = NA,
   track.height = 0.1,
+  
   panel.fun = function(x, y) {
     name = get.cell.meta.data("sector.index")
     i = get.cell.meta.data("sector.numeric.index")
@@ -238,11 +237,11 @@ circos.track(
     circos.text(
       x = mean(xlim),
       y = max(mother_age) + 13,
-      labels = df$subject_id,
+      labels = df$subject_id[i],
       facing = "clockwise",
       niceFacing = TRUE,
       cex = 0.8,
-      col = text_colour
+      col = text_colour[i]
       # adj = c(0, 0.5)
     )
     circos.rect(
@@ -375,7 +374,6 @@ circos.track(
     )
   }
 )
-
 
 ## mother_parity
 circos.track(
