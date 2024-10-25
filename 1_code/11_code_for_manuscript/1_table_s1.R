@@ -32,4 +32,4 @@ data <-
     mother_delivery_weeks
   )
 
-openxlsx::write.xlsx(data, "Table S2.xlsx")
+openxlsx::write.xlsx(data, "Table S1.xlsx")
