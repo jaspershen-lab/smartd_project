@@ -149,7 +149,7 @@ plot_discrete_data
 ggsave(
   plot_discrete_data,
   filename = "plot_discrete_data.pdf",
-  width = 8,
+  width = 6,
   height = 5
 )
 
