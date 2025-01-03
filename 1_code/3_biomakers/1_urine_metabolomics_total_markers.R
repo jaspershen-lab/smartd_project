@@ -205,19 +205,18 @@ plot <- peak_marker %>%
 
 plot
 
-ggsave(
-  plot,
-  filename = "dem_plot.pdf",
-  width = 7,
-  height = 7,
-  bg = "transparent"
-)
+# ggsave(
+#   plot,
+#   filename = "dem_plot.pdf",
+#   width = 7,
+#   height = 7,
+#   bg = "transparent"
+# )
 
 table(peak_marker$class)
 
 variable_info <-
   variable_info[match(rownames(subject_data), variable_info$variable_id), ]
-
 
 ###volcano plot
 lm_fdr <-
@@ -239,14 +238,25 @@ lm_fdr <-
 # save(sam_value, file = "sam_value.rda")
 load("sam_value.rda")
 
+text <-
+sam_value %>% 
+  dplyr::left_join(variable_info, by = c("name" = "variable_id")) %>% 
+  dplyr::select(name, score, fdr, Compound.name)
+
+text$Compound.name[is.na(text$Compound.name)] <-
+  text$name[is.na(text$Compound.name)]
+
+
 plot <-
   volcano_plot(
     fc = as.numeric(sam_value$score),
     log2_fc = FALSE,
     p_value = sam_value$fdr,
+    text = text$Compound.name,
     p.cutoff = 0.05,
     fc.cutoff = 1,
-    size_range = c(0.1, 5)
+    size_range = c(0.05, 8),
+    theme = "light"
   )
 plot
 sum(lm_fdr < 0.05 & as.numeric(sam_value$score) > 0)
@@ -254,7 +264,6 @@ sum(lm_fdr < 0.05 & as.numeric(sam_value$score) < 0)
 
 plot <-
   plot +
-  geom_vline(xintercept = 0, linetype = 2) +
   theme_bw()
 
 plot
@@ -262,3 +271,4 @@ ggsave(plot,
        filename = "volcano_plot.pdf",
        width = 7,
        height = 7)
+

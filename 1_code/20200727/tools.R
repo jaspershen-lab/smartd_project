@@ -228,9 +228,11 @@ sxt_rank <- function(x) {
 
 volcano_plot <- function(fc,
                          p_value,
+                         text,
                          p.cutoff = 0.05,
                          log2_fc = TRUE,
                          fc.cutoff = 2,
+                         top = 5,
                          size_range = c(0.3, 5),
                          theme = c("light", "dark")) {
   theme <- match.arg(theme)
@@ -238,12 +240,14 @@ volcano_plot <- function(fc,
     temp_data <- data.frame(
       fc = log(fc, 2),
       p_value = -log(p_value, 10),
+      text,
       stringsAsFactors = FALSE
     )
   } else{
     temp_data <- data.frame(
       fc = fc,
       p_value = -log(p_value, 10),
+      text,
       stringsAsFactors = FALSE
     )
   }
@@ -257,12 +261,26 @@ volcano_plot <- function(fc,
       TRUE ~ "No"
     ))
   
+
+  top_text_up <-
+    temp_data %>% 
+      dplyr::arrange(desc(fc), desc(p_value)) %>% 
+      head(top)
+    
+  top_text_down <-
+    temp_data %>% 
+      dplyr::arrange(desc(fc), p_value) %>% 
+      tail(top)
+  
+  temp_data <-
+  temp_data %>% 
+    mutate(text = ifelse(text %in% c(top_text_up$text, top_text_down$text), text, ""))
+  
   plot <-
     temp_data %>%
     ggplot(aes(fc, p_value)) +
     geom_hline(
       yintercept = -log(p.cutoff, 10),
-      color = "#FB8072",
       linetype = 2
     ) +
     geom_point(
@@ -270,8 +288,9 @@ volcano_plot <- function(fc,
       aes(fill = class,
           size = p_value),
       show.legend = FALSE,
-      alpha = 0.7,
+      alpha = 0.5,
     ) +
+    geom_vline(xintercept = 0, linetype = 2) +
     scale_size_continuous(range = size_range) +
     scale_fill_manual(values = c("Increase" = ggsci::pal_aaas()(10)[2],
                                  "Decrease" = ggsci::pal_aaas()(10)[1],
@@ -290,7 +309,18 @@ volcano_plot <- function(fc,
       strip.text = element_text(color = "white", size = 13)
     ) +
     labs(x = "log2(Fold change)",
-         y = "-log10(p value, FDR)")
+         y = "-log10(p value, FDR)") +
+    ggrepel::geom_text_repel(
+      data = temp_data,
+      aes(label = text),
+      box.padding = 0.5,
+      point.padding = 0.5,
+      segment.color = "grey",
+      segment.size = 0.5,
+      segment.alpha = 0.5,
+      size = 3
+    )
+
   if (theme == "light") {
     plot <- plot + theme_classic()  +
       theme(

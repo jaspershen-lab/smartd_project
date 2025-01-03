@@ -75,10 +75,37 @@ plot <-
 
 plot
 
-ggsave(plot,
-       filename = "pca_data_quality_plot_pos.pdf",
-       width = 8,
-       height = 7)
+# ggsave(plot,
+#        filename = "pca_data_quality_plot_pos.pdf",
+#        width = 8,
+#        height = 7)
+
+
+####injection order vs PCA
+
+temp_data2 <-
+  as.data.frame(pca_object$x[, 1:2]) %>%
+  tibble::rownames_to_column(var = "sample_id") %>%
+  left_join(urine_metabolomics_data_pos@sample_info, by = c("sample_id")) %>%
+  dplyr::select(sample_id, injection.order, PC1, class, batch) %>%
+  dplyr::filter(class == "QC") %>%
+  dplyr::mutate(injection.order = as.numeric(injection.order)) %>%
+  dplyr::mutate(batch = factor(batch, levels = c("1", "2"))) %>%
+  dplyr::arrange(batch, injection.order) %>%
+  dplyr::mutate(injection.order2 = 1:n())
+
+plot <-
+  temp_data2 %>%
+  ggplot(aes(injection.order2, PC1)) +
+  geom_point(aes(color = batch)) +
+  scale_color_manual(values = batch_color) +
+  base_theme +
+  geom_hline(yintercept = 0)
+plot
+# ggsave(plot,
+#        filename = "injection_order_vs_pc1_pos.pdf",
+#        width = 8,
+#        height = 7)
 
 #####GA
 qc_id <-
@@ -117,10 +144,10 @@ plot <-
 
 plot
 
-ggsave(plot,
-       filename = "pca_ga_pos.pdf",
-       width = 8,
-       height = 7)
+# ggsave(plot,
+#        filename = "pca_ga_pos.pdf",
+#        width = 8,
+#        height = 7)
 
 ####negative mode
 urine_metabolomics_data_neg <-
@@ -177,10 +204,36 @@ plot <-
 
 plot
 
+# ggsave(plot,
+#        filename = "pca_data_quality_plot_neg.pdf",
+#        width = 8,
+#        height = 7)
+
+
+temp_data2 <-
+  as.data.frame(pca_object$x[, 1:2]) %>%
+  tibble::rownames_to_column(var = "sample_id") %>%
+  left_join(urine_metabolomics_data_neg@sample_info, by = c("sample_id")) %>%
+  dplyr::select(sample_id, injection.order, PC1, class, batch) %>%
+  dplyr::filter(class == "QC") %>%
+  dplyr::mutate(injection.order = as.numeric(injection.order)) %>%
+  dplyr::mutate(batch = factor(batch, levels = c("1", "2"))) %>%
+  dplyr::arrange(batch, injection.order) %>%
+  dplyr::mutate(injection.order2 = 1:n())
+
+plot <-
+  temp_data2 %>%
+  ggplot(aes(injection.order2, PC1)) +
+  geom_point(aes(color = batch)) +
+  scale_color_manual(values = batch_color) +
+  base_theme +
+  geom_hline(yintercept = 0)
+plot
 ggsave(plot,
-       filename = "pca_data_quality_plot_neg.pdf",
+       filename = "injection_order_vs_pc1_neg.pdf",
        width = 8,
        height = 7)
+
 
 #####GA
 qc_id <-
@@ -219,10 +272,10 @@ plot <-
 
 plot
 
-ggsave(plot,
-       filename = "pca_ga_neg.pdf",
-       width = 8,
-       height = 7)
+# ggsave(plot,
+#        filename = "pca_ga_neg.pdf",
+#        width = 8,
+#        height = 7)
 
 ####positive and negative mode
 ###remove peaks with large RSD
@@ -274,8 +327,32 @@ plot <-
 
 plot
 
+# ggsave(plot,
+#        filename = "pca_data_quality_plot.pdf",
+#        width = 8,
+#        height = 7)
+
+temp_data2 <-
+  as.data.frame(pca_object$x[, 1:2]) %>%
+  tibble::rownames_to_column(var = "sample_id") %>%
+  left_join(urine_metabolomics_data@sample_info, by = c("sample_id")) %>%
+  dplyr::select(sample_id, injection.order, PC1, PC2, class, batch) %>%
+  dplyr::filter(class == "QC") %>%
+  dplyr::mutate(injection.order = as.numeric(injection.order)) %>%
+  dplyr::mutate(batch = factor(batch, levels = c("1", "2"))) %>%
+  dplyr::arrange(batch, injection.order) %>%
+  dplyr::mutate(injection.order2 = 1:n())
+
+plot <-
+  temp_data2 %>%
+  ggplot(aes(injection.order2, PC1)) +
+  geom_point(aes(color = batch)) +
+  scale_color_manual(values = batch_color) +
+  base_theme +
+  geom_hline(yintercept = 0)
+plot
 ggsave(plot,
-       filename = "pca_data_quality_plot.pdf",
+       filename = "injection_order_vs_pc1.pdf",
        width = 8,
        height = 7)
 
@@ -316,10 +393,10 @@ plot <-
 
 plot
 
-ggsave(plot,
-       filename = "pca_ga.pdf",
-       width = 8,
-       height = 7)
+# ggsave(plot,
+#        filename = "pca_ga.pdf",
+#        width = 8,
+#        height = 7)
 
 #####PCA score plot for each person
 plot <-
@@ -343,11 +420,10 @@ plot <-
 
 plot
 
-ggsave(plot,
-       filename = "pca_ga_for_each_person.pdf",
-       width = 8,
-       height = 7)
-
+# ggsave(plot,
+#        filename = "pca_ga_for_each_person.pdf",
+#        width = 8,
+#        height = 7)
 
 x <-
   data.frame(sample_id = colnames(temp_data),
@@ -401,10 +477,10 @@ plot <-
 
 plot
 
-ggsave(plot,
-       filename = "pca2_for_each_person.pdf",
-       width = 10,
-       height = 8)
+# ggsave(plot,
+#        filename = "pca2_for_each_person.pdf",
+#        width = 10,
+#        height = 8)
 
 
 #

@@ -1,10 +1,10 @@
 ####for RF
 setwd(r4projects::get_project_wd())
-setwd("data_analysis20200108/prediction/metabolites/RF/time_to_due_prediction/remove_cs/")
+setwd("2_data/data_analysis20200108/prediction/metabolites/RF/time_to_due_prediction/remove_cs/")
 ###normal data
 library(randomForest)
 
-##load dataa
+##load data
 load("../../../sample_data_dis")
 load("../../../sample_data_val")
 load("../../../sample_data_dis_x")
@@ -32,9 +32,9 @@ sample_data_val_y <-
 marker_rf <- 
   readr::read_csv("marker_rf_final.csv")
 
-
 info <-
-  readxl::read_xlsx("E:/project/smartD/patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
+  readxl::read_xlsx("../../../../../../../2_data/patient_information/SmartD_ClinicalVariables_PartiallySummarized.xlsx")
+
 info <-
   info %>%
   mutate(ID = stringr::str_replace(ID, "sf", "")) %>%
